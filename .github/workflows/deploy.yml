@@ -15,22 +15,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Authenticate to GCP using Workload Identity Federation
-        uses: google-github-actions/auth@v1
+        uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
-          service_account_email: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+          workload_identity_provider: 'projects/734640373537/locations/global/workloadIdentityPools/github-actions-pool-3/providers/github-oidc'
+          service_account: 'github-action@veas-website-01.iam.gserviceaccount.com'
+          token_format: 'access_token'
 
       - name: Set GCP project
-        run: gcloud config set project ${{ secrets.GCP_PROJECT }}
+        run: gcloud config set project veas-website-01
 
       - name: Test GCP authentication
-        run: gcloud projects describe ${{ secrets.GCP_PROJECT }}
+        run: gcloud projects describe veas-website-01
 
       # Optional: Deploy Firebase Hosting
       # - name: Deploy Firebase Hosting
       #   run: |
       #     npm ci
-      #     npx firebase deploy --only hosting
+      #     npx firebase deploy --project veas-website-01 --only hosting
