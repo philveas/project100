@@ -40,7 +40,7 @@ jobs:
         run: npm run build
 
       - name: Export static site
-        run: npx next export -o out
+        run: npx next export --outdir out
 
       # 5) Install Firebase CLI
       - name: Install Firebase CLI
