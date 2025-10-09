@@ -39,19 +39,19 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
+      - name: Export static site
+        run: npx next export -o out
+
       # 5) Install Firebase CLI
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@latest
 
-      # 6) Deploy to Firebase Hosting
-      # If you don't have Cloud Functions set up, don't include them.
+      # 6) Deploy to Firebase Hosting (use .firebaserc default)
       - name: Deploy to Firebase
         run: |
           firebase deploy \
-            --project ${{ secrets.GCP_PROJECT }} \
             --non-interactive \
             --only hosting
         env:
-          # Point Firebase to the ADC file created by the auth step
           GOOGLE_APPLICATION_CREDENTIALS: ${{ steps.auth.outputs.credentials_file_path }}
           FIREBASE_CLI_EXPERIMENTS: webframeworks
