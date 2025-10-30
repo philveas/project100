@@ -1,0 +1,266 @@
+{
+  "placeholderImages": [
+    {
+      "id": "home-hero",
+      "description": "",
+      "imageHint": "homepage hero",
+      "folder": "home",
+      "desktop": {
+        "file": "Grass2.0.webp",
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "id": "home-abstract",
+      "description": "",
+      "imageHint": "homepage feature",
+      "folder": "home",
+      "desktop": {
+        "file": "acoustic_ceiling.webp",
+        "width": 597,
+        "height": 448
+      },
+      "mobile": {
+        "file": "acoustic_ceiling_mobile.webp",
+        "width": 360,
+        "height": 270
+      }
+    },
+    {
+      "id": "home-meeting",
+      "description": "",
+      "imageHint": "homepage feature",
+      "folder": "home",
+      "desktop": {
+        "file": "meeting2.webp",
+        "width": 597,
+        "height": 448
+      },
+      "mobile": {
+        "file": "meeting2_mobile.webp",
+        "width": 360,
+        "height": 270
+      }
+    },
+    {
+      "id": "survey-hero",
+      "description": "grass",
+      "imageHint": "survey hero",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "noise_survey_grass.webp",
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "id": "survey-acc-env",
+      "description": "",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "envsurvey_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-acc-res",
+      "description": "gep2",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "residential_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-acc-edu",
+      "description": "classroom",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "classroom_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-acc-hea",
+      "description": "hsoptial / ambulance",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "healthcare2_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-acc-ind",
+      "description": "plant",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "industrial_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-acc-con",
+      "description": "Cosntruciton",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "constructiondusk2_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-acc-spe",
+      "description": "Ear defenders",
+      "imageHint": "survey accordian",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "work_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "survey-cta",
+      "description": "",
+      "imageHint": "survey cta",
+      "folder": "noise survey",
+      "desktop": {
+        "file": "survey.webp",
+        "width": 597,
+        "height": 448
+      },
+      "mobile": {
+        "file": "survey_mob.webp",
+        "width": 360,
+        "height": 270
+      }
+    },
+    {
+      "id": "impact-hero",
+      "description": "",
+      "imageHint": "impact hero",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "road_noise.webp",
+        "width": 1920,
+        "height": 1080
+      }
+    },
+    {
+      "id": "impact-acc-res",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "residential_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-fac",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "facade_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-bui",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "industrial_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-ind",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "industrial2_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-con",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "constructiondusk2_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-ope",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "constructiondusk2_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-eve",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "constructiondusk2_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-acc-spo",
+      "description": "",
+      "imageHint": "impact accordian",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "sports_acc.webp",
+        "width": 200,
+        "height": 200
+      }
+    },
+    {
+      "id": "impact-cta",
+      "description": "train",
+      "imageHint": "impact cta",
+      "folder": "noise impact",
+      "desktop": {
+        "file": "railway_noise.webp",
+        "width": 597,
+        "height": 448
+      },
+      "mobile": {
+        "file": "railway_noise_mob.webp",
+        "width": 360,
+        "height": 270
+      }
+    }
+  ]
+}
