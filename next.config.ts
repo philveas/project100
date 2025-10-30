@@ -2,9 +2,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ Remove the static export setting
-  // output: 'export',
+  // ✅ Static export for deployment (e.g., Firebase Hosting or static hosting)
+  output: "export",
 
+  // ✅ Image configuration (supports local + remote images)
   images: {
     unoptimized: true,
     remotePatterns: [

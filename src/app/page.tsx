@@ -20,7 +20,7 @@ const ICONS: Record<string, keyof typeof Lucide> = {
 function ServiceIcon({ name, className }: { name: string; className?: string }) {
   const IconName = ICONS[name];
   if (!IconName) return null;
-  const Icon = (Lucide[IconName] as LucideIcon) ?? Lucide.HelpCircle; 
+  const Icon = (Lucide[IconName] as LucideIcon) ?? Lucide.HelpCircle;
   return (
     <Icon
       className={className ?? "h-7 w-7 text-primary shrink-0"}
@@ -32,14 +32,14 @@ function ServiceIcon({ name, className }: { name: string; className?: string }) 
 
 export default function Home() {
   const hero = getPlaceholder("home-hero");
-  const about = getPlaceholder("home-abstract"); // expects desktop/mobile variants
-  const meeting = getPlaceholder("home-meeting"); // expects desktop/mobile variants
+  const about = getPlaceholder("home-abstract");
+  const meeting = getPlaceholder("home-meeting");
 
   return (
     <div className="flex flex-col">
       {/* Hero */}
       <section className="relative w-full h-[70vh] min-h-[500px] flex items-center justify-center text-center text-white overflow-hidden">
-        {/* Mobile: image background (LCP on phones) */}
+        {/* Mobile image */}
         <div className="absolute inset-0 md:hidden">
           <Image
             src={hero?.mobile?.src ?? hero?.imageUrl ?? "/images/hero_mobile.webp"}
@@ -52,7 +52,7 @@ export default function Home() {
           />
         </div>
 
-        {/* Desktop: video background */}
+        {/* Desktop video */}
         <video
           className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none"
           autoPlay
@@ -105,15 +105,12 @@ export default function Home() {
             <div className="mt-4 max-w-4xl mx-auto text-foreground font-light space-y-4">
               <p>
                 We provide extensive noise and acoustics consultancy services to a diverse client base including
-                <br />
                 planning consultants, architects, contractors, developers and private individuals.
               </p>
               <p>
                 Our expertise spans all sectors of the built environment, supporting projects from concept to completion
                 with tailored acoustic solutions that meet regulatory standards, safeguard health and wellbeing and
-                create environments where
-                <br />
-                people can truly thrive.
+                create environments where people can truly thrive.
               </p>
             </div>
           </div>
@@ -152,7 +149,6 @@ export default function Home() {
         <div className="container px-4 md:px-6">
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="relative w-full mx-auto max-w-full md:max-w-[597px]">
-              {/* Mobile image */}
               <div className="md:hidden">
                 <Image
                   src={about?.mobile?.src ?? about?.imageUrl ?? "/images/home/acoustic_ceiling_mobile.webp"}
@@ -164,7 +160,6 @@ export default function Home() {
                   loading="lazy"
                 />
               </div>
-              {/* Desktop image */}
               <div className="hidden md:block">
                 <Image
                   src={about?.desktop?.src ?? about?.imageUrl ?? "/images/home/acoustic_ceiling.webp"}
@@ -183,7 +178,7 @@ export default function Home() {
               <div className="mt-5 text-foreground font-light space-y-4">
                 <p>
                   Veas Acoustics is a specialist acoustic engineering consultancy delivering exceptional acoustic
-                  design across all sectors of the built environment throughout the UK. Developed on 20 years industry
+                  design across all sectors of the built environment throughout the UK. Developed on 20 years of industry
                   experience, our mission is to Deliver Value through Excellence, Always.
                 </p>
                 <p>
@@ -215,24 +210,23 @@ export default function Home() {
               </h2>
               <div className="mt-4 text-foreground font-light space-y-4">
                 <p>
-                  We have experience supporting a diverse range of construction projects from
-                  residential refurbishments and new residential led mixed-use developments,
-                  to schools and education facilities, industrial sites and power schemes.
+                  We have experience supporting a diverse range of construction projects from residential refurbishments
+                  and new residential-led mixed-use developments, to schools, education facilities, industrial sites and
+                  power schemes.
                 </p>
                 <p>
-                  Drawing on 20 years technical knowledge and practical experience, we provide effective
-                  and robust design solutions which help minimise overdesign reducing cost and carbon, resulting in added
-                  value to each and every project.
+                  Drawing on 20 years of technical knowledge and practical experience, we provide effective and robust
+                  design solutions that minimise overdesign, reducing cost and carbon — delivering added value to every project.
                 </p>
                 <p>
-                  Whether you’re navigating planning conditions, managing design requirements, or working to tight construction
-                  deadlines, we provide a responsive and professional service that keeps your project moving forward and on target.
+                  Whether you’re navigating planning conditions, managing design requirements, or working to tight
+                  construction deadlines, we provide a responsive and professional service that keeps your project moving
+                  forward and on target.
                 </p>
               </div>
             </div>
 
             <div className="relative w-full mx-auto max-w-full md:max-w-[598px]">
-              {/* Mobile image */}
               <div className="md:hidden">
                 <Image
                   src={meeting?.mobile?.src ?? meeting?.imageUrl ?? "/images/home/meeting2_mobile.webp"}
@@ -244,7 +238,6 @@ export default function Home() {
                   loading="lazy"
                 />
               </div>
-              {/* Desktop image */}
               <div className="hidden md:block">
                 <Image
                   src={meeting?.desktop?.src ?? meeting?.imageUrl ?? "/images/home/meeting2.webp"}

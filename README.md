@@ -4,7 +4,8 @@ This is a [Next.js](https://nextjs.org) project, enhanced with dynamic content l
 
 ## Getting Started
 
-First, ensure your Firebase environment variables are configured in a local `.env.local` file. Then, run the development server:
+First, ensure your Firebase environment variables are configured in a local `.env.local` file.  
+Then, run the development server:
 
 ```bash
 npm run dev

@@ -22,8 +22,6 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-
-    // Merged Strictness/Consistency Options (from FETCH_HEAD)
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
@@ -32,9 +30,8 @@
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": [
-    "node_modules", 
-    // CRITICAL EXCLUSIONS
-    ".next", 
-    "Prototypes" 
+    "node_modules",
+    ".next",
+    "Prototypes"
   ]
 }

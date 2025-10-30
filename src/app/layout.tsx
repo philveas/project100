@@ -1,4 +1,4 @@
-// src/app/layout.tsx (FINAL RESOLUTION)
+// src/app/layout.tsx (FINAL CLEAN VERSION)
 
 import type { Metadata } from "next";
 import "./globals.css";
@@ -27,17 +27,20 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "veas Acoustics",
-  description:
-    "Expert Acoustic Consultants for Noise Assessment and Building Acoustics",
+  title: "Veas Acoustics",
+  description: "Expert Acoustic Consultants for Noise Assessment and Building Acoustics",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="scroll-smooth">
       <body
         className={cn(
-          nunito.variable, 
+          nunito.variable,
           roboto.variable,
           "min-h-screen bg-background font-body antialiased flex flex-col"
         )}
