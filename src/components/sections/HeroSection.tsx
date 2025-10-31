@@ -3,6 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { type ImageSectionProps } from "@/types/sections";
+import { formatHeroText, formatTextWithBreaks } from "@/lib/utils";
+
+
+
 
 const FALLBACK_IMAGE_URL = "/images/home/grass2.0.webp";
 
@@ -43,28 +47,40 @@ export function HeroSection({ section, image, serviceTitle }: ImageSectionProps)
             <div className="absolute inset-0 bg-primary/60" />
             
             {/* Content */}
-            <div className="relative z-10 container px-4 md:px-10 text-left">
-                <h1 className="font-headline text-3xl md:text-5xl font-semibold text-white">
-                    {heroHeading}
-                </h1>
-                {section?.["heroSubheading"] && (
-                    // FIX 2: Guarantee heroSubheading is a string for rendering
-                    <p className="mt-3 text-lg font-light">{String(section?.["heroSubheading"])}</p>
-                )}
-                {section?.["heroBody"] && (
-                    // FIX 3: Guarantee heroBody is a string for rendering
-                    <p className="mt-4 max-w-2xl text-lg font-light">{String(section?.["heroBody"])}</p>
-                )}
-                <div className="mt-8">
-                    <Button
-                        variant="ghost"
-                        asChild
-                        className="border border-accent-foreground text-white hover:border-primary hover:text-foreground transition-colors"
-                    >
-                        <Link href="/contact">Contact Us Today</Link>
-                    </Button>
-                </div>
-            </div>
+
+<div className="relative z-10 container px-4 md:px-10 text-left">
+  {/* Hero Heading */}
+  <h1 className="font-headline text-3xl md:text-5xl font-semibold text-white">
+  {formatHeroText(String(section?.heroText ?? heroHeading))}
+</h1>
+
+  {/* Subheading */}
+  {section?.heroSubheading && (
+    <p className="mt-3 text-lg text-2xl md:text-2xl font-light text-white">
+      {formatTextWithBreaks(String(section.heroSubheading))}
+
+    </p>
+  )}
+
+  {/* Body */}
+  {section?.heroBody && (
+    <p className="mt-4 max-w-2xl text-lg font-light text-white">
+      {formatTextWithBreaks(String(section.heroBody))}
+    </p>
+  )}
+
+  {/* CTA Button */}
+  <div className="mt-8">
+    <Button
+      variant="ghost"
+      asChild
+      className="border border-accent-foreground text-white hover:border-primary hover:text-foreground transition-colors"
+    >
+      <Link href="/contact">Contact Us Today</Link>
+    </Button>
+  </div>
+</div>
+
         </section>
     );
 }

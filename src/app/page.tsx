@@ -100,10 +100,10 @@ export default function Home() {
 
       {/* Services */}
       <section id="services" className="py-8 md:py-16 bg-background">
-        <div className="container px-4 md:px-6">
+        <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-headline font-semibold text-primary">What We Do</h2>
-            <div className="mt-4 max-w-4xl mx-auto text-foreground font-light space-y-4">
+            <div className="mt-4 max-w-4xl mx-auto text-foreground font-light space-y-4 text-lg leading-relaxed">
               <p>
                 We provide extensive noise and acoustics consultancy services to a diverse client base including
                 planning consultants, architects, contractors, developers and private individuals.
@@ -145,115 +145,121 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-8 md:py-16 bg-card">
-        <div className="container px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="relative w-full mx-auto max-w-full md:max-w-[597px]">
-              <div className="md:hidden">
-                <Image
-                  src={about?.mobile?.src ?? about?.imageUrl ?? "/images/home/acoustic_ceiling_mobile.webp"}
-                  alt={about?.description ?? "Absorptive Acoustic Ceiling"}
-                  width={about?.mobile?.width ?? 320}
-                  height={about?.mobile?.height ?? 270}
-                  sizes="100vw"
-                  className="rounded-lg shadow-xl object-cover w-full h-auto"
-                  loading="lazy"
-                />
-              </div>
-              <div className="hidden md:block">
-                <Image
-                  src={about?.desktop?.src ?? about?.imageUrl ?? "/images/home/acoustic_ceiling.webp"}
-                  alt={about?.description ?? "Absorptive Acoustic Ceiling"}
-                  width={about?.desktop?.width ?? 597}
-                  height={about?.desktop?.height ?? 448}
-                  sizes="(max-width: 1024px) 50vw, 597px"
-                  className="rounded-lg shadow-xl object-cover w-full h-auto"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <div className="px-1 md:px-0">
-              <h2 className="text-3xl md:text-5xl font-headline font-semibold text-primary">About</h2>
-              <div className="mt-5 text-foreground font-light space-y-4">
-                <p>
-                  Veas Acoustics is a specialist acoustic engineering consultancy delivering exceptional acoustic
-                  design across all sectors of the built environment throughout the UK. Developed on 20 years of industry
-                  experience, our mission is to Deliver Value through Excellence, Always.
-                </p>
-                <p>
-                  We combine the latest technologies with efficient workflows to keep you informed and in control,
-                  identifying risks early while delivering practical design solutions presented clearly and precisely.
-                </p>
-              </div>
-              <Link href="/contact" className="mt-8 inline-block">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-accent-foreground text-primary hover:bg-accent hover:text-foreground"
-                >
-                  Find Out More
-                </Button>
-              </Link>
-            </div>
-          </div>
+{/* About */}
+<section className="py-8 md:py-16 bg-card">
+  <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
+    <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 items-center">
+      
+      {/* Image aligned left */}
+      <div className="relative w-full mx-auto max-w-full md:max-w-[597px] md:justify-self-start md:-ml-0">
+        <div className="md:hidden">
+          <Image
+            src={about?.mobile?.src ?? about?.imageUrl ?? "/images/home/acoustic_ceiling_mobile.webp"}
+            alt={about?.description ?? "Absorptive Acoustic Ceiling"}
+            width={about?.mobile?.width ?? 320}
+            height={about?.mobile?.height ?? 270}
+            sizes="100vw"
+            className="rounded-lg shadow-xl object-cover w-full h-auto"
+            loading="lazy"
+          />
         </div>
-      </section>
+        <div className="hidden md:block">
+          <Image
+            src={about?.desktop?.src ?? about?.imageUrl ?? "/images/home/acoustic_ceiling.webp"}
+            alt={about?.description ?? "Absorptive Acoustic Ceiling"}
+            width={about?.desktop?.width ?? 597}
+            height={about?.desktop?.height ?? 448}
+            sizes="(max-width: 1024px) 50vw, 597px"
+            className="rounded-lg shadow-xl object-cover w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      {/* Text */}
+      <div className="px-1 md:px-0">
+        <h2 className="text-3xl md:text-5xl font-headline font-semibold text-primary">About</h2>
+        <div className="mt-5 text-foreground font-light space-y-4 text-lg leading-relaxed">
+          <p>
+            Veas Acoustics is a specialist acoustic engineering consultancy delivering exceptional acoustic
+            design across all sectors of the built environment throughout the UK. Developed on 20 years of industry
+            experience, our mission is to Deliver Value through Excellence, Always.
+          </p>
+          <p>
+            We combine the latest technologies with efficient workflows to keep you informed and in control,
+            identifying risks early while delivering practical design solutions presented clearly and precisely.
+          </p>
+        </div>
+        <Link href="/contact" className="mt-8 inline-block">
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-accent-foreground text-primary hover:bg-accent hover:text-foreground"
+          >
+            Find Out More
+          </Button>
+        </Link>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Professional Acoustic Advice */}
-      <section className="py-16 md:py-24 bg-card">
-        <div className="container px-4 md:px-6">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="text-left md:text-right px-1 md:px-0">
-              <h2 className="text-3xl md:text-4xl font-headline font-semibold text-primary">
-                Professional Acoustic Design Advice
-              </h2>
-              <div className="mt-4 text-foreground font-light space-y-4">
-                <p>
-                  We have experience supporting a diverse range of construction projects from residential refurbishments
-                  and new residential-led mixed-use developments, to schools, education facilities, industrial sites and
-                  power schemes.
-                </p>
-                <p>
-                  Drawing on 20 years of technical knowledge and practical experience, we provide effective and robust
-                  design solutions that minimise overdesign, reducing cost and carbon — delivering added value to every project.
-                </p>
-                <p>
-                  Whether you’re navigating planning conditions, managing design requirements, or working to tight
-                  construction deadlines, we provide a responsive and professional service that keeps your project moving
-                  forward and on target.
-                </p>
-              </div>
-            </div>
-
-            <div className="relative w-full mx-auto max-w-full md:max-w-[598px]">
-              <div className="md:hidden">
-                <Image
-                  src={meeting?.mobile?.src ?? meeting?.imageUrl ?? "/images/home/meeting2_mobile.webp"}
-                  alt={meeting?.description ?? "Acoustic consultants meeting with architects"}
-                  width={meeting?.mobile?.width ?? 320}
-                  height={meeting?.mobile?.height ?? 270}
-                  sizes="100vw"
-                  className="rounded-lg shadow-xl object-cover w-full h-auto"
-                  loading="lazy"
-                />
-              </div>
-              <div className="hidden md:block">
-                <Image
-                  src={meeting?.desktop?.src ?? meeting?.imageUrl ?? "/images/home/meeting2.webp"}
-                  alt={meeting?.description ?? "Acoustic consultants meeting with architects"}
-                  width={meeting?.desktop?.width ?? 597}
-                  height={meeting?.desktop?.height ?? 448}
-                  sizes="(max-width: 1024px) 50vw, 597px"
-                  className="rounded-lg shadow-xl object-cover w-full h-auto"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
+<section className="py-16 md:py-24 bg-card">
+  <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
+    <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 items-center">
+      {/* Text Column */}
+      <div className="text-left md:text-right px-1 md:px-0">
+        <h2 className="text-3xl md:text-5xl font-headline font-semibold text-primary">
+          Professional Acoustic <br/> Design Advice
+        </h2>
+        <div className="mt-4 text-foreground font-light space-y-4 text-lg leading-relaxed">
+          <p>
+            We have experience supporting a diverse range of construction projects from residential refurbishments
+            and new residential-led mixed-use developments, to schools, education facilities, industrial sites and
+            power schemes.
+          </p>
+          <p>
+            Drawing on 20 years of technical knowledge and practical experience, we provide effective and robust
+            design solutions that minimise overdesign, reducing cost and carbon — delivering added value to every project.
+          </p>
+          <p>
+            Whether you’re navigating planning conditions, managing design requirements, or working to tight
+            construction deadlines, we provide a responsive and professional service that keeps your project moving
+            forward and on target.
+          </p>
         </div>
-      </section>
+      </div>
+
+      {/* Image Column */}
+      <div className="relative w-full mx-auto max-w-full md:max-w-[598px] md:justify-self-end md:mr-0">
+        <div className="md:hidden">
+          <Image
+            src={meeting?.mobile?.src ?? meeting?.imageUrl ?? "/images/home/meeting2_mobile.webp"}
+            alt={meeting?.description ?? "Acoustic consultants meeting with architects"}
+            width={meeting?.mobile?.width ?? 320}
+            height={meeting?.mobile?.height ?? 270}
+            sizes="100vw"
+            className="rounded-lg shadow-xl object-cover w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+        <div className="hidden md:block">
+          <Image
+            src={meeting?.desktop?.src ?? meeting?.imageUrl ?? "/images/home/meeting2.webp"}
+            alt={meeting?.description ?? "Acoustic consultants meeting with architects"}
+            width={meeting?.desktop?.width ?? 597}
+            height={meeting?.desktop?.height ?? 448}
+            sizes="(max-width: 1024px) 50vw, 597px"
+            className="rounded-lg shadow-xl object-cover w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </div>
   );
 }
