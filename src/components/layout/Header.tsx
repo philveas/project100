@@ -13,28 +13,31 @@ import { SERVICES } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useState, type ReactNode } from "react";
-import Logo from "./Logo"; // ensure the file is `Logo.tsx` (case-sensitive on some systems)
+import Logo from "./Logo";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+
 
 export function Header() {
   const pathnameRaw = usePathname();
-  const pathname = pathnameRaw ?? "/"; // tiny safety guard
+  const pathname = pathnameRaw ?? "/";
   const [isSheetOpen, setSheetOpen] = useState(false);
 
-  // Determine active states
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href;
   };
 
-  // Mark parent "Services" active if on a service page
   const servicesActive =
-    SERVICES.some((s) => pathname.startsWith(s.href)) || pathname === "/services";
+    SERVICES.some((s) => pathname.startsWith(s.href)) ||
+    pathname === "/services";
 
-  // Core text style logic
-  const baseIdle = "text-foreground";
-  const hoverFocus =
-    "hover:text-accent hover:font-semibold focus-visible:text-accent focus-visible:font-semibold";
-  const active = "text-muted font-semibold";
+  // Color helpers
+  const cFg = "text-[hsl(var(--foreground))]";           // default (black-ish)
+  const cAccentDark = "text-[hsl(var(--accent-dark))]";  // hover color
+  const cSecondary = "text-[hsl(var(--secondary))]";     // ACTIVE (current page)
+
+  // Interaction helpers
+  const growHover = "transition-all duration-150 hover:scale-105";
 
   const NavLink = ({
     href,
@@ -48,8 +51,10 @@ export function Header() {
     <Link
       href={href}
       className={cn(
-        "transition-colors focus:outline-none",
-        isActive(href) ? active : cn(baseIdle, hoverFocus),
+        "transition-all focus:outline-none",
+        isActive(href) ? cn(cSecondary, "font-semibold") : cFg,
+        "hover:text-[hsl(var(--accent-dark))]",
+        growHover,
         className
       )}
       onClick={() => setSheetOpen(false)}
@@ -66,27 +71,39 @@ export function Header() {
       <DropdownMenu>
         <DropdownMenuTrigger
           className={cn(
-            "flex items-center gap-1 outline-none transition-colors",
-            servicesActive ? active : cn(baseIdle, hoverFocus)
+            "flex items-center gap-1 outline-none transition-all text-base",
+            servicesActive ? cn(cSecondary, "font-semibold") : cFg,
+            "hover:text-[hsl(var(--accent-dark))]",
+            growHover
           )}
         >
           Services
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent>
+        <DropdownMenuContent
+          className="bg-[hsl(var(--card))] text-[hsl(var(--foreground))] border border-[hsl(var(--border))] shadow-lg rounded-md p-2"
+        >
           {SERVICES.map((service) => {
             const itemActive = pathname.startsWith(service.href);
             return (
               <DropdownMenuItem
                 key={service.href}
                 asChild
-                className="p-0 bg-transparent hover:bg-transparent focus:bg-transparent"
+                // Force our own colors and suppress shadcn default highlight background
+                className={cn(
+                  "p-0 bg-transparent",
+                  "hover:bg-transparent focus:bg-transparent",
+                  // handle Radix `data-[highlighted]` state too:
+                  "data-[highlighted]:bg-transparent data-[highlighted]:text-[hsl(var(--accent-dark))]"
+                )}
               >
                 <Link
                   href={service.href}
                   className={cn(
-                    "block px-2 py-1 transition-colors focus:outline-none",
-                    itemActive ? active : cn(baseIdle, hoverFocus)
+                    "block px-3 py-2 transition-all duration-150",
+                    itemActive ? cn(cSecondary, "font-semibold") : cFg,
+                    "hover:text-[hsl(var(--accent-dark))]",
+                    growHover
                   )}
                 >
                   {service.name}
@@ -106,7 +123,9 @@ export function Header() {
     <nav className="grid gap-4 text-lg">
       <NavLink href="/">Home</NavLink>
 
-      <p className={cn("transition-colors", servicesActive ? active : baseIdle)}>Services</p>
+      <p className={cn(servicesActive ? cn(cSecondary, "font-semibold") : cFg)}>
+        Services
+      </p>
 
       <div className="grid gap-2 pl-4">
         {SERVICES.map((service) => {
@@ -117,8 +136,10 @@ export function Header() {
               href={service.href}
               onClick={() => setSheetOpen(false)}
               className={cn(
-                "transition-colors focus:outline-none",
-                itemActive ? active : cn(baseIdle, hoverFocus)
+                "transition-all duration-150",
+                itemActive ? cn(cSecondary, "font-semibold") : cFg,
+                "hover:text-[hsl(var(--accent-dark))]",
+                growHover
               )}
             >
               {service.name}
@@ -132,12 +153,14 @@ export function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-card">
-      <div className="container flex h-20 items-center justify-between px-10">
-        <div className="flex items-center mt-3">
+    <header className="sticky top-0 z-50 w-full bg-[hsl(var(--card))] shadow-md">
+      <div className="container flex h-20 items-center justify-between px-6 md:px-10">
+        {/* Logo */}
+        <div className="flex items-center mt-2">
           <Logo />
         </div>
 
+        {/* Navigation */}
         <div className="flex items-center space-x-4">
           {mainNav}
 
@@ -146,21 +169,30 @@ export function Header() {
             <SheetTrigger asChild>
               <button
                 className={cn(
-                  "md:hidden inline-flex items-center justify-center rounded-md border px-3 py-2 transition-colors",
-                  baseIdle,
-                  "hover:text-muted focus-visible:text-muted"
+                  "md:hidden inline-flex items-center justify-center rounded-md border px-3 py-2 transition-all duration-150",
+                  cFg,
+                  "hover:text-[hsl(var(--accent-dark))] hover:scale-105 focus-visible:scale-105"
                 )}
                 aria-label="Toggle navigation menu"
               >
                 <Menu className="h-6 w-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="left">
-              <div className="flex items-center space-x-2 mb-8">
-                <Logo />
-              </div>
-              {mobileNav}
-            </SheetContent>
+            <SheetContent
+  side="left"
+  className="bg-[hsl(var(--card))] text-[hsl(var(--foreground))] border-r border-[hsl(var(--border))]"
+>
+  <VisuallyHidden>
+    <h2>Mobile navigation menu</h2>
+  </VisuallyHidden>
+
+  <div className="flex items-center space-x-2 mb-8">
+    <Logo />
+  </div>
+
+  {mobileNav}
+</SheetContent>
+
           </Sheet>
         </div>
       </div>
