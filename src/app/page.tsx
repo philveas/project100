@@ -30,6 +30,7 @@ function ServiceIcon({ name, className }: { name: string; className?: string }) 
   );
 }
 
+
 export default function Home() {
   const hero = getPlaceholder("home-hero");
   const about = getPlaceholder("home-abstract");

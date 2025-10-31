@@ -1,13 +1,24 @@
 {
   "hosting": {
-    "source": ".",
-    "frameworksBackend": {
-      "region": "europe-west2"
-    },
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "frameworksBackend": {
+      "region": "europe-west2"
+    },
+    "headers": [
+      {
+        "source": "/google*.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache"
+          }
+        ]
+      }
     ]
   }
 }

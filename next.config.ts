@@ -2,12 +2,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ Static export for deployment (e.g., Firebase Hosting or static hosting)
-  output: "export",
+  // ✅ Use SSR-compatible standalone build for Firebase Hosting
+  output: "standalone",
 
-  // ✅ Image configuration (supports local + remote images)
+  // ✅ Allow dynamic server actions
+ experimental: {
+  serverActions: {},
+},
+
+  // ✅ Configure images for both local and remote sources
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

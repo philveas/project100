@@ -1,6 +1,7 @@
 // tailwind.config.ts
 import type { Config } from "tailwindcss";
 import typography from "@tailwindcss/typography";
+import animate from "tailwindcss-animate";
 
 const config: Config = {
   content: [
@@ -10,7 +11,7 @@ const config: Config = {
   ],
   theme: {
     container: {
-      center: true, // ✅ always center containers
+      center: true,
       padding: {
         DEFAULT: "1rem",
         sm: "1.25rem",
@@ -24,12 +25,12 @@ const config: Config = {
         md: "768px",
         lg: "1024px",
         xl: "1280px",
-        "2xl": "1440px", // ✅ max container width cap for large monitors
+        "2xl": "1440px",
       },
     },
     extend: {},
   },
-  plugins: [typography],
+  plugins: [typography, animate],
 };
 
 export default config;
