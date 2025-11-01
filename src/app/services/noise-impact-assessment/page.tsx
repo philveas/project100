@@ -23,7 +23,6 @@ export default async function NoiseImpactAssessmentPage() {
   );
 
   const heroData = sortedSections.find((s) => s.kind?.toLowerCase() === "hero");
-  const whatWeDoData = sortedSections.find((s) => s.kind?.toLowerCase() === "what");
   const what2Data = sortedSections.find((s) => s.kind?.toLowerCase() === "what2");
   const what3Data = sortedSections.find((s) => s.kind?.toLowerCase() === "what3");
   const ctaData = sortedSections.find((s) => s.kind?.toLowerCase() === "cta");
@@ -65,7 +64,7 @@ export default async function NoiseImpactAssessmentPage() {
       {/* WHAT 2 SECTION */}
       {what2Data && <What2Section section={what2Data} />}
      
-      {/* WHAT 3 SECTION */}
+      {/* WHAT 3  SECTION */}
       {what3Data && <What3Section section={what3Data} />}
      
       {/* ACCORDION SECTION */}
