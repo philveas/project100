@@ -33,7 +33,6 @@ export function Header() {
 
   // Color helpers
   const cFg = "text-[hsl(var(--foreground))]";           // default (black-ish)
-  const cAccentDark = "text-[hsl(var(--accent-dark))]";  // hover color
   const cSecondary = "text-[hsl(var(--secondary))]";     // ACTIVE (current page)
 
   // Interaction helpers
