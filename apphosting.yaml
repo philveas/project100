@@ -48,7 +48,3 @@ env:
     secret: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
     availability:
       - BUILD
-  - variable: NEXT_PUBLIC_PROJECT_ID
-    secret: NEXT_PUBLIC_PROJECT_ID
-    availability:
-      - BUILD
