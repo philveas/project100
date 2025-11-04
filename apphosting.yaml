@@ -1,0 +1,54 @@
+# This file configures Firebase App Hosting
+# It tells it how to build your Next.js app and load secrets
+
+# Specifies the Node.js version for the server
+runtime: nodejs22
+
+# This section lists all environment variables your app needs
+env:
+  # --- Backend / Runtime Secrets ---
+  # These are your private keys, available only to your backend server
+  - variable: RESEND_API_KEY
+    secret: RESEND_API_KEY
+  - variable: GAS_WEBAPP_URL
+    secret: GAS_WEBAPP_URL
+  - variable: GAS_SHARED_SECRET
+    secret: GAS_SHARED_SECRET
+  - variable: GOOGLE_SHEETS_SPREADSHEET_ID
+    secret: GOOGLE_SHEETS_SPREADSHEET_ID
+
+  # --- Frontend / Build-Time Secrets ---
+  # These are your NEXT_PUBLIC_ keys. 
+  # "availability: [BUILD]" makes them available during the Next.js build process.
+  - variable: NEXT_PUBLIC_FIREBASE_API_KEY
+    secret: NEXT_PUBLIC_FIREBASE_API_KEY
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    secret: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    secret: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    secret: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    secret: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_FIREBASE_APP_ID
+    secret: NEXT_PUBLIC_FIREBASE_APP_ID
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    secret: NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    availability:
+      - BUILD
+  - variable: NEXT_PUBLIC_PROJECT_ID
+    secret: NEXT_PUBLIC_PROJECT_ID
+    availability:
+      - BUILD

@@ -1,0 +1,19 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Example: Allow anyone to read your "products" collection
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if false; // Nobody can change your products
+    }
+
+    // Example: Only allow logged-in users to read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+
+    // Add other collections here...
+  }
+}

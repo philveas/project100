@@ -1,0 +1,29 @@
+[2025-11-04T08:24:35.843Z] Object "/functions" in "firebase.json" has unknown property: {"additionalProperty":"region"}
+[2025-11-04T08:24:35.844Z] Object "/functions" in "firebase.json" is missing required property: {"missingProperty":"remoteSource"}
+[2025-11-04T08:24:35.844Z] Field "/functions" in "firebase.json" is possibly invalid: must be array
+[2025-11-04T08:24:35.844Z] Field "/functions" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[2025-11-04T08:24:35.846Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[2025-11-04T08:24:35.847Z] > authorizing via signed-in user (phil@veasacoustics.com)
+[2025-11-04T08:24:35.847Z] [iam] checking project veas-acoustics-100 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[2025-11-04T08:24:35.848Z] Checked if tokens are valid: true, expires at: 1762247116280
+[2025-11-04T08:24:35.848Z] Checked if tokens are valid: true, expires at: 1762247116280
+[2025-11-04T08:24:35.849Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/veas-acoustics-100:testIamPermissions [none]
+[2025-11-04T08:24:35.849Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/veas-acoustics-100:testIamPermissions x-goog-quota-user=projects/veas-acoustics-100
+[2025-11-04T08:24:35.849Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/veas-acoustics-100:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[2025-11-04T08:24:47.268Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/veas-acoustics-100:testIamPermissions 200
+[2025-11-04T08:24:47.268Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/veas-acoustics-100:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[2025-11-04T08:24:47.269Z] Checked if tokens are valid: true, expires at: 1762247116280
+[2025-11-04T08:24:47.269Z] Checked if tokens are valid: true, expires at: 1762247116280
+[2025-11-04T08:24:47.270Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/veas-acoustics-100 [none]
+[2025-11-04T08:25:00.202Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/veas-acoustics-100 200
+[2025-11-04T08:25:00.203Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/veas-acoustics-100 {"projectId":"veas-acoustics-100","projectNumber":"503507204027","displayName":"Veas Acoustics 100","name":"projects/veas-acoustics-100","resources":{"hostingSite":"veas-acoustics-100"},"state":"ACTIVE","etag":"1_3a124eea-c032-451d-b57e-7276e0240aed"}
+[2025-11-04T08:25:06.222Z] Checked if tokens are valid: true, expires at: 1762247116280
+[2025-11-04T08:25:06.223Z] Checked if tokens are valid: true, expires at: 1762247116280
+[2025-11-04T08:25:06.223Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/veas-acoustics-100/sites pageToken=&pageSize=10
+[2025-11-04T08:25:28.081Z] *** [apiv2] error from fetch(https://firebasehosting.googleapis.com/v1beta1/projects/veas-acoustics-100/sites?pageToken=&pageSize=10, {"headers":{},"method":"GET"}): FetchError: request to https://firebasehosting.googleapis.com/v1beta1/projects/veas-acoustics-100/sites?pageToken=&pageSize=10 failed, reason: socket hang up
+[2025-11-04T08:25:33.096Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\PJ_Ve\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:275:49)
+    at listOnTimeout (node:internal/timers:581:17)
+    at process.processTimers (node:internal/timers:519:7)
+
+Error: An unexpected error has occurred.

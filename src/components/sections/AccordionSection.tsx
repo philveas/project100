@@ -41,7 +41,7 @@ export function AccordionSection({ sections }: AccordionGroupProps) {
                                 <AccordionTrigger className="text-xl font-semibold text-left hover:no-underline">
                                     <div className="flex items-start w-full">
                                         {image && (
-                                            <div className="relative w-32 h-24 mr-10 overflow-hidden rounded-lg">
+                                            <div className="relative w-32 h-32 mr-10 overflow-hidden rounded-lg">
                                                 <Image
                                                     src={image.desktop?.src ?? image.mobile?.src ?? image.imageUrl ?? "/images/placeholder.webp"}
                                                     alt={String(image.description ?? s?.["accCategory"])} // FIX: Alt text must be safe string
@@ -49,6 +49,15 @@ export function AccordionSection({ sections }: AccordionGroupProps) {
                                                     sizes="200px"
                                                     className="object-cover"
                                                 />
+                                                {/* ✨ NEW: Colored Overlay Div */}
+                                                <div className="absolute inset-0 bg-secondary-dark opacity-30 group-hover:opacity-50 transition-opacity duration-200" />
+                                                {/*
+                                                    - `absolute inset-0`: Makes it cover the entire parent container.
+                                                    - `bg-purple-600`: Sets the background color (change `purple-600` to your desired color, e.g., `blue-500`, `red-700`).
+                                                    - `opacity-30`: Sets the initial opacity to 30% (change as needed: `opacity-10` to `opacity-90`).
+                                                    - `group-hover:opacity-50`: (Optional) If you wrap your AccordionTrigger with a `group` class, this will make the overlay slightly more opaque on hover for a subtle effect. If you don't use `group`, you can remove this part.
+                                                    - `transition-opacity duration-200`: (Optional) Adds a smooth transition for the hover effect.
+                                                */}
                                             </div>
                                         )}
                                         {/* FIX 4: Ensure rendered content is a safe string */}
@@ -56,7 +65,8 @@ export function AccordionSection({ sections }: AccordionGroupProps) {
                                     </div>
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <ul className="list-disc pl-6 space-y-2 mt-2">
+                                    {/* We replaced 'pl-6' with 'pl-[10.5rem]' to match the image's 'w-32' (8rem) + 'mr-10' (2.5rem)*/}
+                                    <ul className="list-disc pl-[12rem] space-y-1 mt-0">
                                         {items.map((it: string, i: number) => (
                                             <li key={i} className="text-grey-medium font-light">
                                                 {it}

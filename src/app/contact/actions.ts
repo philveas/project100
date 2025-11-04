@@ -1,7 +1,6 @@
 'use server';
 
 import { z } from 'zod';
-import { Resend } from 'resend';
 import type { FormState } from './types';
 
 const schema = z.object({
@@ -11,48 +10,15 @@ const schema = z.object({
   telephone: z.string().optional(),
   projectAddress: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
-  gdprConsent: z.literal('on', { errorMap: () => ({ message: 'You must agree to the privacy policy.' }) }),
+  gdprConsent: z.literal('on', {
+    errorMap: () => ({ message: 'You must agree to the privacy policy.' }),
+  }),
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-async function sendConfirmationEmail(data: z.infer<typeof schema>) {
-  try {
-    await resend.emails.send({
-      from: 'Veas Acoustics <info@veasacoustics.com>',
-      to: [data.email],
-      subject: 'Thank you for contacting Veas Acoustics',
-      html: `
-        <p>Hi ${data.name},</p>
-        <p>Thank you for reaching out to Veas Acoustics. We’ve received your enquiry and will get back to you shortly.</p>
-        <p>Best regards,<br>Phil @ Veas Acoustics</p>
-      `,
-    });
-  } catch (error) {
-    console.error('Error sending confirmation email:', error);
-  }
-}
-
-async function sendNotificationEmail(data: z.infer<typeof schema>) {
-  try {
-    await resend.emails.send({
-      from: 'Veas Acoustics <info@veasacoustics.com>',
-      to: ['phil@veasacoustics.com'],
-      subject: 'New enquiry from Veas Acoustics website',
-      html: `
-        <h2>New Enquiry Received</h2>
-        <p><strong>Name:</strong> ${data.name}</p>
-        <p><strong>Company:</strong> ${data.company ?? '—'}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Telephone:</strong> ${data.telephone ?? '—'}</p>
-        <p><strong>Project Address:</strong> ${data.projectAddress ?? '—'}</p>
-        <p><strong>Message:</strong><br>${data.message}</p>
-      `,
-    });
-  } catch (error) {
-    console.error('Error sending notification email:', error);
-  }
-}
+// ✅ Use your working Firebase Cloud Function endpoint
+const FUNCTION_URL =
+  process.env.NEXT_PUBLIC_CONTACT_FUNCTION_URL ??
+  'https://handlecontactform-503507204027.europe-west2.run.app';
 
 export async function submitContactForm(
   _prevState: FormState,
@@ -77,38 +43,29 @@ export async function submitContactForm(
     };
   }
 
-  const data = validated.data;
-
-  // Send both emails and log to Google Sheets
-  await Promise.all([
-    sendConfirmationEmail(data),
-    sendNotificationEmail(data),
-    logToGoogleSheets(data),
-  ]);
-
-  return {
-    status: 'success',
-    message: 'Thank you for your message! We will get back to you shortly.',
-    success: true,
-  };
-}
-
-// Function to log the submission to your Google Sheet
-async function logToGoogleSheets(data: z.infer<typeof schema>) {
-  const url = process.env.GAS_WEBAPP_URL;
-  const token = process.env.GAS_SHARED_SECRET;
-  if (!url || !token) {
-    console.warn('Missing GAS_WEBAPP_URL or GAS_SHARED_SECRET');
-    return;
-  }
-
   try {
-    await fetch(url, {
+    const response = await fetch(FUNCTION_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token, data }),
+      body: JSON.stringify(validated.data),
     });
-  } catch (error) {
-    console.error('Error sending to Google Sheets:', error);
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Server responded with ${response.status}: ${text}`);
+    }
+
+    return {
+      status: 'success',
+      message: '✅ Thank you for your message! We will get back to you shortly.',
+      success: true,
+    };
+  } catch (err) {
+    console.error('Error submitting contact form:', err);
+    return {
+      status: 'error',
+      message: '❌ Error submitting your form. Please try again later.',
+      success: false,
+    };
   }
 }

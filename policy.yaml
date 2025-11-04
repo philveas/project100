@@ -1,0 +1,6 @@
+name: projects/veas-acoustics-100/policies/run.allowedIngress
+spec:
+  rules:
+  - values:
+      allowedValues:
+      - INGRESS_TRAFFIC_ALL

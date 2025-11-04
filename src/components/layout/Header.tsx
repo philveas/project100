@@ -33,7 +33,7 @@ export function Header() {
 
   // Color helpers
   const cFg = "text-[hsl(var(--foreground))]";           // default (black-ish)
-  const cSecondary = "text-[hsl(var(--secondary))]";     // ACTIVE (current page)
+  const cSecondary = "text-[hsl(var(--secondary-dark))]";     // ACTIVE (current page)
 
   // Interaction helpers
   const growHover = "transition-all duration-150 hover:scale-105";
