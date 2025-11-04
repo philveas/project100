@@ -1,14 +1,13 @@
 'use client';
 
-import React, { useActionState, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Link from 'next/link';
 
-import { submitContactForm } from '@/app/contact/actions';
-import type { FormState } from '@/app/contact/types'; // ✅ shared type
+import type { FormState } from '@/app/contact/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -17,6 +16,9 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 
+// ----------------------
+// Validation schema
+// ----------------------
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   company: z.string().optional(),
@@ -24,12 +26,14 @@ const contactFormSchema = z.object({
   telephone: z.string().optional(),
   projectAddress: z.string().optional(),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
-  // server actions receive "on" for checked checkboxes
   gdprConsent: z.literal('on', { errorMap: () => ({ message: 'You must agree to the privacy policy.' }) }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
+// ----------------------
+// Default form state
+// ----------------------
 const initialState: FormState = {
   status: 'idle',
   message: '',
@@ -37,6 +41,9 @@ const initialState: FormState = {
   errors: {},
 };
 
+// ----------------------
+// Submit button
+// ----------------------
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
@@ -51,9 +58,11 @@ function SubmitButton() {
   );
 }
 
+// ----------------------
+// Contact form
+// ----------------------
 export function ContactForm() {
-  // ✅ useActionState now aligned with server action type
-  const [state, formAction] = useActionState<FormState, FormData>(submitContactForm, initialState);
+  const [state, setState] = useState<FormState>(initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -66,23 +75,37 @@ export function ContactForm() {
     mode: 'onChange',
   });
 
-  // The shadcn/ui Checkbox does not submit a value by itself. Mirror it to a hidden input.
+  // Mirror GDPR checkbox value manually (since shadcn Checkbox is custom)
   const [gdprChecked, setGdprChecked] = useState(false);
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.status === 'success' || state.success) {
-        toast({ title: 'Success!', description: state.message });
-        formRef.current?.reset();
-        reset();
-        setGdprChecked(false);
-      } else if (state.status === 'error') {
-        toast({ title: 'Error', description: state.message, variant: 'destructive' });
-      }
-    }
-  }, [state, toast, reset]);
+  // Temporary handler until backend reconnected
+  async function formAction(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    alert('✅ Form submission temporarily disabled while backend updates.');
 
-  // merge client-side zod errors + server-side errors
+    setState({
+      status: 'success',
+      message: 'Form temporarily disabled during backend maintenance.',
+      success: true,
+      errors: {},
+    });
+
+    toast({
+      title: 'Info',
+      description: 'Form temporarily disabled during backend maintenance.',
+    });
+  }
+
+  // Reset logic when state changes
+  useEffect(() => {
+    if (state.status === 'success') {
+      formRef.current?.reset();
+      reset();
+      setGdprChecked(false);
+    }
+  }, [state, reset]);
+
+  // Merge client and server errors (for future compatibility)
   const allErrors: Record<string, string[]> = {
     ...Object.fromEntries(
       Object.entries(errors).map(([k, v]) => [k, v?.message ? [String(v.message)] : []])
@@ -91,7 +114,7 @@ export function ContactForm() {
   };
 
   return (
-    <form ref={formRef} action={formAction} className="space-y-6">
+    <form ref={formRef} onSubmit={formAction} className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
@@ -132,18 +155,15 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <div className="flex items-center space-x-2">
-          {/* shadcn Checkbox is not a native input; mirror its state to a hidden input */}
           <Checkbox id="gdprConsent" checked={gdprChecked} onCheckedChange={(v) => setGdprChecked(Boolean(v))} />
           <Label htmlFor="gdprConsent" className="text-sm font-light text-muted-foreground">
             I agree to the <Link href="/privacy-policy" className="underline hover:text-primary">Privacy Policy</Link>.
           </Label>
         </div>
-        {/* Hidden form control that the server action reads */}
         <input type="hidden" name="gdprConsent" value={gdprChecked ? 'on' : ''} />
         {allErrors.gdprConsent?.[0] && <p className="text-sm text-destructive">{allErrors.gdprConsent[0]}</p>}
       </div>
 
-      {/* Global status */}
       {state.message && (
         <p className={state.status === 'error' ? 'text-sm text-destructive' : 'text-sm text-green-700'}>
           {state.message}

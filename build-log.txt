@@ -1,0 +1,881 @@
+ ⚠ You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+[telemetry] {
+  "eventName": "NEXT_CLI_SESSION_STARTED",
+  "payload": {
+    "nextVersion": "15.5.5",
+    "nodeVersion": "v20.19.5",
+    "cliCommand": "build",
+    "isSrcDir": true,
+    "hasNowJson": false,
+    "isCustomServer": null,
+    "hasNextConfig": true,
+    "buildTarget": "default",
+    "hasWebpackConfig": false,
+    "hasBabelConfig": false,
+    "imageEnabled": true,
+    "imageFutureEnabled": true,
+    "basePathEnabled": false,
+    "i18nEnabled": false,
+    "locales": null,
+    "localeDomainsCount": null,
+    "localeDetectionEnabled": null,
+    "imageDomainsCount": 0,
+    "imageRemotePatternsCount": 2,
+    "imageLocalPatternsCount": null,
+    "imageSizes": "16,32,48,64,96,128,256,384",
+    "imageQualities": null,
+    "imageLoader": "default",
+    "imageFormats": "image/webp",
+    "nextConfigOutput": "export",
+    "trailingSlashEnabled": false,
+    "reactStrictMode": false,
+    "webpackVersion": 5,
+    "turboFlag": false,
+    "isRspack": false,
+    "appDir": true,
+    "pagesDir": false,
+    "staticStaleTime": 300,
+    "dynamicStaleTime": 0,
+    "reactCompiler": false,
+    "reactCompilerCompilationMode": null,
+    "reactCompilerPanicThreshold": null
+  }
+}
+   ▲ Next.js 15.5.5
+   - Environments: .env.local, .env
+   - Experiments (use with caution):
+     · serverActions
+
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@eslint/eslintrc",
+    "packageVersion": "^3"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@tailwindcss/typography",
+    "packageVersion": "^0.5.15"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@types/node",
+    "packageVersion": "^20"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@types/react",
+    "packageVersion": "^19"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@types/react-dom",
+    "packageVersion": "^19"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@typescript-eslint/eslint-plugin",
+    "packageVersion": "^8.46.2"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@typescript-eslint/parser",
+    "packageVersion": "^8.46.2"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "autoprefixer",
+    "packageVersion": "^10.4.20"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "eslint",
+    "packageVersion": "^8.57.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "eslint-config-next",
+    "packageVersion": "15.5.5"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "firebase-tools",
+    "packageVersion": "^14.19.1"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "postcss",
+    "packageVersion": "^8.4.47"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "tailwindcss",
+    "packageVersion": "^3.4.13"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "tailwindcss-animate",
+    "packageVersion": "1.0.7"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "typescript",
+    "packageVersion": "^5"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@hookform/resolvers",
+    "packageVersion": "^5.2.2"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-accordion",
+    "packageVersion": "^1.2.12"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-alert-dialog",
+    "packageVersion": "^1.1.15"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-avatar",
+    "packageVersion": "^1.1.10"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-checkbox",
+    "packageVersion": "^1.3.3"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-collapsible",
+    "packageVersion": "^1.1.12"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-dialog",
+    "packageVersion": "^1.1.15"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-dropdown-menu",
+    "packageVersion": "^2.1.16"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-label",
+    "packageVersion": "^2.1.7"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-menubar",
+    "packageVersion": "^1.1.16"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-popover",
+    "packageVersion": "^1.1.15"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-progress",
+    "packageVersion": "^1.1.7"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-radio-group",
+    "packageVersion": "^1.3.8"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-scroll-area",
+    "packageVersion": "^1.2.10"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-select",
+    "packageVersion": "^2.2.6"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-separator",
+    "packageVersion": "^1.1.7"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-slider",
+    "packageVersion": "^1.3.6"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-slot",
+    "packageVersion": "^1.2.3"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-switch",
+    "packageVersion": "^1.2.6"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-tabs",
+    "packageVersion": "^1.1.13"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-toast",
+    "packageVersion": "^1.2.15"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@radix-ui/react-tooltip",
+    "packageVersion": "^1.2.8"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "@react-email/render",
+    "packageVersion": "^1.3.2"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "class-variance-authority",
+    "packageVersion": "^0.7.1"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "embla-carousel-react",
+    "packageVersion": "^8.6.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "firebase",
+    "packageVersion": "^12.4.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "googleapis",
+    "packageVersion": "^163.0.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "lucide-react",
+    "packageVersion": "^0.545.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "next",
+    "packageVersion": "15.5.5"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "react",
+    "packageVersion": "19.1.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "react-day-picker",
+    "packageVersion": "^9.11.1"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "react-dom",
+    "packageVersion": "19.1.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "react-hook-form",
+    "packageVersion": "^7.65.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "recharts",
+    "packageVersion": "^3.3.0"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "resend",
+    "packageVersion": "^6.1.3"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_PACKAGE_DETECTED",
+  "payload": {
+    "packageName": "zod",
+    "packageVersion": "^3.25.76"
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "build-lint",
+    "invocationCount": 1
+  }
+}
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 10.5s
+[telemetry] {
+  "eventName": "NEXT_BUILD_COMPLETED",
+  "payload": {
+    "bundler": "webpack",
+    "durationInSeconds": 10.4604064,
+    "totalAppPagesCount": 11,
+    "totalPageCount": 0,
+    "hasDunderPages": false,
+    "hasTestPages": false
+  }
+}
+   Linting and checking validity of types ...
+Warning: React version not specified in eslint-plugin-react settings. See https://github.com/jsx-eslint/eslint-plugin-react#configuration .
+[telemetry] {
+  "eventName": "NEXT_LINT_CHECK_COMPLETED",
+  "payload": {
+    "durationInSeconds": 2,
+    "eslintVersion": "8.57.1",
+    "lintedFilesCount": 73,
+    "lintFix": false,
+    "nextEslintPluginVersion": "15.5.5",
+    "nextEslintPluginErrorsCount": 0,
+    "nextEslintPluginWarningsCount": 1,
+    "nextRulesEnabled": {
+      "@next/next/google-font-display": "warn",
+      "@next/next/google-font-preconnect": "warn",
+      "@next/next/next-script-for-ga": "warn",
+      "@next/next/no-async-client-component": "warn",
+      "@next/next/no-before-interactive-script-outside-document": "warn",
+      "@next/next/no-css-tags": "warn",
+      "@next/next/no-head-element": "warn",
+      "@next/next/no-html-link-for-pages": "warn",
+      "@next/next/no-img-element": "warn",
+      "@next/next/no-page-custom-font": "warn",
+      "@next/next/no-styled-jsx-in-document": "warn",
+      "@next/next/no-sync-scripts": "warn",
+      "@next/next/no-title-in-document-head": "warn",
+      "@next/next/no-typos": "warn",
+      "@next/next/no-unwanted-polyfillio": "warn",
+      "@next/next/inline-script-id": "error",
+      "@next/next/no-assign-module-variable": "error",
+      "@next/next/no-document-import-in-page": "error",
+      "@next/next/no-duplicate-head": "error",
+      "@next/next/no-head-import-in-document": "error",
+      "@next/next/no-script-component-in-head": "error"
+    },
+    "buildLint": true
+  }
+}
+
+./src/app/layout.tsx
+25:9  Warning: Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font  @next/next/no-page-custom-font
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+[telemetry] {
+  "eventName": "NEXT_TYPE_CHECK_COMPLETED",
+  "payload": {
+    "durationInSeconds": 4,
+    "typescriptVersion": "5.9.3",
+    "inputFilesCount": 82,
+    "totalFilesCount": 1356,
+    "incremental": true
+  }
+}
+   Collecting page data ...
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "experimental/cacheComponents",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "experimental/optimizeCss",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "experimental/nextScriptWorkers",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "experimental/ppr",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "turbopackPersistentCaching",
+    "invocationCount": 0
+  }
+}
+   Generating static pages (0/13) ...
+   Generating static pages (3/13) 
+   Generating static pages (6/13) 
+   Generating static pages (9/13) 
+[2025-11-04T08:24:08.500Z]  @firebase/firestore: Firestore (12.5.0): Could not reach Cloud Firestore backend. Backend didn't respond within 10 seconds.
+This typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend.
+ ✓ Generating static pages (13/13)
+   Finalizing page optimization ...
+   Collecting build traces ...
+[telemetry] {
+  "eventName": "NEXT_BUILD_OPTIMIZED",
+  "payload": {
+    "durationInSeconds": 17,
+    "staticPageCount": 0,
+    "staticPropsPageCount": 0,
+    "serverPropsPageCount": 0,
+    "ssrPageCount": 0,
+    "hasStatic404": true,
+    "hasReportWebVitals": false,
+    "rewritesCount": 0,
+    "headersCount": 0,
+    "redirectsCount": 0,
+    "headersWithHasCount": 0,
+    "rewritesWithHasCount": 0,
+    "redirectsWithHasCount": 0,
+    "middlewareCount": 0,
+    "totalAppPagesCount": 11,
+    "staticAppPagesCount": 11,
+    "serverAppPagesCount": 0,
+    "edgeRuntimeAppCount": 0,
+    "edgeRuntimePagesCount": 0,
+    "totalPageCount": 0,
+    "hasDunderPages": false,
+    "hasTestPages": false,
+    "isRspack": false
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcLoader",
+    "invocationCount": 1
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcRelay",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcStyledComponents",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcReactRemoveProperties",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcExperimentalDecorators",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcRemoveConsole",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcImportSource",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swcEmotion",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/x86_64-apple-darwin",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/x86_64-unknown-linux-gnu",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/x86_64-pc-windows-msvc",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/i686-pc-windows-msvc",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/aarch64-unknown-linux-gnu",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/armv7-unknown-linux-gnueabihf",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/aarch64-apple-darwin",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/aarch64-linux-android",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/arm-linux-androideabi",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/x86_64-unknown-freebsd",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/x86_64-unknown-linux-musl",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/aarch64-unknown-linux-musl",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "swc/target/aarch64-pc-windows-msvc",
+    "invocationCount": 1
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "turbotrace",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "transpilePackages",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "skipMiddlewareUrlNormalize",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "skipTrailingSlashRedirect",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "modularizeImports",
+    "invocationCount": 1
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "esmExternals",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "webpackPlugins",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/image",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/future/image",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/legacy/image",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/script",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/dynamic",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "@next/font/google",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "@next/font/local",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/font/google",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_BUILD_FEATURE_USAGE",
+  "payload": {
+    "featureName": "next/font/local",
+    "invocationCount": 0
+  }
+}
+[telemetry] {
+  "eventName": "NEXT_CLI_SESSION_STARTED",
+  "payload": {
+    "nextVersion": "15.5.5",
+    "nodeVersion": "v20.19.5",
+    "cliCommand": "export",
+    "isSrcDir": null,
+    "hasNowJson": false,
+    "isCustomServer": null,
+    "hasNextConfig": true,
+    "buildTarget": "default",
+    "hasWebpackConfig": false,
+    "hasBabelConfig": false,
+    "imageEnabled": true,
+    "imageFutureEnabled": true,
+    "basePathEnabled": false,
+    "i18nEnabled": false,
+    "locales": null,
+    "localeDomainsCount": null,
+    "localeDetectionEnabled": null,
+    "imageDomainsCount": 0,
+    "imageRemotePatternsCount": 2,
+    "imageLocalPatternsCount": null,
+    "imageSizes": "16,32,48,64,96,128,256,384",
+    "imageQualities": null,
+    "imageLoader": "default",
+    "imageFormats": "image/webp",
+    "nextConfigOutput": "export",
+    "trailingSlashEnabled": false,
+    "reactStrictMode": false,
+    "webpackVersion": null,
+    "turboFlag": false,
+    "isRspack": false,
+    "appDir": null,
+    "pagesDir": null,
+    "staticStaleTime": 300,
+    "dynamicStaleTime": 0,
+    "reactCompiler": false,
+    "reactCompilerCompilationMode": null,
+    "reactCompilerPanicThreshold": null
+  }
+}
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+
+Redirects
+┌ source: /:path+/
+├ destination: /:path+
+└ permanent: true
+
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                      173 B         111 kB
+├ ○ /_not-found                            992 B         103 kB
+├ ○ /contact                             27.5 kB         141 kB
+├ ○ /privacy-policy                        127 B         102 kB
+├ ○ /services                              127 B         102 kB
+├ ○ /services/acoustic-consultancy         167 B         105 kB
+├ ○ /services/acoustic-planning-support    167 B         105 kB
+├ ○ /services/building-acoustics           167 B         105 kB
+├ ○ /services/noise-impact-assessment      132 B         119 kB
+└ ○ /services/noise-survey                 131 B         119 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/255-6a56ccd68221f3df.js       45.6 kB
+  ├ chunks/4bd1b696-21f374d1156f834a.js  54.2 kB
+  └ other shared chunks (total)             2 kB
+
+
+○  (Static)  prerendered as static content
+

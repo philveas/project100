@@ -4,7 +4,7 @@ import * as Lucide from "lucide-react";
 export async function generateMetadata() {
   return {
     title: "Acoustic Consultancy – Coming Soon",
-    description: "This service page is coming soon. Contact us for immediate support.",
+    description: "This service page is coming soon. Contact us now for support.",
   };
 }
 
@@ -13,7 +13,7 @@ export default function Page() {
     <ComingSoonService
       title="Acoustic Consultancy"
       Icon={Lucide.Handshake}
-      blurb="General consultancy, scoping, peer review and strategy support available now—get in touch and we’ll assist."
+      blurb="Acoustic consultancy for all buildings from inception to completion. Please get in touch if you need acoustic consultancy on your project."
     />
   );
 }

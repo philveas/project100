@@ -44,7 +44,7 @@ export function CtaSection({ section, image }: ImageSectionProps) {
                             loading="lazy"
                         />
                     </div>
-                    <div className="absolute inset-0 bg-primary/20 rounded-lg" />
+                    <div className="absolute inset-0 bg-secondary-dark/20 rounded-lg" />
                 </div>
 
                 {/* Text */}
