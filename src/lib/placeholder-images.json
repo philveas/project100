@@ -1,14 +1,45 @@
 {
   "placeholderImages": [
     {
-      "id": "home-hero",
-      "description": "",
+      "id": "home-hero-video",
+      "description": "desktop",
+      "imageHint": "home video",
+      "folder": "home",
+      "desktop": {
+        "file": "acoustic-design-places-we-work-learn-live2.mp4",
+        "width": 1280,
+        "height": 720
+      },
+      "videoUrl": "/videos/home/acoustic-design-places-we-work-learn-live2.mp4"
+    },
+    {
+      "id": "home-hero-desktop-fallback",
+      "description": "desktop fallback",
       "imageHint": "homepage hero",
       "folder": "home",
       "desktop": {
-        "file": "Grass2.0.webp",
+        "file": "home-hero-desktop-fallback.webp",
         "width": 1920,
         "height": 1080
+      },
+      "imageUrl": "/images/home/home-hero-desktop-fallback.webp"
+    },
+    {
+      "id": "home-hero-desktop-lowres",
+      "description": "desktop low res",
+      "imageHint": "homepage hero",
+      "folder": "home",
+      "desktop": {
+        "file": "home-hero-desktop-lowres.webp",
+        "width": 1800,
+        "height": 1013
+      },
+      "imageUrl": "/images/home/home-hero-desktop-lowres.webp",
+      "mobile": {
+        "file": "home-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/home/home-hero-mobile.webp"
       }
     },
     {
@@ -17,14 +48,16 @@
       "imageHint": "homepage feature",
       "folder": "home",
       "desktop": {
-        "file": "acoustic_ceiling.webp",
-        "width": 597,
-        "height": 448
+        "file": "home-abstract.webp",
+        "width": "",
+        "height": ""
       },
+      "imageUrl": "/images/home/home-abstract.webp",
       "mobile": {
-        "file": "acoustic_ceiling_mobile.webp",
-        "width": 360,
-        "height": 270
+        "file": "home-abstract-mobile.webp",
+        "width": "",
+        "height": "",
+        "imageUrl": "/images/home/home-abstract-mobile.webp"
       }
     },
     {
@@ -33,130 +66,293 @@
       "imageHint": "homepage feature",
       "folder": "home",
       "desktop": {
-        "file": "meeting2.webp",
-        "width": 597,
-        "height": 448
+        "file": "home-meeting.webp",
+        "width": "",
+        "height": ""
       },
+      "imageUrl": "/images/home/home-meeting.webp",
       "mobile": {
-        "file": "meeting2_mobile.webp",
-        "width": 360,
-        "height": 270
+        "file": "home-meeting-mobile.webp",
+        "width": "",
+        "height": "",
+        "imageUrl": "/images/home/home-meeting-mobile.webp"
       }
     },
     {
       "id": "survey-hero",
-      "description": "grass",
+      "description": "desktop",
       "imageHint": "survey hero",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
-        "file": "noise_survey_grass.webp",
+        "file": "survey-hero.webp",
         "width": 1920,
         "height": 1080
+      },
+      "imageUrl": "/images/noise-survey/survey-hero.webp"
+    },
+    {
+      "id": "survey-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "survey hero",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-hero-lowres.webp",
+        "width": 1470,
+        "height": 828
+      },
+      "imageUrl": "/images/noise-survey/survey-hero-lowres.webp",
+      "mobile": {
+        "file": "survey-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/noise-survey/survey-hero-mobile.webp"
       }
     },
     {
       "id": "survey-acc-env",
       "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "envsurvey_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/envsurvey_acc.webp"
     },
     {
       "id": "survey-acc-res",
-      "description": "gep2",
+      "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "residential_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/residential_acc.webp"
     },
     {
       "id": "survey-acc-edu",
-      "description": "classroom",
+      "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "classroom_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/classroom_acc.webp"
     },
     {
       "id": "survey-acc-hea",
-      "description": "hsoptial / ambulance",
+      "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "healthcare2_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/healthcare2_acc.webp"
     },
     {
       "id": "survey-acc-ind",
-      "description": "plant",
+      "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "industrial_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/industrial_acc.webp"
     },
     {
       "id": "survey-acc-con",
-      "description": "Cosntruciton",
+      "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "constructiondusk2_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/constructiondusk2_acc.webp"
     },
     {
       "id": "survey-acc-spe",
-      "description": "Ear defenders",
+      "description": "",
       "imageHint": "survey accordian",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
         "file": "work_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise-survey/work_acc.webp"
+    },
+    {
+      "id": "survey-type-env",
+      "description": "env",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-env.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-survey/survey-type-env.webp"
+    },
+    {
+      "id": "survey-type-res",
+      "description": "res",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-res.webp",
+        "width": 1200,
+        "height": 800
+      },
+      "imageUrl": "/images/noise-survey/survey-type-res.webp"
+    },
+    {
+      "id": "survey-type-edu",
+      "description": "edu",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-edu.webp",
+        "width": 1000,
+        "height": 666
+      },
+      "imageUrl": "/images/noise-survey/survey-type-edu.webp"
+    },
+    {
+      "id": "survey-type-hea",
+      "description": "hea",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-hea.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-survey/survey-type-hea.webp"
+    },
+    {
+      "id": "survey-type-pla",
+      "description": "pla",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-pla.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-survey/survey-type-pla.webp"
+    },
+    {
+      "id": "survey-type-ind",
+      "description": "ind",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-ind.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-survey/survey-type-ind.webp"
+    },
+    {
+      "id": "survey-type-con",
+      "description": "con",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-con.webp",
+        "width": 1000,
+        "height": 666
+      },
+      "imageUrl": "/images/noise-survey/survey-type-con.webp"
+    },
+    {
+      "id": "survey-type-work",
+      "description": "work",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-work.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-survey/survey-type-work.webp"
     },
     {
       "id": "survey-cta",
-      "description": "",
+      "description": "desktop",
       "imageHint": "survey cta",
-      "folder": "noise survey",
+      "folder": "noise-survey",
       "desktop": {
-        "file": "survey.webp",
-        "width": 597,
-        "height": 448
+        "file": "survey-cta.webp",
+        "width": 800,
+        "height": 600
       },
+      "imageUrl": "/images/noise-survey/survey-cta.webp",
       "mobile": {
-        "file": "survey_mob.webp",
-        "width": 360,
-        "height": 270
+        "file": "survey-cta-mobile.webp",
+        "width": 500,
+        "height": 375,
+        "imageUrl": "/images/noise-survey/survey-cta-mobile.webp"
       }
     },
     {
       "id": "impact-hero",
-      "description": "",
+      "description": "desktop",
       "imageHint": "impact hero",
-      "folder": "noise impact",
+      "folder": "noise-impact",
       "desktop": {
-        "file": "road_noise.webp",
+        "file": "impact-hero.webp",
         "width": 1920,
         "height": 1080
-      }
+      },
+      "imageUrl": "/images/noise-impact/impact-hero.webp"
+    },
+    {
+      "id": "impact-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "impact hero",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-hero-lowres.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/noise-impact/impact-hero-lowres.webp"
+    },
+    {
+      "id": "impact-hero-mobile",
+      "description": "mobile",
+      "imageHint": "impact hero",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-hero-mobile.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/noise-impact/impact-hero-mobile.webp"
+    },
+    {
+      "id": "impact-hero-mobile-lowres",
+      "description": "mobile low res",
+      "imageHint": "impact hero",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-hero-mobile-lowres.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/noise-impact/impact-hero-mobile-lowres.webp"
     },
     {
       "id": "impact-acc-res",
@@ -167,7 +363,8 @@
         "file": "residential_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/residential_acc.webp"
     },
     {
       "id": "impact-acc-fac",
@@ -178,7 +375,8 @@
         "file": "facade_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/facade_acc.webp"
     },
     {
       "id": "impact-acc-bui",
@@ -189,7 +387,8 @@
         "file": "industrial_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/industrial_acc.webp"
     },
     {
       "id": "impact-acc-ind",
@@ -200,7 +399,8 @@
         "file": "industrial2_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/industrial2_acc.webp"
     },
     {
       "id": "impact-acc-con",
@@ -211,7 +411,8 @@
         "file": "constructiondusk2_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/constructiondusk2_acc.webp"
     },
     {
       "id": "impact-acc-ope",
@@ -222,7 +423,8 @@
         "file": "operational.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/operational.webp"
     },
     {
       "id": "impact-acc-eve",
@@ -233,7 +435,8 @@
         "file": "music2_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/music2_acc.webp"
     },
     {
       "id": "impact-acc-spo",
@@ -244,23 +447,308 @@
         "file": "sports_pitch_acc.webp",
         "width": 200,
         "height": 200
-      }
+      },
+      "imageUrl": "/images/noise impact/sports_pitch_acc.webp"
+    },
+    {
+      "id": "impact-type-resi",
+      "description": "resi",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-resi.webp",
+        "width": 1200,
+        "height": 800
+      },
+      "imageUrl": "/images/noise-impact/impact-type-resi.webp"
+    },
+    {
+      "id": "impact-type-facade",
+      "description": "facade",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-facade.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-impact/impact-type-facade.webp"
+    },
+    {
+      "id": "impact-type-plant",
+      "description": "plant",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-plant.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-impact/impact-type-plant.webp"
+    },
+    {
+      "id": "impact-type-industrial",
+      "description": "industrial",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-industrial.webp",
+        "width": 939,
+        "height": 626
+      },
+      "imageUrl": "/images/noise-impact/impact-type-industrial.webp"
+    },
+    {
+      "id": "impact-type-construction",
+      "description": "construction",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-construction.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-impact/impact-type-construction.webp"
+    },
+    {
+      "id": "impact-type-operational",
+      "description": "operational",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-operational.webp",
+        "width": 952,
+        "height": 635
+      },
+      "imageUrl": "/images/noise-impact/impact-type-operational.webp"
+    },
+    {
+      "id": "impact-type-event",
+      "description": "event",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-event.webp",
+        "width": 711,
+        "height": 474
+      },
+      "imageUrl": "/images/noise-impact/impact-type-event.webp"
+    },
+    {
+      "id": "impact-type-sport",
+      "description": "sport",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-sport.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-impact/impact-type-sport.webp"
     },
     {
       "id": "impact-cta",
-      "description": "train",
+      "description": "desktop",
       "imageHint": "impact cta",
-      "folder": "noise impact",
+      "folder": "noise-impact",
       "desktop": {
-        "file": "railway_noise.webp",
-        "width": 597,
-        "height": 448
+        "file": "impact-cta.webp",
+        "width": 1194,
+        "height": 896
       },
+      "imageUrl": "/images/noise-impact/impact-cta.webp",
       "mobile": {
-        "file": "railway_noise_mob.webp",
-        "width": 360,
-        "height": 270
+        "file": "impact-cta-mobile.webp",
+        "width": 720,
+        "height": 540,
+        "imageUrl": "/images/noise-impact/impact-cta-mobile.webp"
       }
+    },
+    {
+      "id": "planning-hero",
+      "description": "desktop",
+      "imageHint": "planning hero",
+      "folder": "acoustic-planning",
+      "desktop": {
+        "file": "planning-hero.webp",
+        "width": 2000,
+        "height": 1125
+      },
+      "imageUrl": "/images/acoustic-planning/planning-hero.webp"
+    },
+    {
+      "id": "planning-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "planning hero",
+      "folder": "acoustic-planning",
+      "desktop": {
+        "file": "planning-hero-lowres.webp",
+        "width": 2000,
+        "height": 1125
+      },
+      "imageUrl": "/images/acoustic-planning/planning-hero-lowres.webp",
+      "mobile": {
+        "file": "planning-hero-mobile.webp",
+        "width": 900,
+        "height": 1386,
+        "imageUrl": "/images/acoustic-planning/planning-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "planning-cta",
+      "description": "desktop",
+      "imageHint": "planning cta",
+      "folder": "acoustic-planning",
+      "desktop": {
+        "file": "planning-cta.webp",
+        "width": 1109,
+        "height": 832
+      },
+      "imageUrl": "/images/acoustic-planning/planning-cta.webp",
+      "mobile": {
+        "file": "planning-cta-mobile.webp",
+        "width": 720,
+        "height": 540,
+        "imageUrl": "/images/acoustic-planning/planning-cta-mobile.webp"
+      }
+    },
+    {
+      "id": "building-hero",
+      "description": "desktop",
+      "imageHint": "building-hero",
+      "folder": "building-acoustics",
+      "desktop": {
+        "file": "building-hero.webp",
+        "width": 3400,
+        "height": 1913
+      },
+      "imageUrl": "/images/building-acoustics/building-hero.webp"
+    },
+    {
+      "id": "building-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "building-hero-lowres",
+      "folder": "building-acoustics",
+      "desktop": {
+        "file": "building-hero-lowres.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/building-acoustics/building-hero-lowres.webp",
+      "mobile": {
+        "file": "building-hero-mobile.webp",
+        "width": 1242,
+        "height": 1913,
+        "imageUrl": "/images/building-acoustics/building-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "building-cta",
+      "description": "desktop",
+      "imageHint": "building-cta",
+      "folder": "building-acoustics",
+      "desktop": {
+        "file": "building-cta.webp",
+        "width": 1400,
+        "height": 1050
+      },
+      "imageUrl": "/images/building-acoustics/building-cta.webp",
+      "mobile": {
+        "file": "building-cta-mobile.webp",
+        "width": 1000,
+        "height": 750,
+        "imageUrl": "/images/building-acoustics/building-cta-mobile.webp"
+      }
+    },
+    {
+      "id": "consultant-hero",
+      "description": "desktop",
+      "imageHint": "consultant-hero",
+      "folder": "acoustic-consultant",
+      "desktop": {
+        "file": "consultant-hero.webp",
+        "width": 3000,
+        "height": 1687
+      },
+      "imageUrl": "/images/acoustic-consultant/consultant-hero.webp"
+    },
+    {
+      "id": "consultant-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "consultant-hero-lowres",
+      "folder": "acoustic-consultant",
+      "desktop": {
+        "file": "consultant-hero-lowres.webp",
+        "width": 3000,
+        "height": 1687
+      },
+      "imageUrl": "/images/acoustic-consultant/consultant-hero-lowres.webp",
+      "mobile": {
+        "file": "consultant-hero-mobile.webp",
+        "width": 1093,
+        "height": 1687,
+        "imageUrl": "/images/acoustic-consultant/consultant-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "consultant-cta",
+      "description": "desktop",
+      "imageHint": "consultant-cta",
+      "folder": "acoustic-consultant",
+      "desktop": {
+        "file": "consultant-cta.webp",
+        "width": 868,
+        "height": 651
+      },
+      "imageUrl": "/images/acoustic-consultant/consultant-cta.webp",
+      "mobile": {
+        "file": "consultant-cta-mobile.webp",
+        "width": 700,
+        "height": 525,
+        "imageUrl": "/images/acoustic-consultant/consultant-cta-mobile.webp"
+      }
+    },
+    {
+      "id": "testing-hero",
+      "description": "desktop",
+      "imageHint": "testing-hero",
+      "folder": "testing",
+      "desktop": {
+        "file": "testing-hero.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/testing/testing-hero.webp"
+    },
+    {
+      "id": "testing-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "testing-hero-lowres",
+      "folder": "testing",
+      "desktop": {
+        "file": "testing-hero-lowres.webp",
+        "width": 1470,
+        "height": 828
+      },
+      "imageUrl": "/images/testing/testing-hero-lowres.webp",
+      "mobile": {
+        "file": "testing-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/testing/testing-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "testing-imageleft",
+      "description": "tripod",
+      "imageHint": "testing-imageleft",
+      "folder": "testing",
+      "desktop": {
+        "file": "testing-imageleft.webp",
+        "width": 732,
+        "height": 977
+      },
+      "imageUrl": "/images/testing/testing-imageleft.webp"
     }
   ]
 }

@@ -41,7 +41,8 @@ const config: Config = {
         foreground: "hsl(var(--foreground))",
         card: "hsl(var(--card))",
         "card-foreground": "hsl(var(--card-foreground))",
-
+	imageover: "hsl(var(--imageover))",
+	
         primary: "hsl(var(--primary))",
         "primary-foreground": "hsl(var(--primary-foreground))",
         "primary-dark": "hsl(var(--primary-dark))",
@@ -53,6 +54,8 @@ const config: Config = {
         accent: "hsl(var(--accent))",
         "accent-foreground": "hsl(var(--accent-foreground))",
         "accent-dark": "hsl(var(--accent-dark))",
+        "accent-logo": "hsl(var(--accent-logo))",
+
 
         border: "hsl(var(--border))",
       },

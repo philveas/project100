@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,6 +9,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 
 import type { FormState } from '@/app/contact/types';
+import { submitContactForm } from '@/app/contact/actions'; // Import the server action
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -62,7 +64,9 @@ function SubmitButton() {
 // Contact form
 // ----------------------
 export function ContactForm() {
-  const [state, setState] = useState<FormState>(initialState);
+  // 💡 CHANGE: Use useFormState to manage state and invoke the server action
+  const [state, action] = useActionState(submitContactForm, initialState);
+  
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -78,34 +82,28 @@ export function ContactForm() {
   // Mirror GDPR checkbox value manually (since shadcn Checkbox is custom)
   const [gdprChecked, setGdprChecked] = useState(false);
 
-  // Temporary handler until backend reconnected
-  async function formAction(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    alert('✅ Form submission temporarily disabled while backend updates.');
+  // REMOVED: The temporary 'formAction' function has been removed.
 
-    setState({
-      status: 'success',
-      message: 'Form temporarily disabled during backend maintenance.',
-      success: true,
-      errors: {},
-    });
-
-    toast({
-      title: 'Info',
-      description: 'Form temporarily disabled during backend maintenance.',
-    });
-  }
-
-  // Reset logic when state changes
+  // Handle server action result with toast and form reset
   useEffect(() => {
+    // Show toast message based on server action result
+    if (state.message && state.status !== 'idle') {
+      toast({
+        title: state.status === 'success' ? 'Success' : 'Error',
+        description: state.message,
+        variant: state.status === 'error' ? 'destructive' : 'default',
+      });
+    }
+
+    // Reset logic when state changes to success
     if (state.status === 'success') {
       formRef.current?.reset();
       reset();
       setGdprChecked(false);
     }
-  }, [state, reset]);
+  }, [state, reset, toast]);
 
-  // Merge client and server errors (for future compatibility)
+  // Merge client and server errors 
   const allErrors: Record<string, string[]> = {
     ...Object.fromEntries(
       Object.entries(errors).map(([k, v]) => [k, v?.message ? [String(v.message)] : []])
@@ -114,7 +112,8 @@ export function ContactForm() {
   };
 
   return (
-    <form ref={formRef} onSubmit={formAction} className="space-y-6">
+    // 💡 CHANGE: Replaced onSubmit={formAction} with action={action} to call the server action
+    <form ref={formRef} action={action} className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="name">Name</Label>
@@ -164,7 +163,7 @@ export function ContactForm() {
         {allErrors.gdprConsent?.[0] && <p className="text-sm text-destructive">{allErrors.gdprConsent[0]}</p>}
       </div>
 
-      {state.message && (
+      {state.message && state.status !== 'idle' && (
         <p className={state.status === 'error' ? 'text-sm text-destructive' : 'text-sm text-green-700'}>
           {state.message}
         </p>

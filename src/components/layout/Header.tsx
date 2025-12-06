@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { SERVICES } from "@/lib/constants";
+import { SERVICES } from "@/lib/constants"; // This holds ALL services, including 'home'
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useState, type ReactNode } from "react";
@@ -22,18 +22,25 @@ export function Header() {
   const pathname = pathnameRaw ?? "/";
   const [isSheetOpen, setSheetOpen] = useState(false);
 
+  // --- START OF NEW FILTERING LOGIC ---
+  // Create a new array that excludes the Home Page entry (where href is '/')
+  const menuServices = SERVICES.filter(service => service.href !== '/');
+  
+  // Update the servicesActive calculation to use the filtered list for checks
+  const servicesActive =
+    menuServices.some((s) => pathname.startsWith(s.href)) ||
+    pathname === "/services";
+  // --- END OF NEW FILTERING LOGIC ---
+
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href;
   };
 
-  const servicesActive =
-    SERVICES.some((s) => pathname.startsWith(s.href)) ||
-    pathname === "/services";
-
   // Color helpers
-  const cFg = "text-[hsl(var(--foreground))]";           // default (black-ish)
-  const cSecondary = "text-[hsl(var(--secondary-dark))]";     // ACTIVE (current page)
+  const cFg = "text-[hsl(var(--foreground))]";        // default (black-ish)
+  const cSecondary = "text-[hsl(var(--secondary-dark))]";    // ACTIVE (current page)
 
   // Interaction helpers
   const growHover = "transition-all duration-150 hover:scale-105";
@@ -82,7 +89,8 @@ export function Header() {
         <DropdownMenuContent
           className="bg-[hsl(var(--card))] text-[hsl(var(--foreground))] border border-[hsl(var(--border))] shadow-lg rounded-md p-2"
         >
-          {SERVICES.map((service) => {
+          {/* FIX APPLIED: Using the filtered array 'menuServices' */}
+          {menuServices.map((service) => {
             const itemActive = pathname.startsWith(service.href);
             return (
               <DropdownMenuItem
@@ -127,7 +135,8 @@ export function Header() {
       </p>
 
       <div className="grid gap-2 pl-4">
-        {SERVICES.map((service) => {
+        {/* FIX APPLIED: Using the filtered array 'menuServices' */}
+        {menuServices.map((service) => {
           const itemActive = pathname.startsWith(service.href);
           return (
             <Link
@@ -159,6 +168,7 @@ export function Header() {
           <Logo />
         </div>
 
+
         {/* Navigation */}
         <div className="flex items-center space-x-4">
           {mainNav}
@@ -178,19 +188,19 @@ export function Header() {
               </button>
             </SheetTrigger>
             <SheetContent
-  side="left"
-  className="bg-[hsl(var(--card))] text-[hsl(var(--foreground))] border-r border-[hsl(var(--border))]"
->
-  <VisuallyHidden>
-    <h2>Mobile navigation menu</h2>
-  </VisuallyHidden>
+              side="left"
+              className="bg-[hsl(var(--card))] text-[hsl(var(--foreground))] border-r border-[hsl(var(--border))]"
+            >
+              <VisuallyHidden>
+                <h2>Mobile navigation menu</h2>
+              </VisuallyHidden>
 
-  <div className="flex items-center space-x-2 mb-8">
-    <Logo />
-  </div>
+              <div className="flex items-center space-x-2 mb-8">
+                <Logo />
+              </div>
 
-  {mobileNav}
-</SheetContent>
+              {mobileNav}
+            </SheetContent>
 
           </Sheet>
         </div>

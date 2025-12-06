@@ -1,11 +1,13 @@
 // lib/placeholders.ts
+// 👇 Import the augmentation so TypeScript merges it at compile time
+
 import raw from "./placeholder-images.json";
 
 type BaseItem = {
   id: string;
   description: string;
-  imageHint?: string; // optional
-  folder?: string;    // optional
+  imageHint?: string;
+  folder?: string;
 };
 
 // Original single-image shapes (still supported)
@@ -38,9 +40,7 @@ export type ResolvedVariant = {
 };
 
 export type ResolvedImage = BaseItem & {
-  // Fallback single URL (for legacy callers)
   imageUrl: string;
-  // Optional responsive variants
   desktop?: ResolvedVariant;
   mobile?: ResolvedVariant;
 };
@@ -54,7 +54,6 @@ function resolveVariant(folder: string | undefined, v?: Variant): ResolvedVarian
 
   if (!src) return undefined;
 
-  // With exactOptionalPropertyTypes, omit keys when undefined
   return {
     src,
     ...(v.width !== undefined ? { width: v.width } : {}),
@@ -63,7 +62,6 @@ function resolveVariant(folder: string | undefined, v?: Variant): ResolvedVarian
 }
 
 export const PlaceholderImages: ResolvedImage[] = (data.placeholderImages || []).map((p) => {
-  // Common base WITHOUT undefineds
   const base: Pick<ResolvedImage, "id" | "description"> &
     Partial<Pick<ResolvedImage, "imageHint" | "folder">> = {
     id: p.id,
@@ -72,7 +70,6 @@ export const PlaceholderImages: ResolvedImage[] = (data.placeholderImages || [])
     ...(p.folder !== undefined ? { folder: p.folder } : {}),
   };
 
-  // New: variant-aware entries
   if ("desktop" in p || "mobile" in p) {
     const desktop = resolveVariant(p.folder, (p as VariantItem).desktop);
     const mobile  = resolveVariant(p.folder, (p as VariantItem).mobile);
@@ -84,13 +81,13 @@ export const PlaceholderImages: ResolvedImage[] = (data.placeholderImages || [])
 
     return {
       ...base,
-      imageUrl, // fallback for callers not using variants
+      imageUrl,
+      ...(p as any).videoUrl ? { videoUrl: (p as any).videoUrl } : {},
       ...(desktop ? { desktop } : {}),
       ...(mobile ? { mobile } : {}),
     };
   }
 
-  // Legacy: single file or imageUrl
   if ("imageUrl" in p && (p as UrlItem).imageUrl) {
     return {
       ...base,
@@ -108,7 +105,7 @@ export const PlaceholderImages: ResolvedImage[] = (data.placeholderImages || [])
   throw new Error(`Invalid placeholder entry for id "${p.id}": missing imageUrl or file`);
 });
 
-// ✅ Named export used across your app
+// ✅ Single named export (no duplicate)
 export function getPlaceholder(id: string): ResolvedImage | undefined {
   return PlaceholderImages.find((p) => p.id === id);
 }

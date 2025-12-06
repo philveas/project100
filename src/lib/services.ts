@@ -11,16 +11,29 @@ export type Service = {
   schemaOfferUrl: string;
 };
 
+
 export const services: Service[] = [
   {
+  key: "home",
+  title: "Home Page",
+  slug: "home",
+  cardDescription: "Veas Acoustics Home Page",
+  description: ``,
+  imageId: "",
+  iconName: "",
+  schemaType: "Organization",
+  schemaOfferUrl: ""
+},
+  {
   key: "noise-survey",
-  title: "Noise Survey",
+  title: "Noise Surveys",
   slug: "noise-survey",
   cardDescription: "Low cost, accurate noise surveys, workplace noise and noise monitoring for all scenarios.",
-  description: `We provide low-cost, comprehensive noise survey and noise modelling services across the UK. Whether you need an environmental noise survey for a feasibility study or planning application, a workplace noise assessment, or ongoing monitoring for an operational site, our experienced acoustic consultants deliver fast, accurate results you can rely on.
-All surveys are carried out by friendly, qualified engineers using precision instrumentation in accordance with current British Standards and best practice guidance, including BS7445, BS8233, BS4142 and Noise at Work Regulations where applicable.
-Using modern, efficient survey and analysis processes, we deliver results that are both technically robust and easy to understand. Our streamlined approach ensures accuracy, quick turnaround times and exceptional value. From early design advice to compliance reporting, we help clients make informed, confident decisions at every project stage.
-`,
+  description: `Whether you need a survey for a workplace noise assessment, ongoing noise monitoring for an operational or construction site, or an environmental noise survey to support the acoustic design, a feasibility study or a planning application, our service is delivered with a focus on accuracy, clarity and competitive pricing.
+
+Surveys are carried out using precision instrumentation and follow current British Standards and recognised best-practice guidance, including BS7445, BS8233, BS4142 and the Control of Noise at Work Regulations where required.
+
+Modern, efficient acoustic survey and analysis methods help keep everything clear and straightforward, with results that are technically robust, easy to understand and ready to use. A streamlined approach supports quick turnaround times, strong technical confidence and excellent value. From early design advice to full compliance reporting, our clients receive clear, reliable information they can act on with confidence.`,
   imageId: "service-noise-survey",
   iconName: "AudioLines",
   schemaType: "Service",
@@ -28,14 +41,17 @@ Using modern, efficient survey and analysis processes, we deliver results that a
 },
   {
   key: "noise-impact-assessment",
-  title: "Noise Impact Assessment",
+  title: "Noise Impact Assessments",
   slug: "noise-impact-assessment",
   cardDescription: "Comprehensive noise assessments for all design and planning needs.",
-  description: `Whether you need a noise impact assessment to support your planning application, to inform the design of your scheme, or to demonstrate compliance with specific performance requirements, we can help. Our consultants have years of experience delivering noise impact assessments for a wide range of projects across the built environment and would love to see how we can help you.
+  description: `Whether you need a noise impact assessment to support your planning application, to inform the design of your scheme or to demonstrate compliance with specific performance requirements, we can help. With years of experience delivering noise impact assessments for a wide spectrum of projects across the built environment and would love to see how we can help you.
 
-Each assessment is prepared in accordance with relevant standards and guidance, including BS8233, BS4142, BS5228, ProPG, and local planning policy, ensuring clarity, accuracy and compliance. We assess the potential impact of noise from transport, industrial and mechanical sources on proposed developments, and provide practical, design-led mitigation advice on layout, façade performance and specification.
+We understand that all projects are different with their own unique challenges. Our services are therefore tailored to suit each and every project ensuring the process, information, level of detail and the design solutions meet the project's specific needs. 
 
-By maintaining close communication with planning officers, design teams and environmental health professionals, we help streamline the approval process and minimise risk. Our clear, evidence-based reporting ensures robust, policy-compliant outcomes at every stage of design and planning.`,
+Our modern processes are highly efficient making use of the latest technologies to effectively support the design process, by identifying and mitigating risk early, ensuring accurate and robust assessments whilst adopting the appropriate level of tolerance for yours and your projects needs.
+
+Our reports are comprehensive but concise, detailed but easy to understand, helping you, the key stakeholders and decision makers make the right decisions for your project at the right time. 
+`,
   imageId: "service-noise-impact-assessment",
   iconName: "ChartColumn",
   schemaType: "Service",
@@ -45,12 +61,14 @@ By maintaining close communication with planning officers, design teams and envi
   key: "acoustic-planning-support",
   title: "Acoustic Planning Support",
   slug: "acoustic-planning-support",
-  cardDescription: "Expert acoustic support to help navigate the planning process.",
-  description: `We provide expert acoustic planning support across the UK, helping developers, architects, planning consultants and private clients navigate the complex acoustic requirements of the planning system. Our input covers site suitability, layout optimisation, noise mitigation and compliance with national and regional planning policies.
+  cardDescription: "Expert acoustic planning support to help navigate the planning process.",
+  description: `We provide expert acoustic planning support services across the UK, helping architects, developers, planning consultants and also private clients navigate the acoustic complexities within the planning process. 
 
-Combining extensive technical expertise with strategic planning insight, each assessment delivers robust analysis, compliant reporting and, where required, practical mitigation solutions that support successful planning outcomes.
+With experience combining extensive technical expertise with strategic planning insight, we deliver robust assessments, compliant reports, and practical mitigation solutions that secure planning approval.
 
-From feasibility through to full planning submission, we prepare clear, robust technical documentation that stands up to scrutiny and liaise with design teams, planning consultants and local authorities to facilitate smooth approvals.`,
+Our input covers compliance with local and national planning policy, site suitability, layout optimisation, noise assessments and mitigation, local authority liaison and also compliance and validation at the end of the project.
+
+Throughout the planning process, we work closely with our clients, the design team and local authority, providing clear, robust technical guidance and design information, as well as documentation that stands up to scrutiny, to support a smooth process to secure planning approval.`,
   imageId: "service-acoustic-planning-support",
   iconName: "SquareCheckBig",
   schemaType: "Service",
@@ -61,13 +79,16 @@ From feasibility through to full planning submission, we prepare clear, robust t
   title: "Building Acoustics",
   slug: "building-acoustics",
   cardDescription: "Building acoustic design for all sectors of the built environment.",
-  description: `Our Building Acoustics services support architects, designers and developers in creating buildings that meet regulatory standards, safeguard health and wellbeing, and deliver environments where people can truly thrive.
+  description: `Building Acoustics Design is our main area of expertise. We provide building acoustic design services to architects, designers and developers to create buildings that meet regulatory standards, safeguard health and wellbeing and deliver environments where people can truly thrive.
 
-We design and review façade performance and building services noise to achieve appropriate indoor ambient noise levels. We assess layouts, materials and junction details to control airborne, impact and flanking sound transmission, and carefully design room acoustics to meet end-user expectations for comfort and usability — ensuring spaces sound as good as they look.
+We design and review acoustic façade performance and building services noise to achieve appropriate indoor ambient noise levels. We assess layouts, materials, construction types and junction details to control airborne, impact and flanking sound transmission and we carefully design room acoustics to meet end-user expectations for comfort, usability and speech intelligibility, ensuring spaces sound as good as they look.
 
-Each project is approached with technical rigour, following relevant standards and guidance such as Approved Document E, BREEAM, BS8233, BB93 and HTM 08-01 to ensure robust, compliant and verifiable design outcomes.
+Each project is approached with technical rigour, following relevant standards, current guidance and best practices to ensure robust, compliant and verifiable design outcomes.
 
-From small residential conversions to large mixed-use developments, schools to healthcare facilities, and offices to community and leisure spaces, we provide clear, practical acoustic design advice from concept to completion — helping reduce overdesign, manage risk and achieve sustainable performance.`,
+Supporting projects across all sectors of the built environment, our experience ranges from small residential conversions to large mixed-use developments, encompassing schools, healthcare facilities, offices, community facilities and sports and leisure spaces
+
+Our approach is to provide clear, practical acoustic design advice from concept to completion, helping reduce overdesign, manage risk through strategies considerate of sustainability. Excellent communication is one of our core values and we work closely with project teams to ensure the acoustic design solutions complement the architectural design philosophy, while remaining practical and buildable.
+`,
   imageId: "service-architectural-acoustics",
   iconName: "Building2",
   schemaType: "ProfessionalService",
@@ -87,8 +108,20 @@ Whether advising on noise strategy, acoustic design or on-site support and testi
   iconName: "Handshake",
   schemaType: "ProfessionalService",
   schemaOfferUrl: "/services/acoustic-consultancy"
+},
+  {
+  key: "acoustic-testing",
+  title: "Acoustic Testing",
+  slug: "acoustic-testing",
+  cardDescription: "Acoustic investigative and compliance testing",
+  description: `We provide acoustic testing for site investigations for refurb projects for example for conversions of commercial premises into residential units as well as acoustic compliance testing at the end of the project.  `,
+  imageId: "service-acoustic-testing",
+  iconName: "",
+  schemaType: "Service",
+  schemaOfferUrl: "/services/acoustic-testing"
 }
 ];
+
 
 export const getServiceBySlug = (slug: string) => services.find(s => s.slug === slug);
 export const getServiceByKey = (key: string) => services.find(s => s.key === key);

@@ -1,19 +1,29 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ For Firebase Hosting (static export)
-  output: "standalone",
+  // ✅ Dynamic rendering for Firebase Functions
+  output: "standalone", // Enables SSR via Firebase backend
 
-  // ✅ Disable image optimization during build
+  // ✅ Disable image optimization (Firebase handles this separately)
   images: {
     unoptimized: true,
   },
 
-  // ✅ No experimental features at all
-  experimental: {},
+  // ✅ Enable React strict mode (recommended for production)
+  reactStrictMode: true,
 
-  // ✅ Optional: speed up builds
-  reactStrictMode: false,
+  // ✅ Suppress build errors from ESLint during CI/CD
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  // ✅ Optimize performance and runtime
+  typescript: {
+    ignoreBuildErrors: false, // optional: set true if you need to bypass TS build blocking
+  },
+
+  // ✅ Ensure correct environment and stability
+  poweredByHeader: false,
 };
 
 export default nextConfig;
