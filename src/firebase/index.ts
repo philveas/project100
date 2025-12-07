@@ -5,6 +5,20 @@ import { getFirestore, type Firestore } from "firebase/firestore";
 import { getStorage, type FirebaseStorage } from "firebase/storage";
 import { getAnalytics, type Analytics, isSupported } from "firebase/analytics";
 
+// 1. Get the JSON configuration string from the environment variable provided by Firebase.
+const firebaseConfigJson = process.env.FIREBASE_WEBAPP_CONFIG;
+
+if (!firebaseConfigJson) {
+  // If the key is missing, throw a fatal error during build/runtime.
+  // This is the cleanest way to debug a deployment failure.
+  throw new Error(
+    "FATAL: FIREBASE_WEBAPP_CONFIG environment variable is missing. Check App Hosting configuration."
+  );
+}
+
+// 2. Parse the JSON string into the configuration object.
+const config = JSON.parse(firebaseConfigJson);
+
 export type FirebaseServices = {
   app: FirebaseApp;
   auth: Auth;
@@ -14,29 +28,15 @@ export type FirebaseServices = {
 };
 
 export function initializeFirebase(): FirebaseServices {
-  // 🛑 FAIL-FAST CHECK: Throw an error if the key is missing. 
-  // This is better than passing an empty string ("") which causes the Firebase crash.
-  if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_FIREBASE_API_KEY. Environment variables failed to load during deployment."
-    );
-  }
-
-  const config = {
-    // ✅ Use non-null assertion (!) because the check above guarantees it exists
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
-    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
-  };
-
+  // Use the parsed 'config' object for initialization.
   const app = getApps().length > 0 ? getApp() : initializeApp(config);
 
   const auth = getAuth(app);
+  
+  // NOTE: If you need a specific database ID, you may need to adjust this line:
+  // const db = getFirestore(app, "websitedata1");
   const db = getFirestore(app);
+
   const storage = getStorage(app);
 
   let analytics: Analytics | null = null;
@@ -48,3 +48,7 @@ export function initializeFirebase(): FirebaseServices {
 
   return { app, auth, db, storage, analytics };
 }
+
+// Optionally, export initialized services for convenience across the app
+const { app, auth, db, storage, analytics } = initializeFirebase();
+export { app, auth, db, storage, analytics };

@@ -1,64 +1,32 @@
 // src/lib/firestore-client.ts
-import { initializeApp, getApps, FirebaseApp } from "firebase/app";
-import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
+// IMPORTANT: This file no longer initializes Firebase. It imports the initialized 'db' service.
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "@/firebase/index"; // ⬅️ Assuming your path to index.ts is correct
 import { type Service, type FirestoreSection } from "@/types/sections";
 
-// --- Firebase Configuration Check (UPDATED) ---
-const requiredVars = [
-  "NEXT_PUBLIC_FIREBASE_API_KEY",
-  "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
-  "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
-  "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
-  "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
-  "NEXT_PUBLIC_FIREBASE_APP_ID",
-];
-
-// Check only for the critical API key. If it's missing, throw a clear error.
-if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) {
-  throw new Error(
-    "Missing NEXT_PUBLIC_FIREBASE_API_KEY. Environment variables failed to load during deployment."
-  );
-}
-
-// --- Firebase Config Object (UPDATED) ---
-const firebaseConfig = {
-  // Use the non-null assertion (!) to guarantee the value, since we checked above.
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
-  // Assuming measurementId is used here, though not checked in the critical block
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!, 
-};
-
-// --- Initialize Firebase Safely ---
-const app: FirebaseApp =
-  getApps().length > 0 ? getApps()[0]! : initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// The 'db' constant is now correctly initialized and available for use in all functions.
 
 // --- Firestore Data Retrieval Functions ---
 
 export async function getPublishedServices(): Promise<Service[]> {
-  const colRef = collection(db, "services");
-  const snapshot = await getDocs(colRef);
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as Service[];
+  const colRef = collection(db, "services");
+  const snapshot = await getDocs(colRef);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as Service[];
 }
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
-  const colRef = collection(db, "services");
-  const q = query(colRef, where("slug", "==", slug));
-  const snapshot = await getDocs(q);
-  if (snapshot.empty) return null;
-  return { id: snapshot.docs[0]!.id, ...snapshot.docs[0]!.data() } as Service;
+  const colRef = collection(db, "services");
+  const q = query(colRef, where("slug", "==", slug));
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) return null;
+  return { id: snapshot.docs[0]!.id, ...snapshot.docs[0]!.data() } as Service;
 }
 
 export async function getSectionsByServiceKey(
-  serviceKey: string
+  serviceKey: string
 ): Promise<FirestoreSection[]> {
-  const colRef = collection(db, "sections");
-  const q = query(colRef, where("serviceKey", "==", serviceKey));
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as FirestoreSection[];
+  const colRef = collection(db, "sections");
+  const q = query(colRef, where("serviceKey", "==", serviceKey));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as FirestoreSection[];
 }
