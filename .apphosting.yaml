@@ -16,7 +16,7 @@ apphosting:
       NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID/versions/latest
 
       # Optional extras
-      NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-xxxxxxxxxxxx.app"
+      NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-pa7cj3ngwa-nw.a.run.app"
       NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
 
       # Any other shared secrets
