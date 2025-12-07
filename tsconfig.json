@@ -51,6 +51,6 @@
     "node_modules",
     ".next",
     "Prototypes",
-    "functions/lib"
+    "functions"
   ]
 }
