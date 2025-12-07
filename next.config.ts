@@ -2,15 +2,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // ✅ Use SSR-compatible standalone build for Firebase Hosting
-  output: "standalone",
+  reactStrictMode: true,
 
-  // ✅ Allow dynamic server actions
- experimental: {
-  serverActions: {},
-},
+  // ✅ Correctly enable experimental Server Actions
+  experimental: {
+    serverActions: {},
+  },
 
-  // ✅ Configure images for both local and remote sources
+  // ✅ Allow optimized image loading from external sources
   images: {
     remotePatterns: [
       {
