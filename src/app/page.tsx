@@ -1,3 +1,8 @@
+// app/page.tsx
+
+// ✅ Force dynamic rendering to prevent build-time Firestore fetch
+export const dynamic = "force-dynamic";
+
 import { getServiceBySlug, getSectionsByServiceKey } from "@/lib/firestore-client";
 import { getPlaceholder, type ResolvedImage } from "@/lib/placeholders";
 import { type FirestoreSection, type Service } from "@/types/sections";
@@ -34,25 +39,25 @@ export default async function HomePage() {
     console.warn("⚠️ Firestore fetch failed:", err);
   }
 
-  // 🔹 If Firestore was skipped, provide an empty fallback to avoid crashes
+  // 🔹 Fallback if no sections are found
   if (!sections || sections.length === 0) {
     console.warn("⚠️ No sections found — rendering fallback homepage");
     return (
       <div className="flex flex-col items-center justify-center py-20">
         <h1 className="text-3xl font-semibold">Veas Acoustics</h1>
-        <p className="text-gray-600 mt-4">
+        <p className="text-gray-600 mt-4 text-center px-4 max-w-lg">
           Acoustic consultancy excellence — website content temporarily unavailable during static export.
         </p>
       </div>
     );
   }
 
-  // 3️⃣ Sort sections by order
+  // Sort sections by order
   const sortedSections = [...sections].sort(
     (a, b) => Number(a.order ?? 0) - Number(b.order ?? 0)
   );
 
-  // 4️⃣ Find single-instance sections
+  // Identify sections
   const heroData = sortedSections.find((s) => s.kind?.toLowerCase() === "hero");
   const whatIntroData = sortedSections.find((s) => s.kind?.toLowerCase() === "whatintro");
   const whatWeDoData = sortedSections.find((s) => s.kind?.toLowerCase() === "what");
@@ -61,18 +66,13 @@ export default async function HomePage() {
   const whatLeftData = sortedSections.find((s) => s.kind?.toLowerCase() === "whatleft");
   const whatRightData = sortedSections.find((s) => s.kind?.toLowerCase() === "whatright");
 
-  // 5️⃣ Find multi-instance sections
   const typesData = sortedSections.filter((s) => s.kind?.toLowerCase() === "type");
   const accordionData = sortedSections.filter((s) => s.kind?.toLowerCase() === "accordion");
-
-  const featureData = sortedSections.filter((s) =>
-    s.kind?.toLowerCase().includes("feature")
-  );
-
+  const featureData = sortedSections.filter((s) => s.kind?.toLowerCase().includes("feature"));
   const faqData = sortedSections.filter((s) => s.kind?.toLowerCase() === "faq");
   const reviewData = sortedSections.filter((s) => s.kind?.toLowerCase() === "review");
 
-  // 6️⃣ Resolve Firestore image references safely
+  // Resolve image references
   const heroImageId = String(heroData?.["imageIdDesktop"] ?? "");
   const ctaImageId = String(ctaData?.["imageIdDesktop"] ?? "");
 
@@ -84,14 +84,14 @@ export default async function HomePage() {
     ? getPlaceholder(ctaImageId)
     : undefined;
 
-  // 🔸 Local fallback image if no placeholder found
+  // Fallback image
   const fallbackImage: ResolvedImage = {
     id: "fallback",
     description: "Fallback image",
     imageUrl: "/images/home/grass2.0.webp",
   };
 
-  // 7️⃣ Render page layout
+  // Render page
   return (
     <div className="flex flex-col">
       {/* HERO SECTION */}
