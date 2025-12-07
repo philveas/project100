@@ -2,16 +2,57 @@
 apphosting:
   run:
     runtime: nodejs20
-    env:
-      NEXT_PUBLIC_FIREBASE_API_KEY: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_API_KEY/versions/latest
-      NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN/versions/latest
-      NEXT_PUBLIC_FIREBASE_PROJECT_ID: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_PROJECT_ID/versions/latest
-      NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET/versions/latest
-      NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID/versions/latest
-      NEXT_PUBLIC_FIREBASE_APP_ID: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_APP_ID/versions/latest
-      NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID/versions/latest
-      RESEND_API_KEY: projects/veas-acoustics-100/secrets/RESEND_API_KEY/versions/latest
 
-      # Optional extras
-      NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-pa7cj3ngwa-nw.a.run.app"
-      NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
+  env:
+    # ✅ Firebase public config (available in both build and run)
+    NEXT_PUBLIC_FIREBASE_API_KEY:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_API_KEY/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    NEXT_PUBLIC_FIREBASE_PROJECT_ID:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_PROJECT_ID/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    NEXT_PUBLIC_FIREBASE_APP_ID:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_APP_ID/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID:
+      secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID/versions/latest
+      availability:
+        - BUILD
+        - RUNTIME
+
+    # Optional extras
+    NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-pa7cj3ngwa-nw.a.run.app"
+    NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
+
+    # Sensitive key (runtime only)
+    RESEND_API_KEY:
+      secret: projects/veas-acoustics-100/secrets/RESEND_API_KEY/versions/latest
+      availability:
+        - RUNTIME
