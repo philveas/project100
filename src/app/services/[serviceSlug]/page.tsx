@@ -1,10 +1,12 @@
 // app/services/[serviceSlug]/page.tsx
 
-import { getServiceBySlug, getSectionsByServiceKey } from "@/lib/firestore-client";
+import { getServiceBySlug, getSectionsByServiceKey, db } from "@/lib/firestore-client";
 import { getPlaceholder, type ResolvedImage } from "@/lib/placeholders";
 import { type FirestoreSection, type Service } from "@/types/sections";
-import { Metadata } from "next";
+import { Metadata } from "next/types";
 import dynamic from "next/dynamic";
+import { collection, getDocs } from "firebase/firestore";
+
 
 // --- Component Imports (Hero2 static, others dynamic) ---
 import { Hero2Section } from "@/components/sections/Hero2Section";
@@ -44,6 +46,33 @@ const componentMap: { [key: string]: React.ComponentType<any> } = {
 
 const groupedKinds = ["featurecard", "type", "accordion", "faq", "review"];
 
+// --- ✅ Generate Static Params for Static Export ---
+export async function generateStaticParams() {
+  if (process.env.NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT !== "true") {
+    console.warn("⚠️ Skipping Firestore fetch for static params");
+    return [{ serviceSlug: "noise-survey" }]; // safe fallback
+  }
+
+  try {
+    const snap = await getDocs(collection(db, "services"));
+    const paths =
+      snap.docs
+        .map((doc) => doc.data())
+        .filter((d: any) => d.isActive)
+        .map((d: any) => ({
+          serviceSlug: d.citySlug
+            ? `${d.serviceKey}-${d.citySlug}`
+            : d.serviceKey,
+        })) ?? [];
+
+    console.log(`✅ Generated ${paths.length} static service paths`);
+    return paths;
+  } catch (err) {
+    console.error("❌ Error generating static params:", err);
+    return [{ serviceSlug: "noise-survey" }];
+  }
+}
+
 // --- Schema (SEO Structured Data) ---
 function generateSchema(service: Service | null, heroImageUrl?: string) {
   if (!service) return null;
@@ -79,10 +108,18 @@ export async function generateMetadata({
 }: {
   params: { serviceSlug: string };
 }): Promise<Metadata> {
-
   const slug = params.serviceSlug;
-  const service = await getServiceBySlug(slug);
-  const sections = await getSectionsByServiceKey(service?.serviceKey || slug);
+  let service: Service | null = null;
+  let sections: FirestoreSection[] = [];
+
+  try {
+    if (process.env.NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT === "true") {
+      service = await getServiceBySlug(slug);
+      sections = await getSectionsByServiceKey(service?.serviceKey || slug);
+    }
+  } catch (err) {
+    console.warn("⚠️ Firestore fetch skipped or failed during metadata:", err);
+  }
 
   const hero2Data = sections.find((s) => s.kind?.toLowerCase() === "hero2");
   const folder = hero2Data?.["folder"] ?? "home";
@@ -109,26 +146,26 @@ export async function generateMetadata({
         "A specialist acoustic engineering consultancy.";
 
   return {
-  title: `${baseTitle} - Veas Acoustics`,
-  description: String(baseDescription || ""),
-  alternates: {
-    canonical: `https://www.veasacoustics.co.uk/services/${slug}`,
-  },
-  openGraph: {
     title: `${baseTitle} - Veas Acoustics`,
     description: String(baseDescription || ""),
-    url: `https://www.veasacoustics.co.uk/services/${slug}`,
-    type: "website",
-    images: [
-      {
-        url: heroImageUrl,
-        width: 1200,
-        height: 630,
-        alt: baseTitle,
-      },
-    ],
-  },
-};
+    alternates: {
+      canonical: `https://www.veasacoustics.co.uk/services/${slug}`,
+    },
+    openGraph: {
+      title: `${baseTitle} - Veas Acoustics`,
+      description: String(baseDescription || ""),
+      url: `https://www.veasacoustics.co.uk/services/${slug}`,
+      type: "website",
+      images: [
+        {
+          url: heroImageUrl,
+          width: 1200,
+          height: 630,
+          alt: baseTitle,
+        },
+      ],
+    },
+  };
 }
 
 // --- MAIN PAGE ---
@@ -138,19 +175,22 @@ export default async function ServicePage({
   params: { serviceSlug: string };
 }) {
   const slug = params.serviceSlug;
+  let service: Service | null = null;
+  let rawSections: FirestoreSection[] = [];
 
-  // 1️⃣ Fetch Data
-  const service: Service | null = await getServiceBySlug(slug);
-  const rawSections: FirestoreSection[] = await getSectionsByServiceKey(
-    service?.serviceKey || slug
-  );
+  try {
+    if (process.env.NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT === "true") {
+      service = await getServiceBySlug(slug);
+      rawSections = await getSectionsByServiceKey(service?.serviceKey || slug);
+    }
+  } catch (err) {
+    console.warn("⚠️ Firestore fetch skipped or failed:", err);
+  }
 
-  // 2️⃣ Sort Sections
   const sortedSections = [...rawSections].sort(
     (a, b) => Number(a.order ?? 0) - Number(b.order ?? 0)
   );
 
-  // 3️⃣ Group Sections
   const finalRenderArray: {
     kind: string;
     data: FirestoreSection | FirestoreSection[];
@@ -163,9 +203,7 @@ export default async function ServicePage({
 
     if (groupedKinds.includes(kind)) {
       if (renderedKinds.has(kind)) return;
-      const group = sortedSections.filter(
-        (s) => s.kind?.toLowerCase() === kind
-      );
+      const group = sortedSections.filter((s) => s.kind?.toLowerCase() === kind);
       if (group.length > 0) {
         finalRenderArray.push({ kind, data: group });
         renderedKinds.add(kind);
@@ -175,28 +213,17 @@ export default async function ServicePage({
     }
   });
 
-  // 4️⃣ Resolve Images
-  const hero2Data = finalRenderArray.find((s) => s.kind === "hero2")
-    ?.data as FirestoreSection;
-  const ctaData = finalRenderArray.find((s) => s.kind === "cta")
-    ?.data as FirestoreSection;
-  const whatLeftImageData = finalRenderArray.find(
-    (s) => s.kind === "whatleftimage"
-  )?.data as FirestoreSection;
+  const hero2Data = finalRenderArray.find((s) => s.kind === "hero2")?.data as FirestoreSection;
+  const ctaData = finalRenderArray.find((s) => s.kind === "cta")?.data as FirestoreSection;
+  const whatLeftImageData = finalRenderArray.find((s) => s.kind === "whatleftimage")?.data as FirestoreSection;
 
   const heroImageId = String(hero2Data?.["imageIdDesktop"] ?? "");
   const ctaImageId = String(ctaData?.["imageIdDesktop"] ?? "");
   const whatLeftImageId = String(whatLeftImageData?.["imageIdDesktop"] ?? "");
 
-  const heroImage: ResolvedImage | undefined = heroImageId
-    ? getPlaceholder(heroImageId)
-    : undefined;
-  const ctaImage: ResolvedImage | undefined = ctaImageId
-    ? getPlaceholder(ctaImageId)
-    : undefined;
-  const whatLeftImage: ResolvedImage | undefined = whatLeftImageId
-    ? getPlaceholder(whatLeftImageId)
-    : undefined;
+  const heroImage: ResolvedImage | undefined = heroImageId ? getPlaceholder(heroImageId) : undefined;
+  const ctaImage: ResolvedImage | undefined = ctaImageId ? getPlaceholder(ctaImageId) : undefined;
+  const whatLeftImage: ResolvedImage | undefined = whatLeftImageId ? getPlaceholder(whatLeftImageId) : undefined;
 
   const fallbackImage: ResolvedImage = {
     id: "fallback",
@@ -204,10 +231,8 @@ export default async function ServicePage({
     imageUrl: "/images/grass2.0.webp",
   };
 
-  // 5️⃣ Schema
   const schemaJson = generateSchema(service, heroImage?.imageUrl);
 
-  // 6️⃣ Render
   return (
     <div className="flex flex-col">
       {schemaJson && (
@@ -227,11 +252,7 @@ export default async function ServicePage({
           : { section: item.data as FirestoreSection };
 
         if (item.kind === "hero2") {
-          props = {
-            ...props,
-            image: heroImage ?? fallbackImage,
-            serviceTitle: service?.title,
-          };
+          props = { ...props, image: heroImage ?? fallbackImage, serviceTitle: service?.title };
         } else if (item.kind === "cta") {
           props = { ...props, image: ctaImage ?? fallbackImage };
         } else if (item.kind === "whatleftimage") {

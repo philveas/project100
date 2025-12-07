@@ -1,28 +1,23 @@
-import type { NextConfig } from "next";
+// next.config.ts
 
-const nextConfig: NextConfig = {
-  // ✅ Dynamic rendering for Firebase Functions
-  output: "standalone", // Enables SSR via Firebase backend
+const nextConfig = {
+  // ✅ Enable SSR for Firebase Functions (dynamic pages + Firestore)
+  output: "standalone",
 
-  // ✅ Disable image optimization (Firebase handles this separately)
+  // ✅ Disable Next.js image optimization (Firebase Hosting will serve images directly)
   images: {
     unoptimized: true,
   },
 
-  // ✅ Enable React strict mode (recommended for production)
+  // ✅ Recommended for production
   reactStrictMode: true,
 
-  // ✅ Suppress build errors from ESLint during CI/CD
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
-  // ✅ Optimize performance and runtime
+  // ✅ TypeScript options
   typescript: {
-    ignoreBuildErrors: false, // optional: set true if you need to bypass TS build blocking
+    ignoreBuildErrors: false, // set true only if you have temporary TS issues
   },
 
-  // ✅ Ensure correct environment and stability
+  // ✅ Security & header cleanup
   poweredByHeader: false,
 };
 

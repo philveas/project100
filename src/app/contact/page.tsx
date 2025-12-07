@@ -1,6 +1,6 @@
 // app/contact/page.tsx
 import Image from "next/image";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getPlaceholder } from "@/lib/placeholders";
