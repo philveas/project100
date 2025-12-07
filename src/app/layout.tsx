@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
@@ -21,12 +21,21 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* ✅ Direct Google Font Links (safe for all runtimes) */}
+        {/* ✅ Preload your main hero image for faster LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/home/grass2.0.webp"
+          fetchPriority="high"
+        />
+
+        {/* ✅ Direct Google Font Links */}
         <link
           href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
       </head>
+
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased flex flex-col"

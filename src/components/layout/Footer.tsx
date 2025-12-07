@@ -3,6 +3,9 @@ import { SERVICES } from '@/lib/constants';
 import Logo from './Logo';
 
 export function Footer() {
+  // Filter out the Home Page entry (where href is '/') before rendering the list
+  const menuServices = SERVICES.filter(service => service.href !== '/');
+
   return (
     <footer className="bg-card">
       {/* --- CHANGE 1: Matched container padding to header's px-10 --- */}
@@ -25,7 +28,8 @@ export function Footer() {
             <div>
               <h4 className="font-headline text-primary font-semibold mb-4">Services</h4>
               <ul className="space-y-2">
-                {SERVICES.map((service) => (
+                {/* FIX: Use the filtered array 'menuServices' */}
+                {menuServices.map((service) => (
                   <li key={service.href}>
                     <Link
                       href={service.href}
@@ -48,8 +52,13 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
+                  <a href="tel:+02071180504" className="hover:text-primary font-light">
+                    +44 0207 118 0504
+                  </a>
+                </li>
+                <li>
                   <a href="tel:+447721524262" className="hover:text-primary font-light">
-                    +44 07721 524262
+                    +44 0772 152 4262
                   </a>
                 </li>
               </ul>

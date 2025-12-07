@@ -1,8 +1,11 @@
 'use server';
 
+
 import { z } from 'zod';
 import type { FormState } from './types';
+import { revalidatePath } from 'next/cache';
 
+// ✅ Validation schema
 const schema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
   company: z.string().optional(),
@@ -15,10 +18,10 @@ const schema = z.object({
   }),
 });
 
-// ✅ Use your working Firebase Cloud Function endpoint
+// ✅ Explicitly set the deployed Cloud Function URL
 const FUNCTION_URL =
   process.env.NEXT_PUBLIC_CONTACT_FUNCTION_URL ??
-  'https://handlecontactform-503507204027.europe-west2.run.app';
+  'https://handlecontactform-pa7cj3ngwa-nw.a.run.app';
 
 export async function submitContactForm(
   _prevState: FormState,
@@ -44,10 +47,12 @@ export async function submitContactForm(
   }
 
   try {
+    // ✅ Make an external fetch allowed in server actions
     const response = await fetch(FUNCTION_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(validated.data),
+      cache: 'no-store', // ensure no caching of responses
     });
 
     if (!response.ok) {
@@ -55,9 +60,13 @@ export async function submitContactForm(
       throw new Error(`Server responded with ${response.status}: ${text}`);
     }
 
+    const result = await response.json().catch(() => ({}));
+
+    revalidatePath('/contact'); // optional refresh of page data
+
     return {
       status: 'success',
-      message: '✅ Thank you for your message! We will get back to you shortly.',
+      message: result?.message ?? '✅ Thank you for your message! We will get back to you shortly.',
       success: true,
     };
   } catch (err) {

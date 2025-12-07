@@ -1,19 +1,24 @@
-import type { NextConfig } from "next";
+// next.config.ts
 
-const nextConfig: NextConfig = {
-  // ✅ For Firebase Hosting (static export)
+const nextConfig = {
+  // ✅ Enable SSR for Firebase Functions (dynamic pages + Firestore)
   output: "standalone",
 
-  // ✅ Disable image optimization during build
+  // ✅ Disable Next.js image optimization (Firebase Hosting will serve images directly)
   images: {
     unoptimized: true,
   },
 
-  // ✅ No experimental features at all
-  experimental: {},
+  // ✅ Recommended for production
+  reactStrictMode: true,
 
-  // ✅ Optional: speed up builds
-  reactStrictMode: false,
+  // ✅ TypeScript options
+  typescript: {
+    ignoreBuildErrors: false, // set true only if you have temporary TS issues
+  },
+
+  // ✅ Security & header cleanup
+  poweredByHeader: false,
 };
 
 export default nextConfig;
