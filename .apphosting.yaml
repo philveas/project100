@@ -1,28 +1,22 @@
-# apphosting.yaml - FINAL CORRECTED VERSION
+# apphosting.yaml - FINAL CLEANUP SCRIPT
 apphosting:
   run:
-    # Specifies the Node.js runtime environment for the application.
+    # Specifies the Node.js runtime environment.
     runtime: nodejs20
 
   env:
-    # 🔑 Firebase Public Config (HARD-CODED VALUES)
-    # These values are non-sensitive and are hard-coded to ensure the Next.js BUILD step succeeds.
-
-    NEXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyCpstQgcD-UdP4RhrRykJlCqknluZVjGnM"
-    NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "veas-acoustics-100.firebaseapp.com"
-    NEXT_PUBLIC_FIREBASE_PROJECT_ID: "veas-acoustics-100"
-    NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: "veas-acoustics-100.firebasestorage.app"
-    NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: "503507204027"
-    NEXT_PUBLIC_FIREBASE_APP_ID: "1:503507204027:web:bd7fb1cf1d7831db22369e"
-    NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: "G-W57ZK5ZHQ6"
-    
     # 🔗 Optional Extras (Simple non-secret values)
+    # These remain as key/value pairs and should still be safe.
     NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-pa7cj3ngwa-nw.a.run.app"
     NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
 
     # 🔒 Sensitive Key (FETCHED FROM SECRET MANAGER)
-    # This must remain a secret for security and is only available at runtime.
+    # This must remain a secret, as it is needed on the server (runtime).
     RESEND_API_KEY:
       secret: projects/veas-acoustics-100/secrets/RESEND_API_KEY/versions/latest
       availability:
         - RUNTIME
+
+# NOTE: All NEXT_PUBLIC_FIREBASE_... keys have been removed from this file 
+# and moved into your application code (src/config/firebase.ts) to bypass the 
+# App Hosting environment injection failure.
