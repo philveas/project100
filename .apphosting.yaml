@@ -1,11 +1,12 @@
-# apphosting.yaml - FINAL WORKING STRATEGY
+# apphosting.yaml - FINAL CORRECTED VERSION
 apphosting:
   run:
+    # Specifies the Node.js runtime environment for the application.
     runtime: nodejs20
 
   env:
     # 🔑 Firebase Public Config (HARD-CODED VALUES)
-    # These are NOT secrets and are safe to embed here, ensuring the BUILD step works.
+    # These values are non-sensitive and are hard-coded to ensure the Next.js BUILD step succeeds.
 
     NEXT_PUBLIC_FIREBASE_API_KEY: "AIzaSyCpstQgcD-UdP4RhrRykJlCqknluZVjGnM"
     NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: "veas-acoustics-100.firebaseapp.com"
@@ -20,7 +21,7 @@ apphosting:
     NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
 
     # 🔒 Sensitive Key (FETCHED FROM SECRET MANAGER)
-    # This must remain as a secret and is only available at runtime for the server.
+    # This must remain a secret for security and is only available at runtime.
     RESEND_API_KEY:
       secret: projects/veas-acoustics-100/secrets/RESEND_API_KEY/versions/latest
       availability:
