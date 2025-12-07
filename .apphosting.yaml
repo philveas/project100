@@ -49,12 +49,12 @@ apphosting:
         - BUILD
         - RUNTIME
 
-    # 🔗 Optional Extras (Simple non-secret values)
+    # 🔗 Optional Extras
 
     NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-pa7cj3ngwa-nw.a.run.app"
     NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
 
-    # 🔒 Sensitive Key (Runtime only - not exposed to client-side code)
+    # 🔒 Sensitive Key (Runtime only)
     
     RESEND_API_KEY:
       secret: projects/veas-acoustics-100/secrets/RESEND_API_KEY/versions/latest
