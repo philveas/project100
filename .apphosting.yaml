@@ -1,10 +1,12 @@
-# .apphosting.yaml
+# apphosting.yaml
 apphosting:
   run:
+    # Specifies the Node.js runtime environment for the application.
     runtime: nodejs20
 
   env:
-    # ✅ Firebase public config (available in both build and run)
+    # 🔑 Firebase Public Config (Available to both Next.js build and runtime/client)
+
     NEXT_PUBLIC_FIREBASE_API_KEY:
       secret: projects/veas-acoustics-100/secrets/NEXT_PUBLIC_FIREBASE_API_KEY/versions/latest
       availability:
@@ -47,11 +49,13 @@ apphosting:
         - BUILD
         - RUNTIME
 
-    # Optional extras
+    # 🔗 Optional Extras (Simple non-secret values)
+
     NEXT_PUBLIC_CONTACT_FUNCTION_URL: "https://handlecontactform-pa7cj3ngwa-nw.a.run.app"
     NEXT_PUBLIC_ALLOW_FIRESTORE_EXPORT: "true"
 
-    # Sensitive key (runtime only)
+    # 🔒 Sensitive Key (Runtime only - not exposed to client-side code)
+    
     RESEND_API_KEY:
       secret: projects/veas-acoustics-100/secrets/RESEND_API_KEY/versions/latest
       availability:
