@@ -1,55 +1,61 @@
-// src/types/sections.ts (FINAL CORRECTED SCRIPT)
+// ======================================================
+// src/types/sections.ts  (FINAL - CLEAN, NO DUPLICATES)
+// ======================================================
 
 import { type ResolvedImage } from "@/lib/placeholders";
 
+// ======================================================
 // --- PRIMARY ENTITY TYPES ---
+// ======================================================
 
 // The Primary Service Type
 export type Service = {
-    // Required properties (id is essential and mapped from doc.id)
-    id: string; // Add this if it was missing in your full Service definition!
-    
-    // FIX: Make non-essential fields optional to allow successful casting from Firestore
-    serviceKey?: string; 
-    title?: string;      
-    
-    [key: string]: unknown;
+  id: string;              // Firestore doc.id
+  serviceKey?: string;
+  title?: string;
+
+  [key: string]: unknown;
 };
 
+// ======================================================
+// --- DYNAMIC CONTENT SECTION TYPE (FirestoreSection) ---
+// ======================================================
 
-// The Dynamic Content Section Type (FirestoreSection)
 export interface FirestoreSection {
-    // ... (This section remains unchanged, as it is correct now) ...
-    id: string;
-    entryId?: string;
-    kind?: string;
-    order?: number | string;
-    serviceKey?: string;
-    // ... all explicit fields ...
+  id: string;
+  entryId?: string;
+  kind?: string;
+  order?: number | string;
+  serviceKey?: string;
 
-    [key: string]: 
-        | string 
-        | number 
-        | boolean 
-        | null 
-        | undefined
-        | object 
-        | unknown[]; 
+  [key: string]:
+    | string
+    | number
+    | boolean
+    | null
+    | undefined
+    | object
+    | unknown[];
 }
 
-
-// --- PROP TYPES (for components) ---
+// ======================================================
+// --- PROP TYPES (for reusable section components) ---
+// ======================================================
 
 export interface ImageSectionProps {
-    section: FirestoreSection;
-    image: ResolvedImage;
-    serviceTitle?: string | undefined; 
+  section: FirestoreSection;
+  image?: ResolvedImage;
+  serviceTitle?: string | undefined;
 }
 
 export interface TextSectionProps {
-    section: FirestoreSection;
+  section: FirestoreSection;
 }
 
 export interface GroupSectionProps {
-    sections: FirestoreSection[];
+  sections: FirestoreSection[];
 }
+
+// ======================================================
+// ✅ END — NO ResolvedImage augmentation here anymore
+// ======================================================

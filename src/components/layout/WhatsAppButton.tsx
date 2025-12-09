@@ -18,7 +18,7 @@ export default function WhatsAppButton() {
       href="https://wa.me/447721524262"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 p-4 bg-[#25D366] rounded-full shadow-lg hover:bg-[#128C7E] transition-colors duration-300 animate-bounce"
+      className="fixed bottom-6 right-6 z-50 p-4 bg-[#25D366] rounded-full shadow-lg hover:bg-[#128C7E] transition-colors duration-600 animate-bounce"
       aria-label="Chat on WhatsApp"
     >
       <WhatsAppIcon />

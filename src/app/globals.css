@@ -1,36 +1,62 @@
+/* alternative yellows */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* =======================================
-   🌿 Custom Design Tokens (Tailwind v3-safe)
-   ======================================= */
+ * 🌿 Global Design Tokens (Tailwind v3+ Safe)
+ * ======================================= */
 @layer base {
   :root {
-    --background: 240 5% 98%;
-    --foreground: 240 10% 4%;
-    --primary: 168 98% 24%;
-    --primary-foreground: 150 8% 90%;
-    --secondary: 181 98% 24%;
-    --secondary-foreground: 150 8% 90%;
-    --border: 240 5% 85%;
+    /* 🎨 Core Palette */
+
+--background: 150 25% 97%; /*#f5f9f7 */
+--foreground: 150 4% 9%; /*#161817 */
+--card: 0 0% 100%; /*#ffffff */
+--card-foreground: 150 4% 9%; /*#161817 */
+
+--imageover: 150 4% 9%; /*#161817 */
+
+--primary-highlight: 151 37% 50%; /*#50af81 */
+--primary-foreground: 165 14% 61%; /*#8eaaa3 */
+--primary: 166 96% 28%; /*#038c6d */
+--primary-mid: 165 14% 61%; /*#8eaaa3 */
+--primary-dark: 166 96% 28%; /*#038c6d */
+--primary-headings: 163 46% 30%; /*#29705c */
+
+--secondary-foreground: 0 0% 88%; /*#e0e0e0 */
+--secondary: 0 0% 68%; /*#aeaeae */
+--secondary-three: 190 3% 56%; /*#8d9293 */
+--secondary-four: 189 3% 46%; /*#73797a */
+--secondary-dark: 192 3% 37%; /*#5c6061 */
+
+--accent-highlight: 54 100% 51%; /*#ffe605 */
+--accent-foreground: 56 88% 94%; /*#fdfbe1 */
+--accent-logo: 51 75% 67%; /*#ead66a */
+--accent: 48 77% 61%; /*#e8c94d */
+--accent-dark: 48 78% 48%; /*#D9B31B */
+
+--border: 150 8% 80%;
+
   }
 
   body {
-    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))]
+           font-sans antialiased;
   }
 }
 
 /* =======================================
-   🧱 Base Resets
-   ======================================= */
+ * 🧱 Base Resets
+ * ======================================= */
 * {
   border-color: hsl(var(--border));
 }
 
 /* =======================================
-   🧱 Container Utility
-   ======================================= */
+ * 🧱 Container Utility
+ * ======================================= */
 @layer components {
   .container {
     @apply mx-auto max-w-[1440px];
@@ -38,8 +64,36 @@
 }
 
 /* =======================================
-   🧾 Typography Fixes
-   ======================================= */
+ * 🧾 Typography
+ * ======================================= */
+@layer base {
+  @font-face {
+    font-family: "Nunito";
+    font-weight: 400;
+    src: url("/fonts/Nunito-Regular.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    font-weight: 500;
+    src: url("/fonts/Roboto-Medium.woff2") format("woff2");
+  }
+
+  html {
+    font-family: "Nunito", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto", "Nunito", ui-sans-serif, system-ui, sans-serif;
+    /* Updated to use the new --primary-headings variable */
+    @apply font-medium text-[hsl(var(--primary-headings))];
+  }
+}
+
+/* =======================================
+ * 🧾 Typography Fixes
+ * ======================================= */
 .prose h2 {
   @apply mt-5 mb-2 font-semibold text-2xl leading-snug;
 }

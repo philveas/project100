@@ -44,7 +44,7 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       size="lg"
-      className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+      className="w-full bg-primary text-card hover:bg-accent/90 hover:text-foreground"
     >
       {pending ? <Loader2 className="animate-spin" /> : 'Send Message'}
     </Button>

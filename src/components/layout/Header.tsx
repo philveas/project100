@@ -9,32 +9,30 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { SERVICES } from "@/lib/constants";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useState, type ReactNode } from "react";
-import Logo from "./Logo"; // ensure the file is `Logo.tsx` (case-sensitive on some systems)
+import Logo from "./Logo";
 
 export function Header() {
   const pathnameRaw = usePathname();
-  const pathname = pathnameRaw ?? "/"; // tiny safety guard
+  const pathname = pathnameRaw ?? "/";
   const [isSheetOpen, setSheetOpen] = useState(false);
 
-  // Determine active states
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href;
   };
 
-  // Mark parent "Services" active if on a service page
   const servicesActive =
-    SERVICES.some((s) => pathname.startsWith(s.href)) || pathname === "/services";
+    SERVICES.some((s) => pathname.startsWith(s.href)) ||
+    pathname === "/services";
 
-  // Core text style logic
-  const baseIdle = "text-foreground";
-  const hoverFocus =
-    "hover:text-accent hover:font-semibold focus-visible:text-accent focus-visible:font-semibold";
-  const active = "text-muted font-semibold";
+  const idle = "text-foreground";
+  const hover = "hover:text-accent-dark";
+  const active = "text-secondary font-semibold";
 
   const NavLink = ({
     href,
@@ -47,46 +45,64 @@ export function Header() {
   }) => (
     <Link
       href={href}
+      onClick={() => setSheetOpen(false)}
       className={cn(
         "transition-colors focus:outline-none",
-        isActive(href) ? active : cn(baseIdle, hoverFocus),
+        isActive(href) ? active : cn(idle, hover),
         className
       )}
-      onClick={() => setSheetOpen(false)}
     >
       {children}
     </Link>
   );
 
-  // Desktop navigation
+  // ---------------------
+  // DESKTOP NAVIGATION
+  // ---------------------
   const mainNav = (
     <nav className="hidden md:flex items-center space-x-8 text-base font-medium">
+      <span className="text-sm text-foreground">0207 118 0504</span>
+
       <NavLink href="/">Home</NavLink>
 
       <DropdownMenu>
         <DropdownMenuTrigger
           className={cn(
             "flex items-center gap-1 outline-none transition-colors",
-            servicesActive ? active : cn(baseIdle, hoverFocus)
+            servicesActive ? active : cn(idle, hover)
           )}
         >
           Services
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent>
-          {SERVICES.map((service) => {
+        <DropdownMenuContent
+          className="bg-card shadow-md border-0"
+          sideOffset={8}
+          align="end"
+          alignOffset={-16}
+        >
+          {SERVICES.filter((s) => s.slug !== "home").map((service) => { 
             const itemActive = pathname.startsWith(service.href);
+
             return (
               <DropdownMenuItem
                 key={service.href}
                 asChild
-                className="p-0 bg-transparent hover:bg-transparent focus:bg-transparent"
+                className="
+                  flex justify-end w-full p-0
+                  bg-card
+                  data-[highlighted]:bg-card
+                  data-[highlighted]:text-accent-dark
+                "
               >
                 <Link
                   href={service.href}
+                  onClick={() => setSheetOpen(false)}
                   className={cn(
-                    "block px-2 py-1 transition-colors focus:outline-none",
-                    itemActive ? active : cn(baseIdle, hoverFocus)
+                    "block w-full px-3 py-1 text-right transition-colors focus:outline-none",
+                    itemActive
+                      ? active
+                      : cn(idle, "hover:text-accent-dark")
                   )}
                 >
                   {service.name}
@@ -101,16 +117,19 @@ export function Header() {
     </nav>
   );
 
-  // Mobile navigation
+  // ---------------------
+  // MOBILE NAVIGATION
+  // ---------------------
   const mobileNav = (
     <nav className="grid gap-4 text-lg">
       <NavLink href="/">Home</NavLink>
 
-      <p className={cn("transition-colors", servicesActive ? active : baseIdle)}>Services</p>
+      <p className={cn(servicesActive ? active : idle)}>Services</p>
 
       <div className="grid gap-2 pl-4">
-        {SERVICES.map((service) => {
+       {SERVICES.filter((s) => s.slug !== "home").map((service) => {
           const itemActive = pathname.startsWith(service.href);
+
           return (
             <Link
               key={service.href}
@@ -118,7 +137,7 @@ export function Header() {
               onClick={() => setSheetOpen(false)}
               className={cn(
                 "transition-colors focus:outline-none",
-                itemActive ? active : cn(baseIdle, hoverFocus)
+                itemActive ? active : cn(idle, hover)
               )}
             >
               {service.name}
@@ -133,7 +152,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-card">
-      <div className="container flex h-20 items-center justify-between px-10">
+      <div className="container flex h-24 items-center justify-between px-10">
         <div className="flex items-center mt-3">
           <Logo />
         </div>
@@ -141,26 +160,31 @@ export function Header() {
         <div className="flex items-center space-x-4">
           {mainNav}
 
-          {/* Mobile menu */}
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <button
                 className={cn(
                   "md:hidden inline-flex items-center justify-center rounded-md border px-3 py-2 transition-colors",
-                  baseIdle,
-                  "hover:text-muted focus-visible:text-muted"
+                  idle,
+                  "hover:text-accent-dark"
                 )}
                 aria-label="Toggle navigation menu"
               >
                 <Menu className="h-6 w-6" />
               </button>
             </SheetTrigger>
+
             <SheetContent side="left">
-              <div className="flex items-center space-x-2 mb-8">
-                <Logo />
-              </div>
-              {mobileNav}
-            </SheetContent>
+           <VisuallyHidden>
+           <h2>Navigation Menu</h2>
+         </VisuallyHidden>
+
+  <div className="flex items-center space-x-2 mb-8">
+    <Logo />
+  </div>
+
+  {mobileNav}
+</SheetContent>
           </Sheet>
         </div>
       </div>

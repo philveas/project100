@@ -1,3 +1,5 @@
+// src/app/layout.tsx
+
 import type { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -19,20 +21,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth bg-background text-foreground">
       <head>
-        {/* ✅ Direct Google Font Links (safe for all runtimes) */}
+        {/* ✅ Preload hero image for better LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/home/grass2.0.webp"
+          fetchPriority="high"
+        />
+
+        {/* ✅ Load Google Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
       </head>
+
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased flex flex-col"
+          "min-h-screen bg-background font-sans antialiased flex flex-col text-foreground"
         )}
         style={{
-          fontFamily: `"Nunito", "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif`,
+          fontFamily:
+            '"Nunito", "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         }}
       >
         <FirebaseClientProvider>

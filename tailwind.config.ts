@@ -1,36 +1,51 @@
-// tailwind.config.ts
+/** @type {import('tailwindcss').Config} */
 import type { Config } from "tailwindcss";
-import typography from "@tailwindcss/typography";
-import animate from "tailwindcss-animate";
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
-    "./src/app/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
-    "./src/lib/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1rem",
-        sm: "1.25rem",
-        md: "1.5rem",
-        lg: "2rem",
-        xl: "2.5rem",
-        "2xl": "3rem",
+    extend: {
+      colors: {
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          highlight: "hsl(var(--primary-highlight))",
+          mid: "hsl(var(--primary-mid))",
+          dark: "hsl(var(--primary-dark))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+          three: "hsl(var(--secondary-three))",
+          four: "hsl(var(--secondary-four))",
+          dark: "hsl(var(--secondary-dark))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          dark: "hsl(var(--accent-dark))",
+          highlight: "hsl(var(--accent-highlight))",
+          logo: "hsl(var(--accent-logo))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        border: "hsl(var(--border))",
+        card: "hsl(var(--card))",
+        "card-foreground": "hsl(var(--card-foreground))",
+        imageover: "hsl(var(--imageover))",
       },
-      screens: {
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1280px",
-        "2xl": "1440px",
+      fontFamily: {
+        sans: ["Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["Roboto", "Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
-    extend: {},
   },
-  plugins: [typography, animate],
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;
