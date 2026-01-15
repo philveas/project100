@@ -63,11 +63,11 @@ export default function ContactPage() {
       </section>
 
       {/* ---------- CONTACT SECTION ---------- */}
-      <section className="container px-4 md:px-6 pb-24">
+      <section className="container px-4 md:px-6 pb-20">
         <div className="grid md:grid-cols-2 gap-12">
           {/* FORM CARD */}
           <Card>
-            <CardHeader>
+            <CardHeader className="pb-0">
               <CardTitle className="text-2xl font-headline font-semibold">
                 Send us a Message
               </CardTitle>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                 className="absolute z-40 pointer-events-none"
                 style={{
                   left: "74.5%",  // adjust on desktop if needed
-                  top: "81.5%",
+                  top: "80%",
                   transform: "translate(-50%, -100%)",
                 }}
                 aria-hidden

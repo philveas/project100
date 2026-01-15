@@ -40,9 +40,18 @@ const config: Config = {
         imageover: "hsl(var(--imageover))",
       },
       fontFamily: {
-        sans: ["Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
-        heading: ["Roboto", "Nunito", "ui-sans-serif", "system-ui", "sans-serif"],
-      },
+  sans: ["var(--font-nunito)", "ui-sans-serif", "system-ui", "sans-serif"],
+  heading: [
+    "var(--font-roboto)",
+    "var(--font-nunito)",
+    "ui-sans-serif",
+    "system-ui",
+    "sans-serif",
+  ],
+},
+
+
+
     },
   },
   plugins: [require("tailwindcss-animate")],

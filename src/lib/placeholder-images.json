@@ -3,19 +3,19 @@
     {
       "id": "home-hero-video",
       "description": "desktop",
-      "imageHint": "home video",
+      "imageHint": "home-hero-video",
       "folder": "home",
       "desktop": {
-        "file": "acoustic-design-places-we-work-learn-live2.mp4",
-        "width": 1280,
-        "height": 720
+        "file": "acoustic-design-places-we-work-learn-live3.webm",
+        "width": 1920,
+        "height": 1080
       },
-      "videoUrl": "/videos/home/acoustic-design-places-we-work-learn-live2.mp4"
+      "imageUrl": "/images/home/acoustic-design-places-we-work-learn-live3.webm"
     },
     {
       "id": "home-hero-desktop-fallback",
       "description": "desktop fallback",
-      "imageHint": "homepage hero",
+      "imageHint": "home-hero-desktop-fallback",
       "folder": "home",
       "desktop": {
         "file": "home-hero-desktop-fallback.webp",
@@ -27,20 +27,38 @@
     {
       "id": "home-hero-desktop-lowres",
       "description": "desktop low res",
-      "imageHint": "homepage hero",
+      "imageHint": "home-hero-desktop-lowres",
       "folder": "home",
       "desktop": {
         "file": "home-hero-desktop-lowres.webp",
-        "width": 1800,
-        "height": 1013
+        "width": 1600,
+        "height": 900
       },
-      "imageUrl": "/images/home/home-hero-desktop-lowres.webp",
-      "mobile": {
-        "file": "home-hero-mobile.webp",
-        "width": 700,
-        "height": 1080,
-        "imageUrl": "/images/home/home-hero-mobile.webp"
-      }
+      "imageUrl": "/images/home/home-hero-desktop-lowres.webp"
+    },
+    {
+      "id": "home-hero-tablet",
+      "description": "tablet",
+      "imageHint": "home-hero-tablet",
+      "folder": "home",
+      "desktop": {
+        "file": "home-hero-tablet.webp",
+        "width": 768,
+        "height": 901
+      },
+      "imageUrl": "/images/home/home-hero-tablet.webp"
+    },
+    {
+      "id": "home-hero-tablet-lowres",
+      "description": "tablet low res",
+      "imageHint": "home-hero-tablet-lowres",
+      "folder": "home",
+      "desktop": {
+        "file": "home-hero-tablet-lowres.webp",
+        "width": 768,
+        "height": 901
+      },
+      "imageUrl": "/images/home/home-hero-tablet-lowres.webp"
     },
     {
       "id": "home-abstract",
@@ -100,97 +118,31 @@
         "width": 1470,
         "height": 828
       },
-      "imageUrl": "/images/noise-survey/survey-hero-lowres.webp",
-      "mobile": {
-        "file": "survey-hero-mobile.webp",
-        "width": 700,
-        "height": 1080,
-        "imageUrl": "/images/noise-survey/survey-hero-mobile.webp"
-      }
+      "imageUrl": "/images/noise-survey/survey-hero-lowres.webp"
     },
     {
-      "id": "survey-acc-env",
-      "description": "",
-      "imageHint": "survey accordian",
+      "id": "survey-hero-tablet",
+      "description": "tablet",
+      "imageHint": "survey hero",
       "folder": "noise-survey",
       "desktop": {
-        "file": "envsurvey_acc.webp",
-        "width": 200,
-        "height": 200
+        "file": "survey-hero-tablet.webp",
+        "width": 768,
+        "height": 900
       },
-      "imageUrl": "/images/noise-survey/envsurvey_acc.webp"
+      "imageUrl": "/images/noise-survey/survey-hero-tablet.webp"
     },
     {
-      "id": "survey-acc-res",
-      "description": "",
-      "imageHint": "survey accordian",
+      "id": "survey-hero-tablet-lowres",
+      "description": "tablet low res",
+      "imageHint": "survey hero",
       "folder": "noise-survey",
       "desktop": {
-        "file": "residential_acc.webp",
-        "width": 200,
-        "height": 200
+        "file": "survey-hero-tablet-lowres.webp",
+        "width": 768,
+        "height": 900
       },
-      "imageUrl": "/images/noise-survey/residential_acc.webp"
-    },
-    {
-      "id": "survey-acc-edu",
-      "description": "",
-      "imageHint": "survey accordian",
-      "folder": "noise-survey",
-      "desktop": {
-        "file": "classroom_acc.webp",
-        "width": 200,
-        "height": 200
-      },
-      "imageUrl": "/images/noise-survey/classroom_acc.webp"
-    },
-    {
-      "id": "survey-acc-hea",
-      "description": "",
-      "imageHint": "survey accordian",
-      "folder": "noise-survey",
-      "desktop": {
-        "file": "healthcare2_acc.webp",
-        "width": 200,
-        "height": 200
-      },
-      "imageUrl": "/images/noise-survey/healthcare2_acc.webp"
-    },
-    {
-      "id": "survey-acc-ind",
-      "description": "",
-      "imageHint": "survey accordian",
-      "folder": "noise-survey",
-      "desktop": {
-        "file": "industrial_acc.webp",
-        "width": 200,
-        "height": 200
-      },
-      "imageUrl": "/images/noise-survey/industrial_acc.webp"
-    },
-    {
-      "id": "survey-acc-con",
-      "description": "",
-      "imageHint": "survey accordian",
-      "folder": "noise-survey",
-      "desktop": {
-        "file": "constructiondusk2_acc.webp",
-        "width": 200,
-        "height": 200
-      },
-      "imageUrl": "/images/noise-survey/constructiondusk2_acc.webp"
-    },
-    {
-      "id": "survey-acc-spe",
-      "description": "",
-      "imageHint": "survey accordian",
-      "folder": "noise-survey",
-      "desktop": {
-        "file": "work_acc.webp",
-        "width": 200,
-        "height": 200
-      },
-      "imageUrl": "/images/noise-survey/work_acc.webp"
+      "imageUrl": "/images/noise-survey/survey-hero-tablet-lowres.webp"
     },
     {
       "id": "survey-type-env",
@@ -287,6 +239,18 @@
         "height": 667
       },
       "imageUrl": "/images/noise-survey/survey-type-work.webp"
+    },
+    {
+      "id": "survey-type-test",
+      "description": "test",
+      "imageHint": "survey type",
+      "folder": "noise-survey",
+      "desktop": {
+        "file": "survey-type-test.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-survey/survey-type-test.webp"
     },
     {
       "id": "survey-cta",
@@ -547,6 +511,54 @@
       "imageUrl": "/images/noise-impact/impact-type-sport.webp"
     },
     {
+      "id": "impact-type-road",
+      "description": "road",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-road.webp",
+        "width": 1000,
+        "height": 667
+      },
+      "imageUrl": "/images/noise-impact/impact-type-road.webp"
+    },
+    {
+      "id": "impact-type-edu",
+      "description": "",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-edu.webp",
+        "width": "",
+        "height": ""
+      },
+      "imageUrl": "/images/noise-impact/impact-type-edu.webp"
+    },
+    {
+      "id": "impact-type-hea",
+      "description": "",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-hea.webp",
+        "width": "",
+        "height": ""
+      },
+      "imageUrl": "/images/noise-impact/impact-type-hea.webp"
+    },
+    {
+      "id": "impact-type-work",
+      "description": "",
+      "imageHint": "impact type",
+      "folder": "noise-impact",
+      "desktop": {
+        "file": "impact-type-work.webp",
+        "width": "",
+        "height": ""
+      },
+      "imageUrl": "/images/noise-impact/impact-type-work.webp"
+    },
+    {
       "id": "impact-cta",
       "description": "desktop",
       "imageHint": "impact cta",
@@ -620,7 +632,7 @@
       "desktop": {
         "file": "building-hero.webp",
         "width": 3400,
-        "height": 1913
+        "height": 1080
       },
       "imageUrl": "/images/building-acoustics/building-hero.webp"
     },
@@ -749,6 +761,144 @@
         "height": 977
       },
       "imageUrl": "/images/testing/testing-imageleft.webp"
+    },
+    {
+      "id": "london-hero",
+      "description": "desktop",
+      "imageHint": "london-hero",
+      "folder": "london",
+      "desktop": {
+        "file": "london-hero.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/london/london-hero.webp",
+      "mobile": {
+        "file": "london-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/london/london-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "east-england-hero",
+      "description": "desktop",
+      "imageHint": "east-england-hero",
+      "folder": "east-england",
+      "desktop": {
+        "file": "east-england-hero.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/east-england/east-england-hero.webp"
+    },
+    {
+      "id": "east-england-hero-lowres",
+      "description": "desktop low res",
+      "imageHint": "east-england-hero-lowres",
+      "folder": "east-england",
+      "desktop": {
+        "file": "east-england-hero-lowres.webp",
+        "width": 180,
+        "height": 1013
+      },
+      "imageUrl": "/images/east-england/east-england-hero-lowres.webp",
+      "mobile": {
+        "file": "east-england-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/east-england/east-england-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "east-midlands-hero",
+      "description": "desktop",
+      "imageHint": "east-midlands-hero",
+      "folder": "east-midlands",
+      "desktop": {
+        "file": "east-midlands-hero.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/east-midlands/east-midlands-hero.webp",
+      "mobile": {
+        "file": "east-midlands-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/east-midlands/east-midlands-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "south-east-hero",
+      "description": "desktop",
+      "imageHint": "south-east-hero",
+      "folder": "south-east",
+      "desktop": {
+        "file": "south-east-hero.webp",
+        "width": 1920,
+        "height": 1079
+      },
+      "imageUrl": "/images/south-east/south-east-hero.webp",
+      "mobile": {
+        "file": "south-east-hero-mobile.webp",
+        "width": 700,
+        "height": 1079,
+        "imageUrl": "/images/south-east/south-east-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "south-west-hero",
+      "description": "desktop",
+      "imageHint": "south-west-hero",
+      "folder": "south-west",
+      "desktop": {
+        "file": "south-west-hero.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/south-west/south-west-hero.webp",
+      "mobile": {
+        "file": "south-west-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/south-west/south-west-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "west-midlands-hero",
+      "description": "desktop",
+      "imageHint": "west-midlands-hero",
+      "folder": "west-midlands",
+      "desktop": {
+        "file": "west-midlands-hero.webp",
+        "width": 1920,
+        "height": 1080
+      },
+      "imageUrl": "/images/west-midlands/west-midlands-hero.webp",
+      "mobile": {
+        "file": "west-midlands-hero-mobile.webp",
+        "width": 700,
+        "height": 1080,
+        "imageUrl": "/images/west-midlands/west-midlands-hero-mobile.webp"
+      }
+    },
+    {
+      "id": "4142-hero",
+      "description": "desktop",
+      "imageHint": "4142-hero",
+      "folder": "explained-bs4142",
+      "desktop": {
+        "file": "4142-hero.webp",
+        "width": "",
+        "height": ""
+      },
+      "imageUrl": "/images/explained-bs4142/4142-hero.webp",
+      "mobile": {
+        "file": "4142-hero.webp",
+        "width": "",
+        "height": "",
+        "imageUrl": "/images/explained-bs4142/4142-hero.webp"
+      }
     }
   ]
 }

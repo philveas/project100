@@ -1,13 +1,10 @@
 // src/components/sections/What3Section.tsx
-// Single-column section with heading and body text
-// Uses secondary background and foreground text colors.
 
 import { type TextSectionProps } from "@/types/sections";
-import { formatTextWithBreaks } from "@/lib/utils";
 
 export function What3Section({ section }: TextSectionProps) {
   const heading = String(section?.["whatHeading"] ?? "What We Do");
-  const body = String(section?.["whatBody"] ?? "");
+  const body = section?.["whatBody"] ?? "";
   const bullets =
     Array.isArray(section?.["whatBullet"])
       ? section["whatBullet"]
@@ -15,31 +12,61 @@ export function What3Section({ section }: TextSectionProps) {
       ? [section["whatBullet"]]
       : [];
 
+  const paragraphs = String(body)
+    .split("\n")
+    .map((p: string) => p.trim())
+    .filter(Boolean);
+
   return (
-    <section className="bg-[hsl(var(--secondary))] text-[hsl(var(--card))] py-20 md:py-28">
-      <div className="container px-4 md:px-10 text-left space-y-8 max-w-4xl mx-auto">
-        {/* --- Heading --- */}
-        {heading && (
-          <h2 className="text-3xl md:text-5xl font-headline font-semibold leading-tight text-[hsl(var(--card))]">
-            {formatTextWithBreaks(heading)}
-          </h2>
-        )}
+    <section className="bg-card text-foreground">
+      {/* Outer boundaries match other sections */}
+      <div className="container px-4 sm:px-6 lg:px-8 xl:px-10 py-6 md:py-10">
+        {/* CHANGED: match FeatureSection responsiveness */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
 
-        {/* --- Body Text --- */}
-        {body && (
-          <div className="text-lg md:text-xl font-light leading-relaxed text-[hsl(var(--card))]/90 space-y-4">
-            {formatTextWithBreaks(body)}
+          {/* === LEFT: COLOURED BOX (Heading) === */}
+         <div className="bg-background py-12 md:py-16 flex items-center justify-end">
+           <div className="px-10 text-right">
+              <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight text-primary">
+                {(heading || "")
+                  .split(/\r?\n/)
+                  .map((line: string, i: number) => (
+                    <span key={i} className="block">
+                      {line.split(" ").map((word: string, j: number) => (
+                        <span key={j}>
+                          {word.includes("&") ? (
+                            <span className="text-primary">{word}</span>
+                          ) : (
+                            word
+                          )}{" "}
+                        </span>
+                      ))}
+                    </span>
+                  ))}
+              </h2>
+            </div>
           </div>
-        )}
 
-        {/* --- Optional Bullets --- */}
-        {bullets.length > 0 && (
-          <ul className="list-disc pl-6 space-y-2 text-lg font-light text-[hsl(var(--card))]/90">
-            {bullets.map((b: string, i: number) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
-        )}
+          {/* === RIGHT: BODY BOX === */}
+          {/* CHANGED: span 2 columns only on lg (merge middle + right) */}
+          <div className="bg-card sm:col-span-1 lg:col-span-2 py-0 md:py-12 flex items-center">
+            <div className="max-w-[52rem] ml-0 lg:ml-0 text-foreground/90 font-light space-y-4 text-base md:text-xl text-justify">
+              {paragraphs.map((para, i) => (
+                <p key={i} className="whitespace-pre-line">
+                  {para}
+                </p>
+              ))}
+
+              {bullets.length > 0 && (
+                <ul className="list-disc pl-6 space-y-2 text-foreground/90">
+                  {bullets.map((b: string, i: number) => (
+                    <li key={i}>{b}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

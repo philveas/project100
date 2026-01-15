@@ -1,205 +1,157 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { type ImageSectionProps } from "@/types/sections";
 import { formatTextWithBreaks } from "@/lib/utils";
+import { type ImageSectionProps } from "@/types/sections";
 
-export function HeroSection({ section, image, serviceTitle }: ImageSectionProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
+/* --------------------------------------------------
+ * Helper: Respect spreadsheet line breaks + accent &
+ * -------------------------------------------------- */
+function HeroTextWithLineBreaks({
+  text,
+  accentClass = "text-accent",
+}: {
+  text: string;
+  accentClass?: string;
+}) {
+  if (!text) return null;
+
+  // Split exactly on spreadsheet / Firestore line breaks
+  const lines = text.split(/\r?\n/);
+
+  return (
+    <>
+      {lines.map((line, lineIndex) => (
+        <span key={lineIndex} className="block">
+          {line.split("&").map((part, i, arr) => (
+            <span key={i}>
+              {part}
+              {i < arr.length - 1 && (
+                <span className={accentClass}>&amp;</span>
+              )}
+            </span>
+          ))}
+        </span>
+      ))}
+    </>
+  );
+}
+
+export function HeroSection({ section, serviceTitle }: ImageSectionProps) {
+  // null until mounted to avoid SSR mismatch
+  const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
+  const [enhanced, setEnhanced] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    const mq = window.matchMedia("(min-width: 1024px)");
+
+    const update = () => {
+      const desktop = mq.matches;
+      setIsDesktop(desktop);
+
+      // Never enhance on mobile/tablet
+      if (!desktop) setEnhanced(false);
+    };
+
+    update();
+    mq.addEventListener("change", update);
+
+    return () => {
+      mq.removeEventListener("change", update);
+    };
   }, []);
 
-  // --- Folder + Files ---
-    // --- Folder + Files ---
-  // Allow extra fields beyond the base ResolvedImage type
-  const heroImage = image as any;
-
-  const folderName = heroImage?.folder ?? "home";
-  const desktopLowResFile =
-    heroImage?.desktopLowRes ?? "home-hero-desktop-lowres.webp";
-  const desktopFallbackFile =
-    heroImage?.desktopFallback ?? "home-hero-desktop-fallback.webp";
-  const videoFile =
-    heroImage?.videoFile ?? "acoustic-design-places-we-work-learn-live2.mp4";
-  const mobileLowResFile =
-    heroImage?.mobileLowRes ?? "home-hero-mobile-lowres.webp";
-  const mobileFallbackFile =
-    heroImage?.mobileFallback ?? "home-hero-mobile-fallback.webp";
-
-
-  const videoSrc = `/videos/${folderName}/${videoFile}`;
-  const imgDesktopLowRes = `/images/${folderName}/${desktopLowResFile}`;
-  const imgDesktopFallback = `/images/${folderName}/${desktopFallbackFile}`;
-  const imgMobileLowRes = `/images/${folderName}/${mobileLowResFile}`;
-  const imgMobile = `/images/${folderName}/${mobileFallbackFile}`;
-
-
-  // --- Progressive load ---
   useEffect(() => {
-    if (!isMounted) return;
+    if (!isDesktop) return;
 
-    if (isMobile) {
-      setImgSrc(imgMobileLowRes);
-      const hi = new window.Image();
-      hi.src = imgMobile;
-      hi.onload = () => setImgSrc(imgMobile);
-    } else {
-      setImgSrc(imgDesktopLowRes);
-    }
-  }, [isMounted, isMobile, imgMobileLowRes, imgMobile, imgDesktopLowRes]);
+    const idle = requestIdleCallback(() => setEnhanced(true));
+    return () => cancelIdleCallback(idle);
+  }, [isDesktop]);
 
-  // --- Text content ---
-  const heroHeading =
-    section?.heroHeading ?? serviceTitle ?? "Acoustic Design for the Built Environment";
-  const heroSubheading = section?.heroSubheading ?? "";
-  const heroBody = section?.heroBody ?? "";
+  /* --------------------------------------------------
+   * Assets
+   * -------------------------------------------------- */
+  const MOBILE_IMAGE = "/images/home/home-hero-mobile.webp";
+  const TABLET_IMAGE = "/images/home/home-hero-tablet.webp";
+  const DESKTOP_IMAGE = "/images/home/home-hero-desktop.webp";
+  const DESKTOP_VIDEO =
+    "/videos/home/acoustic-design-places-we-work-learn-live3.webm";
 
-  // --- Highlight '&' ---
-  const highlightAmpersands = (text: string) =>
-    text.replace(/&/g, '<span class="text-accent !text-accent">&amp;</span>');
+  /* --------------------------------------------------
+   * Text
+   * -------------------------------------------------- */
+  const heroHeading = String(
+    section?.heroHeading ?? serviceTitle ?? "Acoustic Design for the Built Environment"
+  );
 
-  // --- Manual height control ---
-  // Adjust these to your preference
-  const MOBILE_HEIGHT = "90dvh"; // try 80–100dvh
-  const DESKTOP_HEIGHT = "calc(100dvh - 80px)"; // subtract header height if needed
+  // Only accept real strings for these two (prevents rendering "true" or "[object Object]")
+  const heroSubheading =
+    typeof section?.heroSubheading === "string" ? section.heroSubheading : "";
 
-  const sectionHeight = isMobile ? MOBILE_HEIGHT : DESKTOP_HEIGHT;
+  const heroBody = typeof section?.heroBody === "string" ? section.heroBody : "";
 
-
-  
-  // --- Early SSR fallback ---
-  if (!isMounted) {
-    return (
-      <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-primary/60" />
-        <div className="relative z-10 container px-4 md:px-10 text-left">
-          <h1 className="font-headline text-3xl md:text-5xl font-semibold text-white">
-            {String(heroHeading)}
-          </h1>
-        </div>
-      </section>
-    );
-  }
-
-  
   return (
     <section
-      className="relative w-full flex items-center justify-center overflow-hidden"
-      style={{
-        height: sectionHeight,
-        minHeight: "500px",
-        maxHeight: "100dvh",
-        contain: "paint",
-      }}
+      className="
+        relative w-full overflow-hidden flex items-center
+        h-[calc(100dvh-80px)] min-h-[500px]
+      "
     >
-      {/* --- Background --- */}
-      <div className="absolute inset-0">
-        {/* Mobile: low-res → high-res */}
-        {isMobile && imgSrc && (
-          <Image
-            src={imgSrc}
-            alt={String(heroHeading)}
-            fill
-            priority
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            sizes="100vw"
-            quality={85}
-            className={`object-cover transition-all duration-700 ${
-              imgSrc.includes("lowres") ? "blur-md scale-[1.02]" : "blur-0 scale-100"
-            }`}
-          />
-        )}
+      {/* Hero image: browser picks mobile/tablet/desktop before JS (best for LCP) */}
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={DESKTOP_IMAGE} />
+        <source media="(min-width: 640px)" srcSet={TABLET_IMAGE} />
+        <img
+          src={MOBILE_IMAGE}
+          alt={heroHeading}
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </picture>
 
-        {/* Desktop: low-res → video/fallback */}
-        {!isMobile && (
-          <>
-            {imgSrc && (
-              <Image
-                src={imgSrc}
-                alt={String(heroHeading)}
-                fill
-                priority
-                fetchPriority="high"
-                loading="eager"
-                decoding="async"
-                sizes="100vw"
-                quality={70}
-                className="object-cover"
-              />
-            )}
-            {!videoFailed ? (
-              <video
-                key="hero-video"
-                src={videoSrc}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="auto"
-                className="object-cover w-full h-full absolute inset-0"
-                onError={() => setVideoFailed(true)}
-              />
-            ) : (
-              <Image
-                src={imgDesktopFallback}
-                alt={String(heroHeading)}
-                fill
-                priority
-                sizes="100vw"
-                quality={85}
-                className="object-cover absolute inset-0"
-              />
-            )}
-          </>
-        )}
-      </div>
+      {/* Desktop video (idle only) */}
+      {isDesktop === true && enhanced && (
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src={DESKTOP_VIDEO}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          aria-hidden="true"
+        />
+      )}
 
-      {/* Tint overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-primary/50" />
 
-      {/* Text */}
-      <div className="relative z-10 container px-4 md:px-10 text-left">
-        <h1
-          className="font-headline text-3xl md:text-5xl font-semibold text-white drop-shadow-md"
-          dangerouslySetInnerHTML={{
-            __html: highlightAmpersands(String(heroHeading)),
-          }}
-        />
+      {/* Content */}
+      <div className="relative z-10 container px-4 md:px-10">
+        <h1 className="font-heading text-3xl md:text-5xl font-semibold text-white">
+          {heroHeading}
+        </h1>
 
         {heroSubheading && (
-          <h2
-            className="text-2xl md:text-3xl font-light mt-2 text-white drop-shadow-sm"
-            dangerouslySetInnerHTML={{
-              __html: highlightAmpersands(String(heroSubheading)).replace(/\n/g, "<br />"),
-            }}
-          />
+          <h2 className="text-xl md:text-2xl font-light mt-3 text-white leading-tight">
+            <HeroTextWithLineBreaks text={heroSubheading} />
+          </h2>
         )}
 
         {heroBody && (
           <p className="mt-4 max-w-2xl text-lg font-light text-white">
-            {formatTextWithBreaks(String(heroBody))}
+            {formatTextWithBreaks(heroBody)}
           </p>
         )}
 
         <div className="mt-8">
           <Button
-            variant="ghost"
             asChild
-            className="border border-accent-foreground text-white hover:border-primary hover:text-foreground transition-colors"
+            variant="ghost"
+            className="border border-accent-foreground text-white hover:text-foreground"
           >
             <Link href="/contact">Contact Us Today</Link>
           </Button>

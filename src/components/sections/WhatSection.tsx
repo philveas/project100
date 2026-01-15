@@ -20,10 +20,10 @@ export function WhatSection({ section }: TextSectionProps) {
   return (
     <section className="bg-card text-foreground">
       {/* Outer boundaries match other sections */}
-      <div className="container px-4 sm:px-6 lg:px-8 xl:px-10 py-6 md:py-10">
+      <div className="container px-4 sm:px-6 lg:px-8 xl:px-10 py-4 md:py-0">
         <div className="grid grid-cols-1 md:grid-cols-3">
           {/* === LEFT: COLOURED BOX (Heading) === */}
-          <div className="bg-background py-16 px-10 flex items-center justify-end md:rounded-l-xl">
+          <div className="bg-background py-12 px-10 flex items-center justify-end md:rounded-l-xl">
             <div className="text-right">
               <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight text-primary">
                 {(heading || "")
@@ -48,7 +48,7 @@ export function WhatSection({ section }: TextSectionProps) {
           {/* === RIGHT: BODY BOX === */}
           {/* 🔧 Removed px-10 so right edge lines up with FeatureSection */}
           <div className="bg-card md:col-span-2 py-12 flex items-center">
-            <div className="max-w-[52rem] ml-auto text-foreground/90 font-light space-y-4 text-xl text-justify">
+            <div className="max-w-[52rem] ml-auto text-foreground/90 font-light space-y-4 text-base md:text-xl text-justify">
               {paragraphs.map((para, i) => (
                 <p key={i} className="whitespace-pre-line">
                   {para}

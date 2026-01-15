@@ -19,7 +19,7 @@ export function FaqSection({ sections }: GroupSectionProps) {
             <div className="container px-4 md:px-6">
                 <div className="max-w-[70rem] mx-auto"> 
                     {/* 2. Heading is rendered (fixing the 'unused' warning) */}
-                    <h2 className="text-3xl md:text-5xl text-primary font-headline font-semibold text-center mb-8">
+                    <h2 className="text-2xl md:text-4xl text-primary font-headline font-semibold text-left md:text-center mb-8">
                         {heading}
                     </h2>
                     <Accordion type="single" collapsible className="w-full">
@@ -32,7 +32,7 @@ export function FaqSection({ sections }: GroupSectionProps) {
                                     {String(f?.["faqQuestion"] ?? "")} 
                                 </AccordionTrigger>
                                 <AccordionContent>
-                                    <p className="text-grey text-xl font-light leading-relaxed pt-2">
+                                    <p className="text-grey text-base font-light leading-relaxed pt-2">
                                         {String(f?.["faqAnswer"] ?? "")}
                                     </p>
                                 </AccordionContent>

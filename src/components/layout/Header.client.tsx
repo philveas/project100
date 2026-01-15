@@ -16,19 +16,27 @@ import { cn } from "@/lib/utils";
 import { useState, type ReactNode } from "react";
 import Logo from "./Logo";
 
-export function Header() {
+export default function HeaderClient({
+  locations,
+}: {
+  locations: { slug: string; label: string }[];
+}) {
   const pathnameRaw = usePathname();
   const pathname = pathnameRaw ?? "/";
   const [isSheetOpen, setSheetOpen] = useState(false);
 
+  // 🔹 Improved active matching (supports sub-routes)
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    return pathname === href;
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   const servicesActive =
-    SERVICES.some((s) => pathname.startsWith(s.href)) ||
-    pathname === "/services";
+    SERVICES.some((s) => pathname.startsWith(s.href)) || pathname === "/services";
+
+  const locationsActive = pathname.startsWith("/locations");
+
+  const resourcesActive = pathname.startsWith("/resources");
 
   const idle = "text-foreground";
   const hover = "hover:text-accent-dark";
@@ -65,6 +73,7 @@ export function Header() {
 
       <NavLink href="/">Home</NavLink>
 
+      {/* SERVICES */}
       <DropdownMenu>
         <DropdownMenuTrigger
           className={cn(
@@ -81,7 +90,7 @@ export function Header() {
           align="end"
           alignOffset={-16}
         >
-          {SERVICES.filter((s) => s.slug !== "home").map((service) => { 
+          {SERVICES.filter((s) => s.slug !== "home").map((service) => {
             const itemActive = pathname.startsWith(service.href);
 
             return (
@@ -100,9 +109,7 @@ export function Header() {
                   onClick={() => setSheetOpen(false)}
                   className={cn(
                     "block w-full px-3 py-1 text-right transition-colors focus:outline-none",
-                    itemActive
-                      ? active
-                      : cn(idle, "hover:text-accent-dark")
+                    itemActive ? active : cn(idle, "hover:text-accent-dark")
                   )}
                 >
                   {service.name}
@@ -113,6 +120,59 @@ export function Header() {
         </DropdownMenuContent>
       </DropdownMenu>
 
+      {/* LOCATIONS */}
+      <DropdownMenu>
+        <DropdownMenuTrigger
+          className={cn(
+            "flex items-center gap-1 outline-none transition-colors",
+            locationsActive ? active : cn(idle, hover)
+          )}
+        >
+          Locations
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent
+          className="bg-card shadow-md border-0"
+          sideOffset={8}
+          align="end"
+          alignOffset={-16}
+        >
+          {locations.map((loc) => {
+            const href = `/locations/${loc.slug}`;
+            const itemActive = pathname === href || pathname.startsWith(`${href}/`);
+
+            return (
+              <DropdownMenuItem
+                key={loc.slug}
+                asChild
+                className="
+                  flex justify-end w-full p-0
+                  bg-card
+                  data-[highlighted]:bg-card
+                  data-[highlighted]:text-accent-dark
+                "
+              >
+                <Link
+                  href={href}
+                  onClick={() => setSheetOpen(false)}
+                  className={cn(
+                    "block w-full px-3 py-1 text-right transition-colors focus:outline-none",
+                    itemActive ? active : cn(idle, "hover:text-accent-dark")
+                  )}
+                >
+                  {loc.label}
+                </Link>
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {/* ✅ FIX: never pass undefined explicitly */}
+      <NavLink href="/resources" className={resourcesActive ? active : ""}>
+        Resources
+      </NavLink>
+
       <NavLink href="/contact">Contact</NavLink>
     </nav>
   );
@@ -121,13 +181,13 @@ export function Header() {
   // MOBILE NAVIGATION
   // ---------------------
   const mobileNav = (
-    <nav className="grid gap-4 text-lg">
+    <nav className="grid gap-2 text-base">
       <NavLink href="/">Home</NavLink>
 
+      {/* SERVICES */}
       <p className={cn(servicesActive ? active : idle)}>Services</p>
-
       <div className="grid gap-2 pl-4">
-       {SERVICES.filter((s) => s.slug !== "home").map((service) => {
+        {SERVICES.filter((s) => s.slug !== "home").map((service) => {
           const itemActive = pathname.startsWith(service.href);
 
           return (
@@ -146,6 +206,30 @@ export function Header() {
         })}
       </div>
 
+      {/* LOCATIONS */}
+      <p className={cn(locationsActive ? active : idle)}>Locations</p>
+      <div className="grid gap-2 pl-4">
+        {locations.map((loc) => {
+          const href = `/locations/${loc.slug}`;
+          const itemActive = pathname === href || pathname.startsWith(`${href}/`);
+
+          return (
+            <Link
+              key={loc.slug}
+              href={href}
+              onClick={() => setSheetOpen(false)}
+              className={cn(
+                "transition-colors focus:outline-none",
+                itemActive ? active : cn(idle, hover)
+              )}
+            >
+              {loc.label}
+            </Link>
+          );
+        })}
+      </div>
+
+      <NavLink href="/resources">Resources</NavLink>
       <NavLink href="/contact">Contact</NavLink>
     </nav>
   );
@@ -174,17 +258,17 @@ export function Header() {
               </button>
             </SheetTrigger>
 
-            <SheetContent side="left">
-           <VisuallyHidden>
-           <h2>Navigation Menu</h2>
-         </VisuallyHidden>
+            <SheetContent side="left" className="flex flex-col">
+              <VisuallyHidden>
+                <h2>Navigation Menu</h2>
+              </VisuallyHidden>
 
-  <div className="flex items-center space-x-2 mb-8">
-    <Logo />
-  </div>
+              <div className="flex items-center space-x-2 mb-6 shrink-0">
+                <Logo />
+              </div>
 
-  {mobileNav}
-</SheetContent>
+              <div className="flex-1 overflow-y-auto pr-2">{mobileNav}</div>
+            </SheetContent>
           </Sheet>
         </div>
       </div>

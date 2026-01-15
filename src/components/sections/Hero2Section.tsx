@@ -1,128 +1,106 @@
-"use client";
+// src/components/sections/Hero2Section.tsx
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { type ImageSectionProps } from "@/types/sections";
 import { formatTextWithBreaks } from "@/lib/utils";
 
-/**
- * Hero2Section — aligned with HeroSection
- * - Progressive mobile loading
- * - Desktop height now matches HeroSection height
- * - H1 vertical alignment corrected
- */
+export const dynamic = "force-static";
+export const runtime = "edge";
+
 export function Hero2Section({ section, image, serviceTitle }: ImageSectionProps) {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [imgSrc, setImgSrc] = useState<string | null>(null);
-
-  useEffect(() => {
-    setIsMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  // --- Image setup ---
   const folder =
     image?.folder ?? serviceTitle?.toLowerCase().replace(/\s+/g, "-") ?? "home";
+
   const imageId = image?.id ?? "grass2.0";
 
-  const heroSrcDesktop = `/images/${folder}/${imageId}.webp`;
-  const heroSrcMobileLowRes = `/images/${folder}/${imageId}-mobile-lowres.webp`;
-  const heroSrcMobile = `/images/${folder}/${imageId}-mobile.webp`;
+  // Base hero image paths (assumes -mobile and -tablet variants exist)
+  const heroDesktopSrc = `/images/${folder}/${imageId}.webp`;
+  const heroTabletSrc = `/images/${folder}/${imageId}-tablet.webp`;
+  const heroMobileSrc = `/images/${folder}/${imageId}-mobile.webp`;
 
-  // Progressive load for mobile
-  useEffect(() => {
-    if (!isMounted) return;
+  // Text safety
+  const heroHeading = String(section?.heroHeading ?? serviceTitle ?? "Service Title");
 
-    if (isMobile) {
-      setImgSrc(heroSrcMobileLowRes);
+  const heroSubheading =
+    typeof section?.heroSubheading === "string" ? section.heroSubheading : "";
 
-      const hi = new window.Image();
-      hi.src = heroSrcMobile;
-      hi.onload = () => setImgSrc(heroSrcMobile);
-    } else {
-      setImgSrc(heroSrcDesktop);
-    }
-  }, [isMounted, isMobile, heroSrcDesktop, heroSrcMobile, heroSrcMobileLowRes]);
+  const heroBody = typeof section?.heroBody === "string" ? section.heroBody : "";
 
-  // --- Text content ---
-  const heroHeading = section?.heroHeading ?? serviceTitle ?? "Service Title";
-  const heroSubheading = section?.heroSubheading ?? "";
-  const heroBody = section?.heroBody ?? "";
+  // Mobile: flatten Alt+Enter
+  const heroSubheadingMobile = heroSubheading
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
+    .replace(/\n+/g, " ")
+    .trim();
+
+  const heroBodyMobile = heroBody
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
+    .replace(/\n+/g, " ")
+    .trim();
 
   const highlightAmpersands = (text: string) =>
     text.replace(/&/g, '<span class="text-accent">&amp;</span>');
 
-  // --- SSR fallback ---
-  if (!isMounted) {
-    return (
-      <section className="relative w-full h-[90vh] min-h-[500px] flex items-center justify-center text-white overflow-hidden">
-        <div className="absolute inset-0 bg-primary/50" />
-        <div className="relative z-10 container px-4 md:px-10 text-left">
-          <h1 className="font-headline text-3xl md:text-5xl font-semibold text-white">
-            {String(heroHeading)}
-          </h1>
-        </div>
-      </section>
-    );
-  }
-
-  // --- MATCH HEROSECTION HEIGHT ---
-  const sectionHeight = isMobile ? "90dvh" : "calc(100dvh - 80px)";
-
   return (
     <section
-      className="relative w-full min-h-[500px] flex items-center justify-center text-white overflow-hidden"
-      style={{
-        height: sectionHeight,
-        contain: "paint",
-      }}
+      className="relative w-full flex items-center justify-center text-white overflow-hidden"
+      style={{ height: "calc(100dvh - 80px)", minHeight: "500px" }}
     >
-      {/* Background image */}
-      {imgSrc && (
-        <Image
-          src={imgSrc}
-          alt={String(heroHeading)}
-          fill
-          priority={imageId !== "grass2.0"}
-          fetchPriority={imageId !== "grass2.0" ? "high" : "auto"}
-          loading={imageId !== "grass2.0" ? "eager" : "lazy"}
+      {/* Hero image: browser picks mobile/tablet/desktop before JS (best for LCP) */}
+      <picture>
+        <source media="(min-width: 1024px)" srcSet={heroDesktopSrc} />
+        <source media="(min-width: 640px)" srcSet={heroTabletSrc} />
+        <img
+          src={heroMobileSrc}
+          alt={heroHeading}
+          className="absolute inset-0 w-full h-full object-cover"
+          fetchPriority="high"
           decoding="async"
-          sizes="100vw"
-          quality={isMobile ? 85 : 75}
-          className={`object-cover w-full h-full transition-all duration-700 ${
-            imgSrc.includes("lowres") ? "blur-md scale-[1.02]" : "blur-0 scale-100"
-          }`}
         />
-      )}
+      </picture>
 
-      {/* Tint overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-primary/50" />
 
-      {/* Text content */}
+      {/* Content */}
       <div className="relative z-10 container px-4 md:px-10 text-left">
         <h1
           className="font-headline text-3xl md:text-5xl font-semibold text-white drop-shadow-md mt-[-1.5rem] md:mt-[-2rem]"
           dangerouslySetInnerHTML={{
-            __html: highlightAmpersands(String(heroHeading)),
+            __html: highlightAmpersands(heroHeading),
           }}
         />
 
+        {/* Subheading */}
         {heroSubheading && (
-          <h2 className="text-2xl md:text-3xl font-light mt-2 text-white drop-shadow-sm">
-            {formatTextWithBreaks(String(heroSubheading))}
-          </h2>
+          <>
+            {/* Mobile */}
+            <p className="md:hidden text-xl font-light mt-2 text-white drop-shadow-sm">
+              {heroSubheadingMobile}
+            </p>
+
+            {/* Tablet + Desktop */}
+            <div className="hidden md:block text-2xl md:text-3xl font-light mt-2 text-white drop-shadow-sm whitespace-pre-line">
+              {formatTextWithBreaks(heroSubheading)}
+            </div>
+          </>
         )}
 
+        {/* Body */}
         {heroBody && (
-          <p className="mt-4 max-w-2xl text-lg font-light text-white">
-            {formatTextWithBreaks(String(heroBody))}
-          </p>
+          <>
+            {/* Mobile */}
+            <p className="md:hidden mt-4 max-w-2xl text-lg font-light text-white">
+              {heroBodyMobile}
+            </p>
+
+            {/* Tablet + Desktop */}
+            <div className="hidden md:block mt-4 max-w-2xl text-lg font-light text-white whitespace-pre-line">
+              {formatTextWithBreaks(heroBody)}
+            </div>
+          </>
         )}
 
         <div className="mt-8">

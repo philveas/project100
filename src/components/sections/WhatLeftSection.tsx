@@ -40,9 +40,9 @@ export function WhatLeftSection({ section }: ImageSectionProps) {
     <section className="py-16 md:py-24 bg-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* 1.2fr : 1fr ensures image side is slightly wider */}
-        <div className="grid md:grid-cols-[1.2fr_1fr] gap-x-12 items-center">
+        <div className="grid md:grid-cols-[1.2fr_1fr] gap-8 gap-x-12 items-center">
           {/* --- Image (Left) --- */}
-          <div className="relative w-full">
+          <div className="relative w-full md:max-w-[595px] order-2 md:order-1">
             <Image
               src={imageUrl}
               alt={imageAlt}
@@ -59,12 +59,12 @@ export function WhatLeftSection({ section }: ImageSectionProps) {
           </div>
 
           {/* --- Text (Right) --- */}
-          <div className="px-2 md:px-0 text-left">
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold text-primary">
+         <div className="px-2 md:px-0 text-left order-1 md:order-2">
+            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary">
               {heading}
             </h2>
 
-            <div className="mt-4 text-foreground font-light space-y-4 text-lg leading-relaxed text-justify">
+            <div className="mt-4 text-foreground font-light space-y-4 text-base md:text-xl leading-relaxed text-justify">
               {paragraphs.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -75,8 +75,8 @@ export function WhatLeftSection({ section }: ImageSectionProps) {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-accent-foreground text-primary hover:bg-accent hover:text-foreground"
-                >
+                  className="px-8 bg-primary text-card transition-colors hover:bg-accent/90 hover:text-foreground"
+                    >
                   {linkText}
                 </Button>
               </Link>

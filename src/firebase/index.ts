@@ -5,8 +5,7 @@ import { getFirestore, type Firestore } from "firebase/firestore";
 import { getStorage, type FirebaseStorage } from "firebase/storage";
 import { getAnalytics, type Analytics, isSupported } from "firebase/analytics";
 
-// ⬅️ NEW: Import the configuration from the static file we created.
-import { FIREBASE_STATIC_CONFIG } from "@/config/firebase"; 
+import { FIREBASE_STATIC_CONFIG } from "@/config/firebase";
 
 export type FirebaseServices = {
   app: FirebaseApp;
@@ -17,10 +16,7 @@ export type FirebaseServices = {
 };
 
 export function initializeFirebase(): FirebaseServices {
-  // Use the STATIC config object directly.
-  const config = FIREBASE_STATIC_CONFIG; 
-
-  // Since the config is now static, we don't need any process.env checks here.
+  const config = FIREBASE_STATIC_CONFIG;
 
   const app = getApps().length > 0 ? getApp() : initializeApp(config);
 
@@ -38,6 +34,7 @@ export function initializeFirebase(): FirebaseServices {
   return { app, auth, db, storage, analytics };
 }
 
-// Optionally, export initialized services for convenience across the app
-const { app, auth, db, storage, analytics } = initializeFirebase();
-export { app, auth, db, storage, analytics };
+// ❌ DO NOT export pre-initialised services from this module.
+// That is what causes SSR/edge crashes.
+// const { app, auth, db, storage, analytics } = initializeFirebase();
+// export { app, auth, db, storage, analytics };

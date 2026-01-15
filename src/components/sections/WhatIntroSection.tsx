@@ -1,34 +1,9 @@
 // src/components/sections/WhatIntroSection.tsx
-// this is the intro section for the service slug 
 
 import React from "react";
 import { type TextSectionProps } from "@/types/sections";
 import { formatTextWithBreaks } from "@/lib/utils";
 
-/**
- * Formats headings so the first word and ampersands (&)
- * are accented using the primary color.
- */
-function formatHeadingDynamic(text: string) {
-  if (!text) return null;
-
-  const words = text.split(/\s+/);
-  return words.map((word, i) => {
-    const highlight = i === 0 || word.trim() === "&";
-    return (
-      <span key={i} className={highlight ? "text-primary" : ""}>
-        {word}
-        {i < words.length - 1 && " "}
-      </span>
-    );
-  });
-}
-
-/**
- * WhatIntro
- * - Used for the “What We Do” intro area on the home page.
- * - Center-aligned text and optional bullet points.
- */
 export function WhatIntroSection({ section }: TextSectionProps) {
   const heading = String(section?.["whatHeading"] ?? "");
   const body = String(section?.["whatBody"] ?? "");
@@ -39,28 +14,110 @@ export function WhatIntroSection({ section }: TextSectionProps) {
       ? [section["whatBullet"]]
       : [];
 
+  // Mobile: remove Alt+Enter line breaks, but keep other whitespace
+  const bodyMobile = body
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
+    .replace(/\n+/g, " ")
+    .trim();
+
+  // -----------------------------
+  // SPACING CONTROLS (EDIT THESE)
+  // -----------------------------
+  const SECTION_PT_MOBILE = "pt-8";
+  const SECTION_PB_MOBILE = "pb-6";
+  const SECTION_PT_DESKTOP = "md:pt-16";
+  const SECTION_PB_DESKTOP = "md:pb-10";
+
+  const HEADING_MB_MOBILE = "mb-4";
+  const HEADING_MB_DESKTOP = "md:mb-3";
+
+  const BODY_MB_MOBILE = "mb-5";
+  const BODY_MB_DESKTOP = "md:mb-4";
+
+  const BULLETS_MT_MOBILE = "mt-0";
+  const BULLETS_MT_DESKTOP = "md:mt-0";
+
+  const BULLETS_GAP_MOBILE = "space-y-2";
+  const BULLETS_GAP_DESKTOP = "md:space-y-2";
+
   return (
-    <section className="py-16 md:py-24 bg-card text-primary">
+    <section
+      className={[
+        "bg-card text-primary", // Sets default text color for section
+        SECTION_PT_MOBILE,
+        SECTION_PB_MOBILE,
+        SECTION_PT_DESKTOP,
+        SECTION_PB_DESKTOP,
+      ].join(" ")}
+    >
       <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
-        {/* Centered content wrapper */}
-        <div className="max-w-6xl mx-auto text-center">
-          {/* --- Heading --- */}
+        <div className="max-w-6xl mx-auto">
+          {/* Heading */}
           {heading && (
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight mb-6">
-              {formatHeadingDynamic(heading)}
+            <h2
+              className={[
+                "text-3xl md:text-4xl",
+                "font-headline font-semibold",
+                "leading-tight",
+                "text-center",
+                HEADING_MB_MOBILE,
+                HEADING_MB_DESKTOP,
+              ].join(" ")}
+            >
+              {heading}
             </h2>
           )}
 
-          {/* --- Body text --- */}
+          {/* Body */}
           {body && (
-            <div className="text-1xl md:text-3xl font-light text-sans text-foreground/90 leading-relaxed text-center space-y-4">
-              {formatTextWithBreaks(body)}
-            </div>
+            <>
+              {/* Mobile */}
+              <p
+                className={[
+                  "md:hidden",
+                  "text-base",
+                  "font-light",
+                  "text-foreground/90",
+                  "leading-relaxed",
+                  "text-justify",
+                  "whitespace-pre-wrap",
+                  BODY_MB_MOBILE,
+                ].join(" ")}
+              >
+                {bodyMobile}
+              </p>
+
+              {/* Desktop */}
+              <div
+                className={[
+                  "hidden md:block",
+                  "text-2xl",
+                  "font-light",
+                  "text-foreground/90",
+                  "leading-relaxed",
+                  "text-center",
+                  "whitespace-pre-line",
+                  BODY_MB_DESKTOP,
+                ].join(" ")}
+              >
+                {formatTextWithBreaks(body)}
+              </div>
+            </>
           )}
 
-          {/* --- Optional bullet points --- */}
+          {/* Bullets */}
           {bullets.length > 0 && (
-            <ul className="list-none mt-6 space-y-2 text-lg font-light text-foreground/90">
+            <ul
+              className={[
+                "list-none",
+                BULLETS_MT_MOBILE,
+                BULLETS_MT_DESKTOP,
+                "text-lg font-light text-foreground/90",
+                BULLETS_GAP_MOBILE,
+                BULLETS_GAP_DESKTOP,
+              ].join(" ")}
+            >
               {bullets.map((b: string, i: number) => (
                 <li key={i}>{b}</li>
               ))}

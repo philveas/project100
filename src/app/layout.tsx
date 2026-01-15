@@ -1,52 +1,81 @@
 // src/app/layout.tsx
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Header } from "@/components/layout/Header";
+import Header from "@/components/layout/Header.server";
 import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import { FirebaseClientProvider } from "@/firebase/client-provider";
+import { nunito, roboto } from "./fonts";
 
+/* --------------------------------------------------
+ * ROOT METADATA (SAFE DEFAULTS ONLY)
+ * -------------------------------------------------- */
 export const metadata: Metadata = {
-  title: "Veas Acoustics",
+  metadataBase: new URL("https://www.veasacoustics.co.uk"),
+
+  title: {
+    default: "Veas Acoustics",
+    template: "%s | Veas Acoustics",
+  },
+
   description:
-    "Expert Acoustic Consultants for Noise Assessment and Building Acoustics",
+    "Specialist acoustic consultancy delivering noise assessment, design and compliance testing services across the UK.",
+
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/favicon/apple-touch-icon.png", sizes: "180x180" }],
+  },
+
+  manifest: "/favicon/site.webmanifest",
+
+  openGraph: {
+    siteName: "Veas Acoustics",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    site: "@veasacoustics",
+    creator: "@veasacoustics",
+  },
+
+  formatDetection: {
+    telephone: false,
+  },
 };
 
+/* --------------------------------------------------
+ * VIEWPORT (themeColor belongs here in Next 16)
+ * -------------------------------------------------- */
+export const viewport: Viewport = {
+  themeColor: "#038C6D",
+};
+
+/* --------------------------------------------------
+ * ROOT LAYOUT
+ * -------------------------------------------------- */
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth bg-background text-foreground">
-      <head>
-        {/* ✅ Preload hero image for better LCP */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/home/grass2.0.webp"
-          fetchPriority="high"
-        />
-
-        {/* ✅ Load Google Fonts */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased flex flex-col text-foreground"
-        )}
-        style={{
-          fontFamily:
-            '"Nunito", "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-        }}
-      >
+    <html
+      lang="en"
+      className={cn(
+        "scroll-smooth bg-background text-foreground",
+        nunito.variable,
+        roboto.variable
+      )}
+    >
+      <body className="min-h-screen antialiased flex flex-col">
         <FirebaseClientProvider>
           <Header />
           <main className="flex-1">{children}</main>

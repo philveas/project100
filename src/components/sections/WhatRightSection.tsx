@@ -34,14 +34,14 @@ export function WhatRightSection({ section }: ImageSectionProps) {
     <section className="py-16 md:py-24 bg-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* 1fr : 1.2fr ensures image side is slightly wider */}
-        <div className="grid md:grid-cols-[1fr_1.2fr] gap-x-12 items-center">
+        <div className="grid md:grid-cols-[1fr_1.2fr] gap-8 gap-x-12 items-center">
           {/* --- Text (Left) --- */}
           <div className="px-2 md:px-0 text-left md:text-right">
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold text-primary">
+            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary">
               {heading}
             </h2>
 
-            <div className="mt-4 text-foreground font-light space-y-4 text-lg leading-relaxed text-justify">
+            <div className="mt-4 text-foreground font-light space-y-4 text-base md:text-xl leading-relaxed text-justify">
               {paragraphs.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
@@ -49,7 +49,8 @@ export function WhatRightSection({ section }: ImageSectionProps) {
           </div>
 
           {/* --- Image (Right) --- */}
-          <div className="relative w-full">
+          <div className="relative w-full md:max-w-[595px] md:ml-auto md:-mr-0">
+
             <Image
               src={imageUrl}
               alt={imageAlt}
