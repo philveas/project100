@@ -93,12 +93,12 @@ export function ContactForm() {
   return (
     <form ref={formRef} action={formAction} className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="name">Name</Label>
           <Input id="name" {...register('name')} placeholder="Your Name" aria-invalid={!!allErrors.name?.length} />
           {allErrors.name?.[0] && <p className="text-sm text-destructive">{allErrors.name[0]}</p>}
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="company">Company</Label>
           <Input id="company" {...register('company')} placeholder="Your Company Name" aria-invalid={!!allErrors.company?.length} />
           {allErrors.company?.[0] && <p className="text-sm text-destructive">{allErrors.company[0]}</p>}
@@ -106,27 +106,27 @@ export function ContactForm() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
           <Input id="email" type="email" {...register('email')} placeholder="your.email@example.com" aria-invalid={!!allErrors.email?.length} />
           {allErrors.email?.[0] && <p className="text-sm text-destructive">{allErrors.email[0]}</p>}
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1">
           <Label htmlFor="telephone">Telephone</Label>
           <Input id="telephone" type="tel" {...register('telephone')} placeholder="Your Phone Number" aria-invalid={!!allErrors.telephone?.length} />
           {allErrors.telephone?.[0] && <p className="text-sm text-destructive">{allErrors.telephone[0]}</p>}
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label htmlFor="projectAddress">Project Address</Label>
         <Input id="projectAddress" {...register('projectAddress')} placeholder="Enter Project Address" aria-invalid={!!allErrors.projectAddress?.length} />
         {allErrors.projectAddress?.[0] && <p className="text-sm text-destructive">{allErrors.projectAddress[0]}</p>}
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label htmlFor="message">Message</Label>
-        <Textarea id="message" {...register('message')} placeholder="How can we help?" rows={5} aria-invalid={!!allErrors.message?.length} />
+        <Textarea id="message" {...register('message')} placeholder="How can we help?" rows={4} aria-invalid={!!allErrors.message?.length} />
         {allErrors.message?.[0] && <p className="text-sm text-destructive">{allErrors.message[0]}</p>}
       </div>
 

@@ -10,11 +10,17 @@ const FALLBACK = {
   desktop: { w: 597, h: 448 },
   mobile: { w: 320, h: 270 },
 };
+
 const FALLBACK_IMAGE_URL = "/images/home/grass2.0.webp";
 
 /**
- * Two-column section with image on the left and text on the right.
+ * Two-column section with image on the left (md+) and text on the right (md+).
+ * On mobile, text appears first and the image moves below.
  * Supports whatHeading, whatBody, and whatBullet fields from Firestore.
+ *
+ * Bullets:
+ * - Matches WhatSecondarySection style (array stays array, string becomes [string])
+ * - Also supports semicolon-separated bullets inside either array items or a single string.
  */
 export function WhatLeftImageSection({ section, image }: Partial<ImageSectionProps>) {
   // === Resolve image paths ===
@@ -37,32 +43,81 @@ export function WhatLeftImageSection({ section, image }: Partial<ImageSectionPro
   // --- Text content ---
   const heading = String(section?.["heading"] ?? section?.["whatHeading"] ?? "Our Process");
   const body = String(section?.["description"] ?? section?.["whatBody"] ?? section?.["body"] ?? "");
-  const bulletRaw = String(section?.["whatBullet"] ?? "");
 
-  // Split paragraphs (multi-line markdown)
+  // Paragraphs (newline separated)
   const paragraphs = body
     .split("\n")
     .map((p) => p.trim())
     .filter(Boolean);
 
-  // Split semicolon-separated bullets
-  const bullets = bulletRaw
-    .split(";")
-    .map((b) => b.trim())
-    .filter(Boolean);
+  // --- Bullets (match WhatSecondarySection, plus optional semicolon splitting) ---
+  const rawBullets = section?.["whatBullet"];
+
+  const bullets = Array.isArray(rawBullets)
+    ? rawBullets
+        .flatMap((b) =>
+          String(b)
+            .split(";")
+            .map((x) => x.trim())
+            .filter(Boolean)
+        )
+    : typeof rawBullets === "string"
+    ? rawBullets
+        .split(";")
+        .map((x) => x.trim())
+        .filter(Boolean)
+    : [];
 
   const hasBullets = bullets.length > 0;
 
-  const linkHref = section?.["buttonHref"] ?? section?.["linkHref"] ?? "/contact";
-  const linkText = section?.["buttonLabel"] ?? section?.["linkText"] ?? "Find Out More";
+  const linkHref = String(section?.["buttonHref"] ?? section?.["linkHref"] ?? "/contact");
+  const linkText = String(section?.["buttonLabel"] ?? section?.["linkText"] ?? "Find Out More");
 
   // --- Render ---
   return (
     <section className="py-16 md:py-24 bg-card">
       <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 items-center">
-          {/* === Image (Left) === */}
-          <div className="relative w-full mx-auto max-w-full md:max-w-[420px] md:justify-self-start">
+          {/* === Text (Right on md+, FIRST on mobile) === */}
+          <div className="text-center md:text-left px-1 md:px-0 order-1 md:order-2">
+            <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold">
+              {heading}
+            </h2>
+
+            {/* Body paragraphs */}
+            {paragraphs.length > 0 && (
+              <div className="mt-4 text-foreground font-light text-lg leading-relaxed space-y-3 max-w-2xl mx-auto md:mx-0 text-justify">
+                {paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            )}
+
+            {/* Bullets */}
+            {hasBullets && (
+              <ul className="mt-4 list-disc list-inside ml-10 space-y-2 text-foreground font-light text-lg max-w-2xl mx-auto md:mx-0 text-left">
+                {bullets.map((b, i) => (
+                  <li key={i}>{b}</li>
+                ))}
+              </ul>
+            )}
+
+            {linkHref && linkText && (
+              <Link href={linkHref}>
+                <Button
+                  size="lg"
+                  variant="default"
+                  className="mt-8 bg-background text-primary border border-border hover:!bg-accent hover:!text-foreground hover:!border-accent transition-colors"
+                >
+                  {linkText}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            )}
+          </div>
+
+          {/* === Image (Left on md+, SECOND on mobile) === */}
+          <div className="relative w-full mx-auto max-w-full md:max-w-[330px] md:justify-self-start order-2 md:order-1">
             {/* Mobile */}
             <div className="md:hidden">
               <Image
@@ -88,44 +143,6 @@ export function WhatLeftImageSection({ section, image }: Partial<ImageSectionPro
                 loading="lazy"
               />
             </div>
-          </div>
-
-          {/* === Text (Right) === */}
-          <div className="text-center md:text-left px-1 md:px-0">
-            <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold">
-              {heading}
-            </h2>
-
-            {/* Body paragraphs */}
-            {paragraphs.length > 0 && (
-              <div className="mt-4 text-foreground font-light text-lg leading-relaxed space-y-3 max-w-2xl mx-auto md:mx-0">
-                {paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
-              </div>
-            )}
-
-            {/* Bullets */}
-            {hasBullets && (
-              <ul className="mt-4 list-disc list-inside ml-10 space-y-2 text-foreground font-light text-lg max-w-2xl mx-auto md:mx-0">
-                {bullets.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
-            )}
-
-            {linkHref && linkText && (
-              <Link href={String(linkHref)}>
-                <Button
-                  size="lg"
-                  variant="default"
-                  className="mt-8 bg-background text-primary border border-border hover:!bg-accent hover:!text-foreground hover:!border-accent transition-colors"
-                >
-                  {String(linkText)}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-            )}
           </div>
         </div>
       </div>

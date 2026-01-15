@@ -60,3 +60,9 @@ Thumbs.db
 
 # Exclude all contents of the Prototypes directory from Git tracking
 Prototypes/
+
+
+# Exlude Secrets
+.secrets/
+.env.local
+

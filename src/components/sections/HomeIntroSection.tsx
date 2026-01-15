@@ -1,32 +1,18 @@
 // src/components/sections/HomeIntroSection.tsx
-// this isfor the home page 
+// Home page intro section
+//
+// Changes (same principles as WhatIntroSection):
+// - Mobile vs desktop spacing controls via easy constants below
+// - Alt+Enter line breaks: ignored on mobile, preserved on desktop
+// - Clear controls for spacing above/below section, heading, body, bullets
 
 import React from "react";
 import { type TextSectionProps } from "@/types/sections";
 import { formatTextWithBreaks } from "@/lib/utils";
 
 /**
- * Formats headings so the first word and ampersands (&)
- * are accented using the primary color.
- */
-function formatHeadingDynamic(text: string) {
-  if (!text) return null;
-
-  const words = text.split(/\s+/);
-  return words.map((word, i) => {
-    const highlight = i === 0 || word.trim() === "&";
-    return (
-      <span key={i} className={highlight ? "text-primary" : ""}>
-        {word}
-        {i < words.length - 1 && " "}
-      </span>
-    );
-  });
-}
-
-/**
- * WhatIntro
- * - Used for the “What We Do” intro area on the home page.
+ * HomeIntroSection
+ * - Used for the intro area on the home page.
  * - Center-aligned text and optional bullet points.
  */
 export function HomeIntroSection({ section }: TextSectionProps) {
@@ -39,28 +25,90 @@ export function HomeIntroSection({ section }: TextSectionProps) {
       ? [section["whatBullet"]]
       : [];
 
+  // -----------------------------
+  // SPACING CONTROLS (EDIT THESE)
+  // -----------------------------
+  // Section padding (space above and below the whole block)
+    const SECTION_PT_MOBILE = "pt-8";
+  const SECTION_PB_MOBILE = "pb-6";
+  const SECTION_PT_DESKTOP = "md:pt-10";
+  const SECTION_PB_DESKTOP = "md:pb-10";
+
+  // Space between heading and body
+  const HEADING_MB_MOBILE = "mb-4";
+  const HEADING_MB_DESKTOP = "md:mb-3";
+
+  // Space below body (before bullets or next content)
+  const BODY_MB_MOBILE = "mb-5";
+  const BODY_MB_DESKTOP = "md:mb-4";
+
+  // Space above bullets (if bullets exist)
+  const BULLETS_MT_MOBILE = "mt-0"; // body already provides margin-bottom
+  const BULLETS_MT_DESKTOP = "md:mt-0";
+
+  // Bullets spacing between rows
+  const BULLETS_GAP_MOBILE = "space-y-2";
+  const BULLETS_GAP_DESKTOP = "md:space-y-2";
+
   return (
-    <section className="py-16 md:py-24 bg-card text-primary">
+    <section
+      className={[
+        "bg-card",
+        SECTION_PT_MOBILE,
+        SECTION_PB_MOBILE,
+        SECTION_PT_DESKTOP,
+        SECTION_PB_DESKTOP,
+      ].join(" ")}
+    >
       <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
-        {/* Centered content wrapper */}
         <div className="max-w-6xl mx-auto text-center">
-          {/* --- Heading --- */}
+          {/* Heading */}
           {heading && (
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight mb-6">
-              {formatHeadingDynamic(heading)}
+            <h2
+              className={[
+                "text-3xl md:text-4xl",
+                "font-heading font-semibold",
+                "leading-tight",
+                "text-primary",
+                HEADING_MB_MOBILE,
+                HEADING_MB_DESKTOP,
+              ].join(" ")}
+            >
+              {heading}
             </h2>
           )}
 
-          {/* --- Body text --- */}
+          {/* Body */}
           {body && (
-            <div className="text-1xl md:text-2xl font-light text-foreground/90 leading-relaxed text-center space-y-4">
+            <div
+              className={["text-base md:text-xl", "font-light", "text-foreground/90", "leading-relaxed", "text-center", "md:text-center",
+                // Alt+Enter behaviour:
+                // - mobile: ignore line breaks (normal)
+                // - desktop: preserve line breaks (pre-line)
+                "whitespace-normal md:whitespace-pre-line",
+                // If you want paragraph spacing from your helper, keep it.
+                // If you want tighter lines, remove space-y-4.
+                "space-y-4",
+                BODY_MB_MOBILE,
+                BODY_MB_DESKTOP,
+              ].join(" ")}
+            >
               {formatTextWithBreaks(body)}
             </div>
           )}
 
-          {/* --- Optional bullet points --- */}
+          {/* Bullets */}
           {bullets.length > 0 && (
-            <ul className="list-none mt-6 space-y-2 text-lg font-light text-foreground/90">
+            <ul
+              className={[
+                "list-none",
+                BULLETS_MT_MOBILE,
+                BULLETS_MT_DESKTOP,
+                "text-lg font-light text-foreground/90",
+                BULLETS_GAP_MOBILE,
+                BULLETS_GAP_DESKTOP,
+              ].join(" ")}
+            >
               {bullets.map((b: string, i: number) => (
                 <li key={i}>{b}</li>
               ))}

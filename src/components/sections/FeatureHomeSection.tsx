@@ -46,7 +46,7 @@ export function FeatureHomeSection({ sections }: FeatureHomeSectionProps) {
   const heading = String(sections[0]?.["featureHeading"] ?? "Our Services");
 
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section className="py-8 md:py-6 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
         <h2 className="text-3xl md:text-4xl font-headline font-semibold text-center text-primary mb-12">
           {heading}
