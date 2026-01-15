@@ -27,3 +27,7 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_VEAS_ACOUSTICS_100 }}
           projectId: veas-acoustics-100
+
+
+# retrigger workflow
+
