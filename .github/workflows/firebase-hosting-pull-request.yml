@@ -14,6 +14,9 @@ jobs:
   build_and_preview:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
+    env:
+      FIREBASE_ADMIN_SERVICE_ACCOUNT_B64: ${{ secrets.FIREBASE_ADMIN_SERVICE_ACCOUNT_B64 }}
+
     steps:
       - uses: actions/checkout@v4
 
