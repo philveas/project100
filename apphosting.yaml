@@ -1,0 +1,6 @@
+env:
+  - variable: FIREBASE_ADMIN_SERVICE_ACCOUNT_B64
+    secret: FIREBASE_ADMIN_SERVICE_ACCOUNT_B64
+    availability:
+      - BUILD
+      - RUNTIME
