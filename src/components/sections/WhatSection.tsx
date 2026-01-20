@@ -25,7 +25,7 @@ export function WhatSection({ section }: TextSectionProps) {
           {/* === LEFT: COLOURED BOX (Heading) === */}
           <div className="bg-background py-12 px-10 flex items-center justify-end md:rounded-l-xl">
             <div className="text-right">
-              <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight text-primary">
+              <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight text-primary-headings">
                 {(heading || "")
                   .split(/\r?\n/)
                   .map((line: string, i: number) => (
@@ -33,7 +33,7 @@ export function WhatSection({ section }: TextSectionProps) {
                       {line.split(" ").map((word: string, j: number) => (
                         <span key={j}>
                           {word.includes("&") ? (
-                            <span className="text-primary">{word}</span>
+                            <span className="text-primary-headings">{word}</span>
                           ) : (
                             word
                           )}{" "}

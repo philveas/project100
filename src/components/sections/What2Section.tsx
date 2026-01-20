@@ -23,7 +23,7 @@ export function What2Section({ section }: TextSectionProps) {
 
           {/* --- Heading --- */}
           {heading && (
-            <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight text-[hsl(var(--foreground))]">
+            <h2 className="text-3xl md:text-4xl font-headline font-semibold leading-tight text-primary-headings">
               {formatTextWithBreaks(heading)}
             </h2>
           )}

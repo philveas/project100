@@ -69,7 +69,7 @@ export function HomeIntroSection({ section }: TextSectionProps) {
                 "text-3xl md:text-4xl",
                 "font-heading font-semibold",
                 "leading-tight",
-                "text-primary",
+                "text-primary-headings",
                 HEADING_MB_MOBILE,
                 HEADING_MB_DESKTOP,
               ].join(" ")}

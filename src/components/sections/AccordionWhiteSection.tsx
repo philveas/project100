@@ -23,7 +23,7 @@ export function AccordionWhiteSection({ sections }: AccordionGroupProps) {
         <div className="max-w-[70rem] mx-auto">
 
           {/* Heading */}
-          <h2 className="text-3xl md:text-5xl text-primary font-headline font-semibold text-center mb-8">
+          <h2 className="text-3xl md:text-5xl text-primary-headings font-headline font-semibold text-center mb-8">
             {heading}
           </h2>
 

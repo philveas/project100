@@ -48,7 +48,7 @@ export function FeatureHomeSection({ sections }: FeatureHomeSectionProps) {
   return (
     <section className="py-8 md:py-6 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-10">
-        <h2 className="text-3xl md:text-4xl font-headline font-semibold text-center text-primary mb-12">
+        <h2 className="text-3xl md:text-4xl font-headline font-semibold text-center text-primary-headings mb-12">
           {heading}
         </h2>
 
@@ -73,7 +73,7 @@ export function FeatureHomeSection({ sections }: FeatureHomeSectionProps) {
               >
                 <FeatureIcon keyName={keyName} />
 
-                <h3 className="text-xl font-semibold font-headline text-primary mb-3">
+                <h3 className="text-xl font-semibold font-headline text-primary-headings mb-3">
                   {String(f?.["cardTitle"] ?? "Feature Title")}
                 </h3>
 

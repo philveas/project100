@@ -21,7 +21,7 @@ export function Cta2Section({ section }: TextSectionProps) {
             <div className="pt-8 pb-16 md:pt-8 md:pb-16">
                 <div className="container px-4 sm:px-6 lg:px-8">
                     <div className="mx-auto max-w-4xl text-center">
-                        <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold">
+                        <h2 className="text-3xl md:text-4xl text-primary-headings font-headline font-semibold">
                             {String(section?.["ctaHeading"] ?? "Ready to Move Your Project Forward?")}
                         </h2>
 

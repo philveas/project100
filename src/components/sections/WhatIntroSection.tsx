@@ -44,7 +44,7 @@ export function WhatIntroSection({ section }: TextSectionProps) {
   return (
     <section
       className={[
-        "bg-card text-primary", // Sets default text color for section
+        "bg-card text-primary-headings", // Sets default text color for section
         SECTION_PT_MOBILE,
         SECTION_PB_MOBILE,
         SECTION_PT_DESKTOP,

@@ -17,7 +17,7 @@ const address = String(section?.["locationAddress"] ?? "123 Business Rd, City, P
     return (
         <section className="py-16 md:py-24 bg-grey-foreground">
             <div className="container px-4 md:px-6">
-                <h2 className="text-3xl md:text-5xl font-headline font-semibold text-primary text-center mb-12">
+                <h2 className="text-3xl md:text-5xl font-headline font-semibold text-primary-headings text-center mb-12">
                     {heading}
                 </h2>
                 <div className="grid md:grid-cols-2 gap-8">
@@ -39,7 +39,7 @@ const address = String(section?.["locationAddress"] ?? "123 Business Rd, City, P
                     )}
                     {/* Contact Details */}
                     <div className="flex flex-col justify-center bg-card p-8 rounded-lg shadow-xl">
-                        <h3 className="text-2xl font-semibold text-primary mb-4">Find Us</h3>
+                        <h3 className="text-2xl font-semibold text-primary-headings mb-4">Find Us</h3>
                         <div className="flex items-start space-x-3 text-lg text-grey-medium">
                             <MapPin className="mt-1 h-5 w-5 flex-shrink-0 text-accent" />
                             <p className="font-light whitespace-pre-line">{address}</p>
