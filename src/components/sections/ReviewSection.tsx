@@ -17,7 +17,7 @@ export function ReviewSection({ sections }: ReviewProps) {
   return (
     <section className="py-16 md:py-24 bg-card border-t border-b">
       <div className="container px-4 md:px-6">
-        <h2 className="text-3xl md:text-5xl text-primary font-headline font-semibold text-center mb-12">
+        <h2 className="text-3xl md:text-5xl text-primary-headings font-headline font-semibold text-center mb-12">
           {heading}
         </h2>
         

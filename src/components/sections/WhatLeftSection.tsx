@@ -60,7 +60,7 @@ export function WhatLeftSection({ section }: ImageSectionProps) {
 
           {/* --- Text (Right) --- */}
          <div className="px-2 md:px-0 text-left order-1 md:order-2">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary">
+            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary-headings">
               {heading}
             </h2>
 

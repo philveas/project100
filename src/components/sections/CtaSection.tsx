@@ -67,7 +67,7 @@ export function CtaSection({ section, image }: ImageSectionProps) {
 
                 {/* Text */}
                 <div className="text-center md:text-left px-1 md:px-0">
-                    <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold">
+                    <h2 className="text-3xl md:text-4xl text-primary-headings font-headline font-semibold">
                         {String(section?.["ctaHeading"] ?? "Ready to Discuss Your Project?")}
                     </h2>
 

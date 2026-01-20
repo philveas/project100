@@ -80,7 +80,7 @@ export function WhatLeftImageSection({ section, image }: Partial<ImageSectionPro
         <div className="grid md:grid-cols-2 gap-x-12 gap-y-8 items-center">
           {/* === Text (Right on md+, FIRST on mobile) === */}
           <div className="text-center md:text-left px-1 md:px-0 order-1 md:order-2">
-            <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold">
+            <h2 className="text-3xl md:text-4xl text-primary-headings font-headline font-semibold">
               {heading}
             </h2>
 
@@ -107,7 +107,7 @@ export function WhatLeftImageSection({ section, image }: Partial<ImageSectionPro
                 <Button
                   size="lg"
                   variant="default"
-                  className="mt-8 bg-background text-primary border border-border hover:!bg-accent hover:!text-foreground hover:!border-accent transition-colors"
+                  className="mt-8 bg-background text-primary-headings border border-border hover:!bg-accent hover:!text-foreground hover:!border-accent transition-colors"
                 >
                   {linkText}
                   <ArrowRight className="ml-2 h-5 w-5" />

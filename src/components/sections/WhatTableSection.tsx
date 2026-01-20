@@ -42,7 +42,7 @@ export function WhatTableSection({ section }: TextSectionProps) {
       <div className="container px-4 sm:px-6 lg:px-8 xl:px-10 py-8 md:py-10 space-y-6">
         {/* Heading */}
         {heading && (
-          <h2 className="text-3xl md:text-4xl font-headline font-semibold text-primary text-center">
+          <h2 className="text-3xl md:text-4xl font-headline font-semibold text-primary-headings text-center">
             {heading}
           </h2>
         )}

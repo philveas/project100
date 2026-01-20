@@ -37,7 +37,7 @@ export function WhatRightSection({ section }: ImageSectionProps) {
         <div className="grid md:grid-cols-[1fr_1.2fr] gap-8 gap-x-12 items-center">
           {/* --- Text (Left) --- */}
           <div className="px-2 md:px-0 text-left md:text-right">
-            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary">
+            <h2 className="text-3xl md:text-4xl font-heading font-semibold text-primary-headings">
               {heading}
             </h2>
 

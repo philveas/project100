@@ -88,7 +88,7 @@ export function TypesSection({ sections }: TypesSectionProps) {
     <section className="py-8 md:py-10 bg-card">
       <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
         {/* --- Section Heading --- */}
-        <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl text-primary-headings font-headline font-semibold text-center mb-12">
           {heading}
         </h2>
 

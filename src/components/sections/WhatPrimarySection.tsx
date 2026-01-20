@@ -35,7 +35,7 @@ export function WhatPrimarySection({ section }: TextSectionProps) {
                       {line.split(" ").map((word: string, j: number) => (
                         <span key={j}>
                           {word.includes("&") ? (
-                            <span className="text-primary">{word}</span>
+                            <span className="text-primary-headings">{word}</span>
                           ) : (
                             word
                           )}{" "}

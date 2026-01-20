@@ -68,7 +68,7 @@ export function ResourcesHeroSection({ section }: TextSectionProps) {
           {/* TEXT */}
           <div className="bg-card sm:col-span-1 lg:col-span-2 py-0 md:py-4 flex items-center">
             <div className="max-w-[52rem] ml-0 text-foreground/90 font-light space-y-4 text-base md:text-xl text-justify">
-              <h1 className="text-3xl md:text-5xl font-headline font-semibold leading-tight text-primary text-left not-italic">
+              <h1 className="text-3xl md:text-5xl font-headline font-semibold leading-tight text-primary-headings text-left not-italic">
                 {(heading || "")
                   .split(/\r?\n/)
                   .filter(Boolean)

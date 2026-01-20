@@ -54,7 +54,7 @@ export function FeatureSectionx2({ sections }: FeatureSectionProps) {
   return (
     <section className="bg-card py-16 md:py-24">
       <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
-        <h2 className="text-3xl md:text-4xl text-primary font-headline font-semibold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl text-primary-headings font-headline font-semibold text-center mb-12">
           {heading}
         </h2>
 
@@ -73,7 +73,7 @@ export function FeatureSectionx2({ sections }: FeatureSectionProps) {
                 {/* Icon only when a service key exists */}
                 {hasServiceLink ? <FeatureIcon keyName={keyName} /> : null}
 
-                <h3 className="text-xl font-semibold font-headline text-primary mb-3">
+                <h3 className="text-xl font-semibold font-headline text-primary-headings mb-3">
                   {String(f?.["cardTitle"] ?? "Feature Title")}
                 </h3>
 
