@@ -127,7 +127,7 @@ export function HeroSection({ section, serviceTitle }: ImageSectionProps) {
       )}
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-primary/50" />
+      <div className="absolute inset-0 bg-imageover/50" />
 
       {/* Content */}
       <div className="relative z-10 container px-4 md:px-10">

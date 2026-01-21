@@ -150,7 +150,7 @@ export function TypesSection({ sections }: TypesSectionProps) {
                 <div
                   className={cn(
                     "absolute inset-0 transition-colors duration-500",
-                    isExpanded ? "bg-primary/80" : "bg-primary/20 group-hover:bg-primary/50"
+                    isExpanded ? "bg-imageover/80" : "bg-imageover/20 group-hover:bg-imageover/50"
                   )}
                 />
 

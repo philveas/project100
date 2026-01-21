@@ -62,7 +62,7 @@ export function CtaSection({ section, image }: ImageSectionProps) {
                     </div>
 
                     {/* Overlay */}
-                    <div className="absolute inset-0 bg-primary/10 rounded-lg" />
+                    <div className="absolute inset-0 bg-imageover/10 rounded-lg" />
                 </div>
 
                 {/* Text */}
@@ -71,7 +71,7 @@ export function CtaSection({ section, image }: ImageSectionProps) {
                         {String(section?.["ctaHeading"] ?? "Ready to Discuss Your Project?")}
                     </h2>
 
-                    <p className="mt-4 max-w-2xl mx-auto md:mx-0 text-grey-foreground font-light">
+                    <p className="mt-4 max-w-2xl mx-auto md:mx-0 text-foreground font-light">
                         {String(
                             section?.["ctaBody"] ??
                             "Our experts are ready to provide the insights you need. Contact us today for a consultation."
@@ -81,7 +81,7 @@ export function CtaSection({ section, image }: ImageSectionProps) {
                     <Link href={String(section?.["buttonHref"] ?? "/contact")}>
                         <Button
                             size="lg"
-                            className="mt-8 bg-transparent border border-secondary-foreground text-foreground hover:bg-accent/90 hover:text-foreground"
+                            className="mt-8 bg-transparent border border-secondary-background text-foreground hover:bg-accent/90 hover:text-foreground"
                         >
                             {String(section?.["buttonLabel"] ?? "Request a Consultation")}
                             <ArrowRight className="ml-2 h-5 w-5" />
