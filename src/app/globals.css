@@ -13,28 +13,28 @@
     --card: 0 0% 100%;
     --card-foreground: 150 4% 9%;
 
-    --imageover: 150 4% 9%; /*not sure correct*/
+    --imageover: 166 96% 28%; /*#038c6d */
     --border: 150 8% 80%;
 
     /* Brand */
     --primary-background: 157 37% 77%; /*#aedac9 */
     --primary-highlight: 151 37% 50%; /*#50af81 */
     --primary-light: 160 58% 39%; /*#2A9E77 */
-    --primary: 166 96% 28%; /*#038c6d */
+    --primary: 155 44% 37%; /*#358866 */
     --primary-mid: 163 46% 30%; /*#29705c */
     --primary-dark: 168 42% 25%; /*#265c51 */
-    --primary-headings: 166 70% 29%; /*#167E65 */
+    --primary-headings: 156 71% 28%; /*#157C52 */
 
     /* Secondary */
     --secondary-background: 144 10% 90%; /*#e3e8e5 */
     --secondary-light: 140 3% 79%; /*#C8CBC9 */
-    --secondary: 0 0% 68%; /*#ADADAD */
+    --secondary: 180 1% 69%; /*#B0B2B2 */
     --secondary-three: 192 2% 56%; /*#8D9192 */
     --secondary-four: 192 2% 46%; /*#727677 */
     --secondary-dark: 195 2% 37%; /*#5D6061 */
 
     /* Accent */
-    --accent: 48 77% 61%; /*#E8C94F */
+    --accent: 51 75% 67%; /*#EAD76C */
     --accent-dark: 48 78% 48%; /*#DAB41B */
     --accent-foreground: 56 87% 94%; /*#FDFBE2 */
     --accent-highlight: 54 100% 51%; /*#FFE605 */

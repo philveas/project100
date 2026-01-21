@@ -56,7 +56,7 @@ export function CtaSection({ section, image }: ImageSectionProps) {
             </div>
 
             {/* Optional overlay */}
-            <div className="absolute inset-0 bg-primary/0 rounded-lg" />
+            <div className="absolute inset-0 bg-imageover/50 rounded-lg" />
           </div>
 
           {/* ✅ Text + CTA column */}
