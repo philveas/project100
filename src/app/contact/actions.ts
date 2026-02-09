@@ -43,33 +43,42 @@ export async function submitContactForm(
     };
   }
 
-  try {
-    const endpoint = process.env.NEXT_PUBLIC_CONTACT_FUNCTION_URL!;
-    
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(validated.data)
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      throw new Error(result?.message ?? "Cloud Function error");
-    }
-
-    return {
-      status: "success",
-      message: "Thank you for your message! We will get back to you shortly.",
-      success: true
-    };
-
-  } catch (err) {
-    console.error("Cloud Function error:", err);
+try {
+  const endpoint = process.env.CONTACT_FUNCTION_URL;
+  if (!endpoint) {
+    console.error("Missing CONTACT_FUNCTION_URL");
     return {
       status: "error",
-      message: "Something went wrong. Please try again later.",
-      success: false
+      message: "Contact form is not configured. Please email info@veasacoustics.com.",
+      success: false,
     };
   }
+
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(validated.data),
+  });
+
+  const text = await response.text();
+  let result: any = null;
+  try { result = text ? JSON.parse(text) : null; } catch {}
+
+  if (!response.ok) {
+    throw new Error(result?.message ?? text ?? "Cloud Function error");
+  }
+
+  return {
+    status: "success",
+    message: "Thank you for your message! We will get back to you shortly.",
+    success: true,
+  };
+} catch (err) {
+  console.error("Cloud Function error:", err);
+  return {
+    status: "error",
+    message: "Something went wrong. Please try again later.",
+    success: false,
+  };
+}
 }

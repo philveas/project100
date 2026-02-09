@@ -4,4 +4,9 @@ env:
     availability:
       - BUILD
       - RUNTIME
-# redeploy
+
+  - variable: CONTACT_FUNCTION_URL
+    secret: CONTACT_FUNCTION_URL
+    availability:
+      - BUILD
+      - RUNTIME

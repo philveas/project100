@@ -15,8 +15,8 @@ export function Footer() {
               <Logo />
             </div>
 
-            <p className="text-primary text-sm max-w-xs font-light">
-              Delivering Value through Excellence, Always.
+            <p className="mt-2 text-secondary text-sm max-w-xs font-light">
+                  Acoustic Assessment, Design and Testing
             </p>
           </div>
           
