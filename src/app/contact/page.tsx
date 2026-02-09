@@ -150,10 +150,10 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-white">Phone</h3>
                       <a
-                        href="tel:+447721524262"
+                        href="tel:+44 0207 118 0504"
                         className="text-white hover:text-accent transition-colors font-light"
                       >
-                        +44 07721 524262
+                        +44 0207 118 0504
                       </a>
                     </div>
                   </div>
