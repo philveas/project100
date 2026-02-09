@@ -8,7 +8,7 @@ import { z } from 'zod';
 import Link from 'next/link';
 
 import { submitContactForm } from '@/app/contact/actions';
-import type { FormState } from '@/app/contact/types'; // ✅ shared type
+import type { FormState } from '@/app/contact/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -16,6 +16,21 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+function fireAdsConversion(sendTo: string) {
+  if (typeof window === 'undefined') return;
+  if (typeof window.gtag !== 'function') return;
+
+  window.gtag('event', 'conversion', { send_to: sendTo });
+}
+
+const ADS_FORM_CONVERSION_LABEL = 'AW-17756673500/CbJsCL_JxPUbENyrhZNC';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -52,10 +67,12 @@ function SubmitButton() {
 }
 
 export function ContactForm() {
-  // ✅ useActionState now aligned with server action type
   const [state, formAction] = useActionState<FormState, FormData>(submitContactForm, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
+
+  // Prevent duplicate conversion firing for a single success state
+  const conversionFiredRef = useRef(false);
 
   const {
     register,
@@ -70,23 +87,33 @@ export function ContactForm() {
   const [gdprChecked, setGdprChecked] = useState(false);
 
   useEffect(() => {
-    if (state.message) {
-      if (state.status === 'success' || state.success) {
-        toast({ title: 'Success!', description: state.message });
-        formRef.current?.reset();
-        reset();
-        setGdprChecked(false);
-      } else if (state.status === 'error') {
-        toast({ title: 'Error', description: state.message, variant: 'destructive' });
+    if (!state.message) return;
+
+    if (state.status === 'success' || state.success) {
+      // Fire conversion once per successful submission
+      if (!conversionFiredRef.current) {
+        conversionFiredRef.current = true;
+        fireAdsConversion(ADS_FORM_CONVERSION_LABEL);
       }
+
+      toast({ title: 'Success!', description: state.message });
+      formRef.current?.reset();
+      reset();
+      setGdprChecked(false);
+
+      // Allow future submissions in the same session to be counted
+      conversionFiredRef.current = false;
+      return;
+    }
+
+    if (state.status === 'error') {
+      toast({ title: 'Error', description: state.message, variant: 'destructive' });
     }
   }, [state, toast, reset]);
 
   // merge client-side zod errors + server-side errors
   const allErrors: Record<string, string[]> = {
-    ...Object.fromEntries(
-      Object.entries(errors).map(([k, v]) => [k, v?.message ? [String(v.message)] : []])
-    ),
+    ...Object.fromEntries(Object.entries(errors).map(([k, v]) => [k, v?.message ? [String(v.message)] : []])),
     ...(state.errors ?? {}),
   };
 
@@ -100,7 +127,12 @@ export function ContactForm() {
         </div>
         <div className="space-y-1">
           <Label htmlFor="company">Company</Label>
-          <Input id="company" {...register('company')} placeholder="Your Company Name" aria-invalid={!!allErrors.company?.length} />
+          <Input
+            id="company"
+            {...register('company')}
+            placeholder="Your Company Name"
+            aria-invalid={!!allErrors.company?.length}
+          />
           {allErrors.company?.[0] && <p className="text-sm text-destructive">{allErrors.company[0]}</p>}
         </div>
       </div>
@@ -108,25 +140,48 @@ export function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="space-y-1">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" {...register('email')} placeholder="your.email@example.com" aria-invalid={!!allErrors.email?.length} />
+          <Input
+            id="email"
+            type="email"
+            {...register('email')}
+            placeholder="your.email@example.com"
+            aria-invalid={!!allErrors.email?.length}
+          />
           {allErrors.email?.[0] && <p className="text-sm text-destructive">{allErrors.email[0]}</p>}
         </div>
         <div className="space-y-1">
           <Label htmlFor="telephone">Telephone</Label>
-          <Input id="telephone" type="tel" {...register('telephone')} placeholder="Your Phone Number" aria-invalid={!!allErrors.telephone?.length} />
+          <Input
+            id="telephone"
+            type="tel"
+            {...register('telephone')}
+            placeholder="Your Phone Number"
+            aria-invalid={!!allErrors.telephone?.length}
+          />
           {allErrors.telephone?.[0] && <p className="text-sm text-destructive">{allErrors.telephone[0]}</p>}
         </div>
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="projectAddress">Project Address</Label>
-        <Input id="projectAddress" {...register('projectAddress')} placeholder="Enter Project Address" aria-invalid={!!allErrors.projectAddress?.length} />
+        <Input
+          id="projectAddress"
+          {...register('projectAddress')}
+          placeholder="Enter Project Address"
+          aria-invalid={!!allErrors.projectAddress?.length}
+        />
         {allErrors.projectAddress?.[0] && <p className="text-sm text-destructive">{allErrors.projectAddress[0]}</p>}
       </div>
 
       <div className="space-y-1">
         <Label htmlFor="message">Message</Label>
-        <Textarea id="message" {...register('message')} placeholder="How can we help?" rows={4} aria-invalid={!!allErrors.message?.length} />
+        <Textarea
+          id="message"
+          {...register('message')}
+          placeholder="How can we help?"
+          rows={4}
+          aria-invalid={!!allErrors.message?.length}
+        />
         {allErrors.message?.[0] && <p className="text-sm text-destructive">{allErrors.message[0]}</p>}
       </div>
 
@@ -135,7 +190,11 @@ export function ContactForm() {
           {/* shadcn Checkbox is not a native input; mirror its state to a hidden input */}
           <Checkbox id="gdprConsent" checked={gdprChecked} onCheckedChange={(v) => setGdprChecked(Boolean(v))} />
           <Label htmlFor="gdprConsent" className="text-sm font-light text-muted-foreground">
-            I agree to the <Link href="/privacy-policy" className="underline hover:text-primary">Privacy Policy</Link>.
+            I agree to the{' '}
+            <Link href="/privacy-policy" className="underline hover:text-primary">
+              Privacy Policy
+            </Link>
+            .
           </Label>
         </div>
         {/* Hidden form control that the server action reads */}
