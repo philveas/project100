@@ -62,12 +62,12 @@ export async function generateMetadata({
     title: `${title} - Veas Acoustics`,
     description,
     alternates: {
-      canonical: `https://www.veasacoustics.co.uk/locations/${locationSlug}`,
+      canonical: `https://www.veasacoustics.com/locations/${locationSlug}`,
     },
     openGraph: {
       title: `${title} - Veas Acoustics`,
       description,
-      url: `https://www.veasacoustics.co.uk/locations/${locationSlug}`,
+      url: `https://www.veasacoustics.com/locations/${locationSlug}`,
       images: [
         {
           url: heroImageUrl,
@@ -118,11 +118,11 @@ export default async function LocationPage({
   const faqSchema = buildFaqSchema(safeFaqSections);
 
   const breadcrumbSchema = buildBreadcrumbSchema([
-    { name: "Home", url: "https://www.veasacoustics.co.uk/" },
-    { name: "Locations", url: "https://www.veasacoustics.co.uk/locations" },
+    { name: "Home", url: "https://www.veasacoustics.com/" },
+    { name: "Locations", url: "https://www.veasacoustics.com/locations" },
     {
       name: location.locationName || locationSlug.replace(/-/g, " "),
-      url: `https://www.veasacoustics.co.uk/locations/${locationSlug}`,
+      url: `https://www.veasacoustics.com/locations/${locationSlug}`,
     },
   ]);
 
