@@ -14,7 +14,7 @@ import { nunito, roboto } from "./fonts";
  * ROOT METADATA (SAFE DEFAULTS ONLY)
  * -------------------------------------------------- */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.veasacoustics.co.uk"),
+  metadataBase: new URL("https://www.veasacoustics.com"),
 
   title: {
     default: "Veas Acoustics",

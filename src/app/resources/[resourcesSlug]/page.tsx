@@ -53,12 +53,12 @@ export async function generateMetadata({
     title: `${title} - Veas Acoustics`,
     description,
     alternates: {
-      canonical: `https://www.veasacoustics.co.uk/resources/${slug}`,
+      canonical: `https://www.veasacoustics.com/resources/${slug}`,
     },
     openGraph: {
       title: `${title} - Veas Acoustics`,
       description,
-      url: `https://www.veasacoustics.co.uk/resources/${slug}`,
+      url: `https://www.veasacoustics.com/resources/${slug}`,
       images: [
         {
           url: heroImageUrl,

@@ -91,12 +91,12 @@ const description =
     title: `${titleBase} - Veas Acoustics`,
     description,
     alternates: {
-      canonical: `https://www.veasacoustics.co.uk/services/${slug}`,
+      canonical: `https://www.veasacoustics.com/services/${slug}`,
     },
     openGraph: {
       title: `${titleBase} - Veas Acoustics`,
       description,
-      url: `https://www.veasacoustics.co.uk/services/${slug}`,
+      url: `https://www.veasacoustics.com/services/${slug}`,
       images: [
         {
           url: heroImageUrl,
@@ -140,10 +140,10 @@ export default async function ServicePage({
     safeRoot && buildReviewSchema(safeRoot),
     buildFaqSchema(safeFaqSections),
     buildBreadcrumbSchema([
-      { name: "Home", url: "https://www.veasacoustics.co.uk/" },
+      { name: "Home", url: "https://www.veasacoustics.com/" },
       {
         name: (service as any).title || slug.replace(/-/g, " "),
-        url: `https://www.veasacoustics.co.uk/services/${slug}`,
+        url: `https://www.veasacoustics.com/services/${slug}`,
       },
     ]),
   ].filter(Boolean);

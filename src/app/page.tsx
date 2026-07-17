@@ -150,7 +150,7 @@ export default async function HomePage() {
   const breadcrumbSchema = buildBreadcrumbSchema([
     {
       name: "Home",
-      url: "https://www.veasacoustics.co.uk/",
+      url: "https://www.veasacoustics.com/",
     },
   ]);
 
